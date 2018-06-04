@@ -35,7 +35,6 @@ pip==9.0.3
 psycopg2==2.7.4
 pycares==2.3.0
 pylint==1.9.1
-pypiwin32==223
 pytz==2018.4
 pywin32==223
 requests==2.18.4
