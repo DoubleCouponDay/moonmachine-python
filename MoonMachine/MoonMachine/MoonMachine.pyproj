@@ -5,7 +5,7 @@
     <Name>MoonMachine</Name>
     <RootNamespace>MoonMachine</RootNamespace>
     <WebBrowserPort>7071</WebBrowserPort>
-    <InterpreterId>MSBuild|env|$(MSBuildProjectFullPath)</InterpreterId>
+    <InterpreterId>MSBuild|env3.6.5|$(MSBuildProjectFullPath)</InterpreterId>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -189,10 +189,10 @@
     <Folder Include="Front\__pycache__\" />
   </ItemGroup>
   <ItemGroup>
-    <Interpreter Include="env\">
-      <Id>env</Id>
+    <Interpreter Include="env3.6.5\">
+      <Id>env3.6.5</Id>
       <Version>3.6</Version>
-      <Description>env (Python 3.6 (32-bit))</Description>
+      <Description>env3.6.5 (Python 3.6 (32-bit))</Description>
       <InterpreterPath>Scripts\python.exe</InterpreterPath>
       <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
       <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
