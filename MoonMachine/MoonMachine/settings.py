@@ -29,7 +29,7 @@ SECRET_KEY = HiddenSettings.SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = HiddenSettings.DEBUG_MODE
 
-ALLOWED_HOSTS = ['localhost', '.moonmachine.biz'] #prevents csrf
+ALLOWED_HOSTS = ['localhost', 'moonmachine.biz', '0.0.0.0'] #prevents csrf
 
 # Application definition
 
