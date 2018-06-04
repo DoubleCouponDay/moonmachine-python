@@ -191,7 +191,7 @@
   <ItemGroup>
     <Interpreter Include="env3.6.5\">
       <Id>env3.6.5</Id>
-      <Version>3.6</Version>
+      <Version>3.6.5</Version>
       <Description>env3.6.5 (Python 3.6 (32-bit))</Description>
       <InterpreterPath>Scripts\python.exe</InterpreterPath>
       <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
