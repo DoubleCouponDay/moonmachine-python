@@ -4,7 +4,8 @@
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <Name>MoonMachine</Name>
     <RootNamespace>MoonMachine</RootNamespace>
-    <WebBrowserPort>7071</WebBrowserPort>
+    <WebBrowserPort>
+    </WebBrowserPort>
     <InterpreterId>MSBuild|env3.6.5|$(MSBuildProjectFullPath)</InterpreterId>
   </PropertyGroup>
   <PropertyGroup>
