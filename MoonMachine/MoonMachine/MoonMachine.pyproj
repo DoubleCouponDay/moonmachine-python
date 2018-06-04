@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <Name>MoonMachine</Name>
+    <RootNamespace>MoonMachine</RootNamespace>
+    <WebBrowserPort>7071</WebBrowserPort>
+    <InterpreterId>MSBuild|env|$(MSBuildProjectFullPath)</InterpreterId>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>b03c754a-a815-4940-aa3c-eae89fde28a0</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <ProjectTypeGuids>{5F0BE9CA-D677-4A4D-8806-6076C0FAAD37};{349c5851-65df-11da-9384-00065b846f21};{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <StartupFile>manage.py</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <WebBrowserUrl>http://localhost</WebBrowserUrl>
+    <LaunchProvider>Django launcher</LaunchProvider>
+    <DjangoSettingsModule>settings</DjangoSettingsModule>
+    <OutputPath>.</OutputPath>
+    <SuppressCollectPythonCloudServiceFiles>true</SuppressCollectPythonCloudServiceFiles>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Back\Controllers\AuthorizedControls.py" />
+    <Compile Include="Back\Controllers\Consumers\CompilationConsumer.py" />
+    <Compile Include="Back\Controllers\Pages.py" />
+    <Compile Include="Back\Controllers\Portfolio.py" />
+    <Compile Include="Back\Controllers\__init__.py" />
+    <Compile Include="Back\Database\Queryer.py" />
+    <Compile Include="Back\Database\RecordKeeper.py" />
+    <Compile Include="Back\Database\StrategyKeeper.py" />
+    <Compile Include="Back\Database\__init__.py" />
+    <Compile Include="Back\ModelsModule.py" />
+    <Compile Include="Back\SelectionOptions\LabeledConstants.py" />
+    <Compile Include="Back\SelectionOptions\MarketAction.py" />
+    <Compile Include="Back\SelectionOptions\ModelLimits.py" />
+    <Compile Include="Back\SelectionOptions\ScriptLimits.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Back\SelectionOptions\Verdicts.py" />
+    <Compile Include="Back\SelectionOptions\__init__.py" />
+    <Compile Include="Back\Trading\ExecutiveAnalyzer.py" />
+    <Compile Include="Back\Trading\MarketManager.py" />
+    <Compile Include="Back\Trading\ParallelTrader.py" />
+    <Compile Include="Back\Trading\RestGateways\AsyncRequester.py" />
+    <Compile Include="Back\Trading\RestGateways\BubbleWrapRequester.py" />
+    <Compile Include="Back\Trading\RestGateways\ExchangeWrappers\IExchangeWrapper.py" />
+    <Compile Include="Back\Trading\RestGateways\ExchangeWrappers\IndependentReserveWrapper.py" />
+    <Compile Include="Back\Trading\RestGateways\ServerlessContext.py" />
+    <Compile Include="Back\Trading\RestGateways\__init__.py" />
+    <Compile Include="Back\Trading\__init__.py" />
+    <Compile Include="Back\__init__.py" />
+    <Compile Include="Front\__init__.py" />
+    <Compile Include="HiddenSettings.py" />
+    <Compile Include="manage.py" />
+    <Compile Include="routing.py" />
+    <Compile Include="settings.py" />
+    <Compile Include="urls.py" />
+    <Compile Include="wsgi.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Back\Controllers\Consumers\__pycache__\CompilationConsumer.cpython-36.pyc" />
+    <Content Include="Back\Controllers\__pycache__\AuthorizedControls.cpython-35.pyc" />
+    <Content Include="Back\Controllers\__pycache__\AuthorizedControls.cpython-36.pyc" />
+    <Content Include="Back\Controllers\__pycache__\AuthorizedControls.pypy3-510.pyc" />
+    <Content Include="Back\Controllers\__pycache__\Pages.cpython-35.pyc" />
+    <Content Include="Back\Controllers\__pycache__\Pages.cpython-36.pyc" />
+    <Content Include="Back\Controllers\__pycache__\Pages.pypy3-510.pyc" />
+    <Content Include="Back\Controllers\__pycache__\StrategyDevelopment.cpython-36.pyc" />
+    <Content Include="Back\Controllers\__pycache__\StrategyDevelopment.pypy3-510.pyc" />
+    <Content Include="Back\Controllers\__pycache__\TradeFeeds.cpython-35.pyc" />
+    <Content Include="Back\Controllers\__pycache__\__init__.cpython-35.pyc" />
+    <Content Include="Back\Controllers\__pycache__\__init__.cpython-36.pyc" />
+    <Content Include="Back\Controllers\__pycache__\__init__.pypy3-510.pyc" />
+    <Content Include="Back\Database\__pycache__\Queryer.cpython-36.pyc" />
+    <Content Include="Back\Database\__pycache__\RecordKeeper.cpython-36.pyc" />
+    <Content Include="Back\Database\__pycache__\StrategyKeeper.cpython-36.pyc" />
+    <Content Include="Back\Database\__pycache__\__init__.cpython-36.pyc" />
+    <Content Include="Back\SelectionOptions\__pycache__\LabeledConstants.cpython-35.pyc" />
+    <Content Include="Back\SelectionOptions\__pycache__\LabeledConstants.cpython-36.pyc" />
+    <Content Include="Back\SelectionOptions\__pycache__\LabeledConstants.pypy3-510.pyc" />
+    <Content Include="Back\SelectionOptions\__pycache__\MarketAction.cpython-35.pyc" />
+    <Content Include="Back\SelectionOptions\__pycache__\MarketAction.cpython-36.pyc" />
+    <Content Include="Back\SelectionOptions\__pycache__\MarketAction.pypy3-510.pyc" />
+    <Content Include="Back\SelectionOptions\__pycache__\ModelLimits.cpython-35.pyc" />
+    <Content Include="Back\SelectionOptions\__pycache__\ModelLimits.cpython-36.pyc" />
+    <Content Include="Back\SelectionOptions\__pycache__\ModelLimits.pypy3-510.pyc" />
+    <Content Include="Back\SelectionOptions\__pycache__\ScriptLanguages.cpython-36.pyc" />
+    <Content Include="Back\SelectionOptions\__pycache__\__init__.cpython-35.pyc" />
+    <Content Include="Back\SelectionOptions\__pycache__\__init__.cpython-36.pyc" />
+    <Content Include="Back\SelectionOptions\__pycache__\__init__.pypy3-510.pyc" />
+    <Content Include="Back\Trading\RestGateways\ExchangeWrappers\__pycache__\IExchangeWrapper.cpython-36.pyc" />
+    <Content Include="Back\Trading\RestGateways\ExchangeWrappers\__pycache__\IndependentReserveWrapper.cpython-36.pyc" />
+    <Content Include="Back\Trading\RestGateways\__pycache__\AsyncRequester.cpython-36.pyc" />
+    <Content Include="Back\Trading\RestGateways\__pycache__\BitbucketContext.cpython-35.pyc" />
+    <Content Include="Back\Trading\RestGateways\__pycache__\BubbleWrapRequester.cpython-36.pyc" />
+    <Content Include="Back\Trading\RestGateways\__pycache__\ExchangeWrapper.cpython-35.pyc" />
+    <Content Include="Back\Trading\RestGateways\__pycache__\IExchange.cpython-35.pyc" />
+    <Content Include="Back\Trading\RestGateways\__pycache__\IExchangeWrapper.cpython-35.pyc" />
+    <Content Include="Back\Trading\RestGateways\__pycache__\IExchangeWrapper.cpython-36.pyc" />
+    <Content Include="Back\Trading\RestGateways\__pycache__\IExchangeWrapper.pypy3-510.pyc" />
+    <Content Include="Back\Trading\RestGateways\__pycache__\IndependentReserveContext.cpython-35.pyc" />
+    <Content Include="Back\Trading\RestGateways\__pycache__\IndependentReserveWrapper.cpython-35.pyc" />
+    <Content Include="Back\Trading\RestGateways\__pycache__\IndependentReserveWrapper.cpython-36.pyc" />
+    <Content Include="Back\Trading\RestGateways\__pycache__\IndependentReserveWrapper.pypy3-510.pyc" />
+    <Content Include="Back\Trading\RestGateways\__pycache__\NexmoContext.cpython-35.pyc" />
+    <Content Include="Back\Trading\RestGateways\__pycache__\ServerlessContext.cpython-36.pyc" />
+    <Content Include="Back\Trading\RestGateways\__pycache__\__init__.cpython-35.pyc" />
+    <Content Include="Back\Trading\RestGateways\__pycache__\__init__.cpython-36.pyc" />
+    <Content Include="Back\Trading\RestGateways\__pycache__\__init__.pypy3-510.pyc" />
+    <Content Include="Back\Trading\__pycache__\ExecutiveAnalyzer.cpython-36.pyc" />
+    <Content Include="Back\Trading\__pycache__\ExecutiveAnalyzer.pypy3-510.pyc" />
+    <Content Include="Back\Trading\__pycache__\MarketManager.cpython-35.pyc" />
+    <Content Include="Back\Trading\__pycache__\MarketManager.cpython-36.pyc" />
+    <Content Include="Back\Trading\__pycache__\MarketManager.pypy3-510.pyc" />
+    <Content Include="Back\Trading\__pycache__\ParallelTrader.cpython-35.pyc" />
+    <Content Include="Back\Trading\__pycache__\ParallelTrader.cpython-36.pyc" />
+    <Content Include="Back\Trading\__pycache__\ParallelTrader.pypy3-510.pyc" />
+    <Content Include="Back\Trading\__pycache__\RecordKeeper.cpython-35.pyc" />
+    <Content Include="Back\Trading\__pycache__\__init__.cpython-35.pyc" />
+    <Content Include="Back\Trading\__pycache__\__init__.cpython-36.pyc" />
+    <Content Include="Back\Trading\__pycache__\__init__.pypy3-510.pyc" />
+    <Content Include="Back\__pycache__\ModelsModule.cpython-36.pyc" />
+    <Content Include="Back\__pycache__\__init__.cpython-36.pyc" />
+    <Content Include="Front\content\authorizedcontrols.css" />
+    <Content Include="Front\content\portfolio.css" />
+    <Content Include="Front\content\site.css" />
+    <Content Include="Front\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Front\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Front\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Front\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Front\scripts\custom\binders\authorizedcontrolsbinder.js" />
+    <Content Include="Front\scripts\custom\binders\portfoliobinder.js" />
+    <Content Include="Front\scripts\custom\FileTextUploader.js" />
+    <Content Include="Front\scripts\custom\models\AuthenticationOutcome.js" />
+    <Content Include="Front\scripts\custom\models\ScriptLimits.js" />
+    <Content Include="Front\scripts\custom\models\StrategyInfo.js" />
+    <Content Include="Front\scripts\custom\RequestForgeryToken.js" />
+    <Content Include="Front\scripts\custom\webinterfaces\authorizedcontrolsapi.js" />
+    <Content Include="Front\scripts\custom\webinterfaces\compilationapi.js" />
+    <Content Include="Front\scripts\custom\webinterfaces\portfolioapi.js" />
+    <Content Include="Front\scripts\package-lock.json" />
+    <Content Include="Front\scripts\package.json" />
+    <Content Include="Front\templates\authorizedcontrols.html" />
+    <Content Include="Front\templates\index.html" />
+    <Content Include="Front\templates\portfolio.html" />
+    <Content Include="Front\__pycache__\__init__.cpython-36.pyc" />
+    <None Include="Front\scripts\_references.js" />
+    <Content Include="requirements.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Back\" />
+    <Folder Include="Back\Controllers\" />
+    <Folder Include="Back\Controllers\Consumers\" />
+    <Folder Include="Back\Controllers\Consumers\__pycache__\" />
+    <Folder Include="Back\Controllers\__pycache__\" />
+    <Folder Include="Back\Database\" />
+    <Folder Include="Back\Database\__pycache__\" />
+    <Folder Include="Back\SelectionOptions\" />
+    <Folder Include="Back\SelectionOptions\__pycache__\" />
+    <Folder Include="Back\Trading\" />
+    <Folder Include="Back\Trading\RestGateways\" />
+    <Folder Include="Back\Trading\RestGateways\ExchangeWrappers\" />
+    <Folder Include="Back\Trading\RestGateways\ExchangeWrappers\__pycache__\" />
+    <Folder Include="Back\Trading\RestGateways\__pycache__\" />
+    <Folder Include="Back\Trading\__pycache__\" />
+    <Folder Include="Back\__pycache__\" />
+    <Folder Include="Front\" />
+    <Folder Include="Front\content\" />
+    <Folder Include="Front\fonts\" />
+    <Folder Include="Front\scripts\" />
+    <Folder Include="Front\scripts\custom\" />
+    <Folder Include="Front\scripts\custom\binders\" />
+    <Folder Include="Front\scripts\custom\models\" />
+    <Folder Include="Front\scripts\custom\webinterfaces\" />
+    <Folder Include="Front\templates\" />
+    <Folder Include="Front\templates\dist\" />
+    <Folder Include="Front\__pycache__\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Interpreter Include="env\">
+      <Id>env</Id>
+      <Version>3.6</Version>
+      <Description>env (Python 3.6 (32-bit))</Description>
+      <InterpreterPath>Scripts\python.exe</InterpreterPath>
+      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
+      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
+      <Architecture>X86</Architecture>
+    </Interpreter>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Django.targets" />
+  <!-- Specify pre- and post-build commands in the BeforeBuild and 
+       AfterBuild targets below. -->
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <AutoAssignPort>True</AutoAssignPort>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
