@@ -1,0 +1,1 @@
+web: python MoonMachine/MoonMachine/manage.py runserver
