@@ -1,5 +1,5 @@
 class HiddenSettings(object):
-    SECRET_KEY = 'b99ede9c-307b-4a85-9fa1-83aa8c623790'
+    SECRET_KEY = 'f6881dd6-1e71-44e1-8059-f15ae29323e4'
     DEBUG_MODE = True
 
     LOCAL_HOSTNAME = 'DESKTOP-E62C0JN'
