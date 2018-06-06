@@ -1,1 +1,1 @@
-web: python MoonMachine/MoonMachine/manage.py runserver $PORT
+web: bin/start-nginx bundle exec gunicorn -w 2 MoonMachine.MoonMachine.wsgi --log-file -

@@ -14,7 +14,6 @@ import os
 import posixpath
 from HiddenSettings import HiddenSettings
 from Back.SelectionOptions.LabeledConstants import LOG_FILE
-import socket
 import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -27,7 +26,8 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 SECRET_KEY = HiddenSettings.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = HiddenSettings.DEBUG_MODE
+
+DEBUG = HiddenSettings.GetDebugFlag()
 
 ALLOWED_HOSTS = ['localhost', 'moonmachine.biz', '*']
 
@@ -165,26 +165,7 @@ ASGI_APPLICATION = "routing.application"
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
-DATABASES = {
-    'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
-}
-
-currentHostname = socket.gethostname()
-
-if currentHostname == HiddenSettings.LOCAL_HOSTNAME:
-    #empty host argument means localhost
-    DATABASES['default'] = dj_database_url.config(default=HiddenSettings.POSTGRES_STRING)
-
-
-    #DATABASES['default'] = {
-    #    'ENGINE': 'django.db.backends.postgresql',
-    #    'NAME': 'postgres',
-    #    'HOST': '', 
-    #    'PORT': '5432',
-    #    'AUTOCOMMIT': True,
-    #    'USER': 'postgres',
-    #    'PASSWORD': 'postgres'
-    #}
+DATABASES = HiddenSettings.GetDatabaseConfig()
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
 
