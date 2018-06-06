@@ -65,6 +65,9 @@
     <Compile Include="Front\__init__.py" />
     <Compile Include="HiddenSettings.py" />
     <Compile Include="manage.py" />
+    <Compile Include="__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="routing.py" />
     <Compile Include="settings.py" />
     <Compile Include="urls.py" />
