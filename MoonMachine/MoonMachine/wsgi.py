@@ -15,9 +15,13 @@ framework.
 """
 import os
 from django.core.wsgi import get_wsgi_application
-import settings
+import sys
 
-settings.configure()
+root_path = os.path.abspath(os.path.split(__file__)[0])
+sys.path.insert(0, os.path.join(root_path, 'MoonMachine'))
+sys.path.insert(0, root_path)
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 
 
 # This application object is used by any WSGI server configured to use this
