@@ -1,5 +1,6 @@
 import os
 import socket
+import dj_database_url
 
 class HiddenSettings(object):
     SECRET_KEY = 'f6881dd6-1e71-44e1-8059-f15ae29323e4'
