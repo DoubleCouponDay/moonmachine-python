@@ -1,1 +1,1 @@
-web: bin/start-nginx gunicorn -w 2 MoonMachine.MoonMachine.wsgi:application --forwarded-allow-ips="10.170.3.217,10.170.3.220"
+web: waitress-serve --port=$PORT MoonMachine.MoonMachine.wsgi:application --host 0.0.0.0

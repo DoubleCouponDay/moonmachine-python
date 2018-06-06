@@ -45,4 +45,4 @@ urllib3==1.22
 wrapt==1.10.11
 yarl==1.1.0
 zope.interface==4.4.3
-gunicorn===19.8.1
+waitress===1.1.0
