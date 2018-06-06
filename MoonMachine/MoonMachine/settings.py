@@ -62,7 +62,7 @@ ROOT_URLCONF = 'urls'
 
 __static = 'static'
 STATIC_URL = '/static/' #url for the static content must have a forward slash appended and prepended!
-STATIC_ROOT = posixpath.join(*(BASE_DIR.split(os.path.sep) + [__static]))
+STATIC_ROOT = os.path.join(BASE_DIR, "/" + __static)
 
 STATICFILES_DIRS = [
         BASE_DIR + '/Front'
