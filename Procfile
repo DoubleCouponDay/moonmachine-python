@@ -1,1 +1,1 @@
-web: waitress-serve MoonMachine.MoonMachine.wsgi:application --port=$PORT
+web: waitress-serve MoonMachine.MoonMachine.wsgi:application --listen *:$PORT
