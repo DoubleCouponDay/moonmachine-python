@@ -4,7 +4,7 @@ Command-line utility for administrative tasks.
 """
 import os
 import sys
-from settings import BASE_DIR
+from Back.settings import BASE_DIR
 from Back.SelectionOptions.LabeledConstants import LOG_FILE
 
 try: #in case filedoes not exist
