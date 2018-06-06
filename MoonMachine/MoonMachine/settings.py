@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 
 import os
 import posixpath
-from Back.HiddenSettings import HiddenSettings
+from HiddenSettings import HiddenSettings
 from Back.SelectionOptions.LabeledConstants import LOG_FILE
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
