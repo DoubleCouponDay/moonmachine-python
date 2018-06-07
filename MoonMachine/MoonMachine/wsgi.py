@@ -17,6 +17,7 @@ import os
 from django.core.wsgi import get_wsgi_application
 import sys
 from django.core.management import execute_from_command_line
+from dj_static import Cling
 
 BASE_DIR = os.path.abspath(os.path.split(__file__)[0])
 sys.path.insert(0, os.path.join(BASE_DIR, 'MoonMachine'))
@@ -34,4 +35,4 @@ execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "collectstatic",
 # file. This includes Django's development server, if the WSGI_APPLICATION
 # setting points here.
 
-application = get_wsgi_application()
+application = Cling(get_wsgi_application())
