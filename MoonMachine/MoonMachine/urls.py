@@ -11,6 +11,7 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 admin.autodiscover()
 from settings import STATIC_URL
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from Back.Controllers.Pages import AuthorizedControls, Index, Portfolio
 from Back.Controllers.AuthorizedControls import AuthenticateWithFile, GetBotsStatus, ToggleOperations, IsAuthenticated
@@ -27,6 +28,8 @@ urlpatterns = [
     #===============================
     url(r'^$',
         Index),
+
+    staticfiles_urlpatterns(),
 
     url(REGEX_EXACT_START + CONTAINS_ADMIN + AUTHORIZED_CONTROLS + REGEX_EXACT_CAP, 
         AuthorizedControls),
