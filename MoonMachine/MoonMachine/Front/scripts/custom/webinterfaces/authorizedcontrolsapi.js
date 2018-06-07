@@ -1,6 +1,6 @@
 import jquery from "jquery";
 
-export default function AuthorizedcontrolsApi()
+export default function AuthorizedControlsApi()
 {
     let self = this;
     self.baseUrl = "/admin/authorizedcontrols/"
