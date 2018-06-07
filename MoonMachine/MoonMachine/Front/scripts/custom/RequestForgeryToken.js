@@ -1,7 +1,5 @@
-///<reference path="../node_modules/js-cookie/src/js.cookie.js" />
-
 import jquery from "jquery";
-import jscookie from "../node_modules/js-cookie/src/js.cookie";
+import jscookie from "/node_modules/js-cookie/src/js.cookie";
 
 (function Init() {
     let csrfToken = jscookie.get('csrftoken');

@@ -1,13 +1,13 @@
-import fileUploader from "../FileTextUploader";
-import tokenSetter from "../RequestForgeryToken";
+import fileUploader from "custom/FileTextUploader";
+import tokenSetter from "custom/RequestForgeryToken";
 import jquery from "jquery";
-import authenticationOutcome from "../models/AuthenticationOutcome";
+import authenticationOutcome from "custom/models/AuthenticationOutcome";
 import ko from "knockout";
-import controlsApi from "../webinterfaces/authorizedcontrolsApi";
-import portfolioApi from "../webinterfaces/portfolioapi";
-import compilationSocket from "../webinterfaces/compilationapi";
-import strategyInfo from "../models/StrategyInfo";
-import scriptLimits from "../models/ScriptLimits";
+import controlsApi from "custom/webinterfaces/authorizedcontrolsApi";
+import portfolioApi from "custom/webinterfaces/portfolioapi";
+import compilationSocket from "custom/webinterfaces/compilationapi";
+import strategyInfo from "custom/models/StrategyInfo";
+import scriptLimits from "custom/models/ScriptLimits";
 
 let portfolioApiInstance = new portfolioApi();
 let binder = new PortfolioBinder();

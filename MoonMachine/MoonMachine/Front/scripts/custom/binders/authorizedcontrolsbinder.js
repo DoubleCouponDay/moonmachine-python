@@ -1,9 +1,9 @@
-import fileUploader from "../FileTextUploader";
-import tokenSetter from "../RequestForgeryToken";
+import fileUploader from "custom/FileTextUploader";
+import tokenSetter from "custom/RequestForgeryToken";
 import jquery from "jquery";
-import authenticationOutcome from "../models/AuthenticationOutcome";
+import authenticationOutcome from "custom/models/AuthenticationOutcome";
 import ko from "knockout";
-import controlsApi from "../webinterfaces/authorizedcontrolsapi";
+import controlsApi from "custom/webinterfaces/authorizedcontrolsapi"; //fixed bug where steal js overrode the default module path
 
 ko.applyBindings(new AuthorizedControlsBinder());
 

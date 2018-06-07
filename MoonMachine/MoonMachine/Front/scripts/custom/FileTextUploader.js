@@ -1,6 +1,6 @@
-import pako from "../node_modules/pako/index";
+import pako from "/node_modules/pako/index";
 import jquery from "jquery";
-import controlsApi from "./webinterfaces/authorizedcontrolsApi";
+import controlsApi from "custom/webinterfaces/authorizedcontrolsApi";
 
 export default function FileTextUploader(fileboxNameId)
 {
