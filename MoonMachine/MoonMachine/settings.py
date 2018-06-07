@@ -14,6 +14,7 @@ import os
 import posixpath
 from HiddenSettings import HiddenSettings
 from Back.SelectionOptions.LabeledConstants import LOG_FILE
+from pathlib import Path
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -62,7 +63,7 @@ ROOT_URLCONF = 'urls'
 
 __static = 'static'
 STATIC_URL = '/static/' #url for the static content must have a forward slash appended and prepended!
-STATIC_ROOT = os.path.join(BASE_DIR, __static)
+STATIC_ROOT = os.path.join(Path().absolute(), __static)
 
 STATICFILES_DIRS = [
         BASE_DIR + '/Front'
