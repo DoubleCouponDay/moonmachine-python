@@ -3,7 +3,7 @@ import tokenSetter from "../RequestForgeryToken";
 import jquery from "jquery";
 import authenticationOutcome from "../models/AuthenticationOutcome";
 import ko from "knockout";
-import controlsApi from "../webinterfaces/authorizedcontrolsApi";
+import controlsApi from "../webinterfaces/authorizedcontrolsapi";
 
 ko.applyBindings(new AuthorizedControlsBinder());
 
