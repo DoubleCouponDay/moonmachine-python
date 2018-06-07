@@ -1,6 +1,7 @@
-MoonMachine/MoonMachine/env
-MoonMachine/MoonMachine/env3.6.5
-MoonMachine/MoonMachine/.mypy_cache
-MoonMachine/MoonMachine/static
-MoonMachine/.vs
+MoonMachine/MoonMachine/env/
+MoonMachine/MoonMachine/env3.6.5/
+MoonMachine/MoonMachine/.mypy_cache/
+MoonMachine/MoonMachine/static/**
+!MoonMachine/MoonMachine/static/placeholder
+MoonMachine/.vs/
 MoonMachine/MoonMachine/log.txt
