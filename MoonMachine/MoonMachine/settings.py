@@ -27,7 +27,7 @@ SECRET_KEY = HiddenSettings.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = HiddenSettings.GetDebugFlag()
+DEBUG = HiddenSettings().GetDebugFlag()
 
 ALLOWED_HOSTS = ['localhost', 'moonmachine.biz', '*']
 
@@ -68,6 +68,8 @@ STATIC_ROOT = posixpath.join(posixpath.dirname(posixpath.abspath(__file__)), __s
 STATICFILES_DIRS = [
         BASE_DIR + '/Front'
     ]
+
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 #the django 1.3+ version of TEMPLATE_DIRS
 TEMPLATES = [ 
@@ -165,7 +167,7 @@ ASGI_APPLICATION = "routing.application"
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
-DATABASES = HiddenSettings.GetDatabaseConfig()
+DATABASES = HiddenSettings().GetDatabaseConfig()
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
 

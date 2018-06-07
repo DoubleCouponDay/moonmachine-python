@@ -12,7 +12,7 @@ class HiddenSettings(object):
 
     POSTGRES_STRING = "postgres://yygogszhxnbzmn:efce0e974c883492064e70b0ef16ce15f8f3e6eab294c055b5b9eb12e860ff01@ec2-23-23-130-158.compute-1.amazonaws.com:5432/dbhl079gfuhqn4"
 
-    def GetDebugFlag():
+    def GetDebugFlag(self):
         try:
             possibleDebugMode = os.environ["DEBUG_MODE"] #tightly couple to heroku cong vars. I dont care.
             return False
@@ -20,7 +20,7 @@ class HiddenSettings(object):
         except:
             return True
 
-    def GetDatabaseConfig():
+    def GetDatabaseConfig(self):
         output = {}
         currentHostname = socket.gethostname()
 
