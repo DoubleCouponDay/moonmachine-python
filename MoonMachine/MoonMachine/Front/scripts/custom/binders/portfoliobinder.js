@@ -31,8 +31,8 @@ function PortfolioBinder()
         ShouldDisplayControl: ko.observable(false),
 
         BotsStatus: ko.observable(""),
-        Loading: ko.observable(false),
         FileBoxId: ko.observable("authfilebox"),
+        LoadingSplashId: ko.observable("loadingpage"),
                 
         OnToggle: function()
         {
@@ -64,7 +64,7 @@ function PortfolioBinder()
                 return;
             }
 
-            publicStuff.Loading(true);
+            ToggleLoadingSplash(true);
             let failPrepend = "failed to upload strategy: ";
             publicStuff.Strategy().language = fileBox.files[0].name.split('.').pop();
 
@@ -82,6 +82,8 @@ function PortfolioBinder()
                     self.fileCompressor.UploadFilesText(self.compilationSocket.Send, true, true);
                 })
                 .catch((error) => {
+                    ToggleLoadingSplash(false);
+
                     if (error.message !== undefined) {
                         window.alert(failPrepend + error.message);
                     }
@@ -98,6 +100,18 @@ function PortfolioBinder()
         Strategy: ko.observable(new strategyInfo()),
     };
     self.fileCompressor = new fileUploader(publicStuff.FileBoxId());
+
+    function ToggleLoadingSplash(shouldDisplayBool) {
+        switch (shouldDisplayBool) {
+            case true:
+                jquery("#" + publicStuff.LoadingSplashId()).removeClass("not-loading");
+                break;
+
+            case false:
+                jquery("#" + publicStuff.LoadingSplashId()).addClass("not-loading");
+                break;
+        }
+    }
 
     function ReinstanceCompilationSocket()
     {
@@ -134,7 +148,7 @@ function PortfolioBinder()
 
     function OnReceivedMessage(event)
     {
-        publicStuff.Loading(false);
+        ToggleLoadingSplash(false);
         window.alert("compilation: " + event.data);
         GetCurrentStrategies()
             .then(ApplyCurrentStrategies);

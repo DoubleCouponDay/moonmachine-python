@@ -24,23 +24,14 @@ def __SelectLanguageStrings(currentObject = Language):
 @login_required
 @requires_csrf_token
 @require_GET   
-def GetMyStrategiesInfo(request = HttpRequest):
+def GetUserStrategies(request = HttpRequest):
     strategies = StrategyKeeper().FetchUserStrategies(request.user.id)
 
     if strategies is None:
         return JsonResponse ({OUTPUT : []}, DjangoJSONEncoder, True) 
 
     else:
-        mappedStrategies = list(map(__SelectAwayRawBits, list(strategies)))
-        return JsonResponse ({OUTPUT : mappedStrategies }, DjangoJSONEncoder, True) 
-
-def __SelectAwayRawBits(currentObject = Language):
-    mappedObject = dict()
-    mappedObject["compilation_result"] = currentObject["strategy__compilation_result"]
-    mappedObject["id"] = currentObject["id"]
-    mappedObject["is_compiled"] = currentObject["strategy__is_compiled"]
-    mappedObject["language"] = currentObject["strategy__language__language"] #gets the language name by loading two foreign keys
-    return mappedObject
+        return JsonResponse ({OUTPUT : strategies }, DjangoJSONEncoder, True) 
 
 @login_required
 @requires_csrf_token
@@ -79,12 +70,13 @@ def PutStrategy(request = HttpRequest):
         return HttpResponseBadRequest("Strategy with that id could not be found.")    
 
     strategyKeeper = StrategyKeeper()
-    usersStrategy = strategyKeeper.FetchUserStrategy(request.user.id, strategyId) # fixed bug where changes to strategykeeper made matching by id impossible
+    usersStrategy = strategyKeeper.FetchStrategy(request.user.id, strategyId) # fixed bug where changes to strategykeeper made matching by id impossible
 
     if usersStrategy is None:
         return HttpResponseBadRequest("You do not own this strategy or strategy could not be found.")
 
-    cache.set(request.user.id, usersStrategy.strategy.id)
+    strategyKeeper.SubmitStrategy(request.user.id, request.POST.get("language"), strategyId)
+    cache.set(request.user.id, usersStrategy.id)
     return HttpResponse()
 
 def __BaseChecksForInserts(request):

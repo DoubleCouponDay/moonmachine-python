@@ -138,6 +138,8 @@
     <Content Include="Back\__pycache__\ModelsModule.cpython-36.pyc" />
     <Content Include="Back\__pycache__\__init__.cpython-36.pyc" />
     <Content Include="Front\content\authorizedcontrols.css" />
+    <Content Include="Front\content\dooting.gif" />
+    <Content Include="Front\content\index.css" />
     <Content Include="Front\content\portfolio.css" />
     <Content Include="Front\content\site.css" />
     <Content Include="Front\fonts\glyphicons-halflings-regular.eot" />

@@ -1,24 +1,27 @@
+.loading-splash {
+      height: 100%;
+      width: 100%;
+    }
 
-.loading-message {
-    font-size: medium;align-content:center;
+.not-loading {
+    display: none;
 }
-
-
 /*=================================*/
 /*REST YOU CAN BREAK*/
 
-p {
-    margin: 0px;
-}
-h1 {
-    margin: 0px;
-}
-h2 {
-    margin: 0px;
-}
-h3 {
-    margin: 0px;
-}
+    p {
+      margin: 0px;
+    }
+    h1 {
+      margin: 0px;
+    }
+    h2 {
+      margin: 0px;
+    }
+    h3 {
+      margin: 0px;
+    }
+
     html, body {
       width: 100%;
       height: 100%;
@@ -28,6 +31,7 @@ h3 {
       background-color: transparent;
       transform: perspective(1400px) matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
       transform-style: preserve-3d;
+      font-size: 100%;
     }
     .gwd-input-5dpm {
       width: 188px;
@@ -208,7 +212,33 @@ h3 {
       transform-origin: 30.434px 10.2813px 0px;
       top: 132px;
     }
-    @media (max-width: 699px) {
+    .gwd-div-gcbz {
+      position: absolute;
+      left: 0px;
+      top: 0%;
+      width: 770px;
+      height: 490px;
+      transform-origin: 384.969px 244.989px 0px;
+    }
+    .gwd-img-efml {
+      position: absolute;
+      width: 209px;
+      height: 190px;
+      top: 50%;
+      transform-style: preserve-3d;
+      left: 50%;
+      transform: translate3d(-104px, -95px, 0px);
+    }
+    .loading-splash {
+      left: 0px;
+      top: 0px;
+      width: 100%;
+      height: 100%;
+      transform-origin: 368.5px 248.5px 0px;
+      background-image: none;
+      background-color: rgba(158, 158, 158, 0.49);
+    }
+    @media (max-width: 768px) {
       .gwd-div-agjg {
         left: 0%;
         top: 190px;
@@ -219,4 +249,4 @@ h3 {
         transform: translate3d(0px, -32px, 0px);
       }
     }
-    @media (min-width: 700px) {}
+    @media (min-width: 768px) {}

@@ -15,7 +15,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from Back.Controllers.Pages import AuthorizedControls, Index, Portfolio
 from Back.Controllers.AuthorizedControls import AuthenticateWithFile, GetBotsStatus, ToggleOperations, IsAuthenticated
-from Back.Controllers.Portfolio import GetMyStrategiesInfo, GetSupportedLanguages, GetValidationRules, CreateStrategy, PutStrategy
+from Back.Controllers.Portfolio import GetUserStrategies, GetSupportedLanguages, GetValidationRules, CreateStrategy, PutStrategy
 
 AUTHORIZED_CONTROLS = 'authorizedcontrols/'
 PORTFOLIO = 'portfolio/'
@@ -59,8 +59,8 @@ urlpatterns = [
     url(REGEX_EXACT_START + CONTAINS_ADMIN + PORTFOLIO + 'getsupportedlanguages' + REGEX_EXACT_CAP, 
         GetSupportedLanguages),
 
-    url(REGEX_EXACT_START + CONTAINS_ADMIN + PORTFOLIO + 'getmystrategiesinfo' + REGEX_EXACT_CAP, 
-        GetMyStrategiesInfo),
+    url(REGEX_EXACT_START + CONTAINS_ADMIN + PORTFOLIO + 'getuserstrategies' + REGEX_EXACT_CAP, 
+        GetUserStrategies),
 
     url(REGEX_EXACT_START + CONTAINS_ADMIN + PORTFOLIO + 'getvalidationrules' + REGEX_EXACT_CAP, 
         GetValidationRules),

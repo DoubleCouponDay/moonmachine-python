@@ -46,12 +46,18 @@ class ServerlessContext:
         self.__CompileOnSuccess(consumerInstance)
         
     def __Compile(self, consumerInstance):
-        
+        settings = HiddenSettings()
 
         inputHeaders = {
-            'content-type': 'application/json',
-            'x-functions-key': HiddenSettings.FUNCTION_HOST_KEY }
-        return requests.get(HiddenSettings.FUNCTION_HOOK + "compile?userid=" + str(self.__userId) + "&strategyid=" + str(self.__currentStrategyId), headers = inputHeaders)
+            'content-type': 'application/json'
+        }
+
+        hostkey = settings.GetFunctionHostKey()
+
+        if hostkey != "":
+            inputHeaders["x-functions-key"] = hostkey
+        
+        return requests.get(settings.GetFunctionHook() + "compile?userid=" + str(self.__userId) + "&strategyid=" + str(self.__currentStrategyId), headers = inputHeaders)
 
     def __CompileOnSuccess(self, consumerInstance):
         strategy = self.__strategyKeeper.FetchStrategy(self.__userId, self.__currentStrategyId)

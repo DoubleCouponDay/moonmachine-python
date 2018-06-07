@@ -31,28 +31,35 @@ class StrategyKeeper(Queryer):
 
                 else:
                     correctStrategy = Strategy.objects.filter(user_id = userId, id = strategyId).first()            
-                    correctStrategy.Fill(inputLanguageId = languageId, inputBits = scriptsBytes)
+                    correctStrategy.Fill(inputLanguageId = matchingLanguage.id, inputBits = scriptsBytes)
 
-                consumerStrategy = UsersStrategy()
-                consumerStrategy.Fill(correctStrategy.id, userId)
-                return correctStrategy.id
+                return correctStrategy.id #return the owned strategies id
 
         return None
     
     def FetchUserStrategies(self, userId = int):
-        """Returns UserStrategies. Can return None!"""
+        """Returns a list, not a queryset. Can return None!"""
         self.log.info("Fetching strategies.")
-        query = UsersStrategy.objects.filter(user_id = userId).values('id', 'strategy__language__language', 'strategy__is_compiled', 'strategy__compilation_result') #values doesnt have filter arguments
-        return self._TestQuery(query, self.__FetchStrategiesOnSuccess)
+        query = Strategy.objects.filter(user_id = userId).values('id', 'language', 'is_compiled', 'compilation_result') #values doesnt have filter arguments
+        self.log.info("mapping user strategies.")
+        queryList = list(query)
+        mappedStrats = map(self.__SelectAwayRawBits, queryList)
+        usableStrats = list(mappedStrats)
+        self.log.info("returning user strategies.")
+        return usableStrats
 
-    def __FetchStrategiesOnSuccess(self, query):
-        self.log.info("returning strategies.")
-        return query
+    def __SelectAwayRawBits(self, currentObject = Language):
+        mappedObject = dict()
+        mappedObject["compilation_result"] = currentObject["compilation_result"]
+        mappedObject["id"] = currentObject["id"]
+        mappedObject["is_compiled"] = currentObject["is_compiled"]
+        mappedObject["language"] = currentObject["language"] #gets the language name by loading two foreign keys
+        return mappedObject
 
-    def FetchStrategy(self, inputUserId = int, inputStrategyId = int):
+    def FetchStrategy(self, inputUserId = int, strategyId = int):
         """can return None"""
         self.log.info("fetching strategy.")
-        query = Strategy.objects.filter(user_id = inputUserId, id = inputStrategyId) #fixed bug where query was looking for matching id in the other strategies table
+        query = Strategy.objects.filter(user_id = inputUserId, id = strategyId) #fixed bug where query was looking for matching id in the other strategies table
         self.log.info("returning strategy.")
 
         if query.exists():
@@ -60,7 +67,7 @@ class StrategyKeeper(Queryer):
         
         return None
 
-    def FetchUserStrategy(self, inputUserId =int, inputStrategyId = int):
+    def FetchUserStrategy(self, inputUserId = int, inputStrategyId = int):
         """can return None"""
         self.log.info("fetching userstrategy.")
         query = UsersStrategy.objects.filter(user_id = inputUserId, id = inputStrategyId) #fixed bug where query was looking for matching id in the other strategies table

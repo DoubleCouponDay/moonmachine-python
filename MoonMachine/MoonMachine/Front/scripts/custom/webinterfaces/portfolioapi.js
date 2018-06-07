@@ -4,8 +4,8 @@ export default function PortfolioApi()
 {
     let self = this;
     self.baseUrl = "/admin/portfolio/"
-    self.languagesUrl = self.baseUrl + "GetSupportedLanguages";
-    self.getAllUrl = self.baseUrl + "GetMyStrategiesinfo";
+    self.languagesUrl = self.baseUrl + "getsupportedlanguages";
+    self.getAllUrl = self.baseUrl + "getuserstrategies";
     self.limitsUrl = self.baseUrl + "GetValidationRules";
     self.createStratUrl = self.baseUrl + "createstrategy";
     self.updateStratUrl = self.baseUrl + "putstrategy";
