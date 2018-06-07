@@ -1,4 +1,4 @@
-import pako from "/node_modules/pako/index";
+import pako from "node_modules/pako/index";
 import jquery from "jquery";
 import controlsApi from "custom/webinterfaces/authorizedcontrolsApi";
 
