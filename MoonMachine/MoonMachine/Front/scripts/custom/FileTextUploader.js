@@ -1,12 +1,10 @@
 import pako from "node_modules/pako/index";
 import jquery from "jquery";
-import controlsApi from "custom/webinterfaces/authorizedcontrolsapi";
 
 export default function FileTextUploader(fileboxNameId)
 {
     let self = this;
     self.fileBoxesId = fileboxNameId;
-    self.controlsApi = new controlsApi();
 
     return {
         UploadFilesText: function (requestEngine, compressTextBool, resolvePromiseBool)

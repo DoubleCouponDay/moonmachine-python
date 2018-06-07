@@ -33,7 +33,7 @@
             <span class="gwd-span-1x46">Toggle Operation</span>
             <span class="gwd-span-1ild">Status:</span>
             <span class="gwd-span-1w1b" data-bind="text: BotsStatus"></span>
-            <button class="gwd-button-cqyb" data-bind="click: OnToggle">Toggle</button>
+            <button class="gwd-button-cqyb" data-bind="visible: ShouldDisplayControl, click: OnToggle">Toggle</button>
         </div>
 
         <div class="loading-splash not-loading" data-bind="attr: {id: LoadingSplashId}">
