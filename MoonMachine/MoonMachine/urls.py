@@ -29,8 +29,6 @@ urlpatterns = [
     url(r'^$',
         Index),
 
-    staticfiles_urlpatterns(),
-
     url(REGEX_EXACT_START + CONTAINS_ADMIN + AUTHORIZED_CONTROLS + REGEX_EXACT_CAP, 
         AuthorizedControls),
 
@@ -74,3 +72,5 @@ urlpatterns = [
         PutStrategy)
 
 ]
+
+urlpatterns += staticfiles_urlpatterns()
