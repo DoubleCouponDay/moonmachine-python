@@ -3,7 +3,7 @@ import tokenSetter from "custom/RequestForgeryToken";
 import jquery from "jquery";
 import authenticationOutcome from "custom/models/AuthenticationOutcome";
 import ko from "knockout";
-import controlsApi from "custom/webinterfaces/authorizedcontrolsApi";
+import controlsApi from "custom/webinterfaces/authorizedcontrolsapi";
 import portfolioApi from "custom/webinterfaces/portfolioapi";
 import compilationSocket from "custom/webinterfaces/compilationapi";
 import strategyInfo from "custom/models/StrategyInfo";
