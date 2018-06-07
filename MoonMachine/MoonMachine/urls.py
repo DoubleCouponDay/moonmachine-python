@@ -28,9 +28,6 @@ urlpatterns = [
     url(r'^$',
         Index),
 
-    url(REGEX_EXACT_START + STATIC_URL,
-        ),
-
     url(REGEX_EXACT_START + CONTAINS_ADMIN + AUTHORIZED_CONTROLS + REGEX_EXACT_CAP, 
         AuthorizedControls),
 
