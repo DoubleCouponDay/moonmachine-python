@@ -20,7 +20,7 @@ try:
 
     execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "check"])
     execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "makemigrations"])
-    execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "migrate"])
+    execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "migrate", "--no-input"])
     execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "collectstatic", "--no-input"])
     execute_from_command_line(sys.argv)
 
