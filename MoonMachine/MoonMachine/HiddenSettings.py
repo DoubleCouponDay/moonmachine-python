@@ -10,7 +10,7 @@ class HiddenSettings(object):
     FUNCTION_HOOK = 'https://mm-strategy-tasks-us.azurewebsites.net/api/'
     FUNCTION_HOST_KEY = 'xmB7WPOVXN0SESGUif6ypwI7NZZ00cazW8YKn/IIH9iJtnffvUFTGg=='
 
-    POSTGRES_STRING = "postgres://yygogszhxnbzmn:efce0e974c883492064e70b0ef16ce15f8f3e6eab294c055b5b9eb12e860ff01@ec2-23-23-130-158.compute-1.amazonaws.com:5432/dbhl079gfuhqn4"
+    POSTGRES_STRING = "postgres://kbueeqgsewyeqc:5974125120e3965a7e2b98ee19478523dbf1edcd951a3c2c796f20b4e6780c23@ec2-54-83-59-120.compute-1.amazonaws.com:5432/dcbt0gn4or00nq"
 
     def __init__(self):
         self.currentHost = socket.gethostname()
