@@ -4,7 +4,7 @@ export default function CompilationApi(subscriberFunc)
 {
     return new Promise((resolve, reject) => {
         let self = this;
-        self.baseUrl = 'ws://' + window.location.host + window.location.pathname + "ws/compilation"
+        self.baseUrl = 'wss://' + window.location.host + window.location.pathname + "ws/compilation"
         self.subscriberCallback = subscriberFunc;
 
         let publicStuff = {
@@ -21,15 +21,24 @@ export default function CompilationApi(subscriberFunc)
             }
         }
 
-        self.webSocket = new WebSocket(self.baseUrl);
+        try {
+            self.webSocket = new WebSocket(self.baseUrl);
 
-        self.webSocket.addEventListener('open', function () {
-            publicStuff.Subscribe(subscriberFunc);
-            resolve(publicStuff);
-        });
+            self.webSocket.addEventListener('open', function () {
+                publicStuff.Subscribe(subscriberFunc);
+                resolve(publicStuff);
+            });
 
-        self.webSocket.addEventListener('message', function (event) {
-            self.subscriberCallback(event);
-        })
+            self.webSocket.addEventListener('message', function (event) {
+                self.subscriberCallback(event);
+            })
+        }
+
+        catch (e) {
+            window.alert(e);
+        }
+        
+
+
     });
 }
