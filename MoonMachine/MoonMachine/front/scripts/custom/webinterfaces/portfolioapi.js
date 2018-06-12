@@ -5,7 +5,8 @@ export default function PortfolioApi()
     let self = this;
     self.baseUrl = "/admin/portfolio/"
     self.languagesUrl = self.baseUrl + "getsupportedlanguages";
-    self.getAllUrl = self.baseUrl + "getuserstrategies";
+    self.getSubscribedUrl = self.baseUrl + "getsubscribedstrategies";
+    self.getCreatedUrl = self.baseUrl + "getcreatedstrategies";
     self.limitsUrl = self.baseUrl + "GetValidationRules";
     self.createStratUrl = self.baseUrl + "createstrategy";
     self.updateStratUrl = self.baseUrl + "putstrategy";
@@ -20,10 +21,17 @@ export default function PortfolioApi()
             });
         },
 
-        GetMyStrategies: () => {
+        GetSubScribedStrategies: () => {
+            return new Promise((resolve, reject) => {
+                jquery.getJSON(self.getSubscribedUrl, resolve)
+                    .fail(reject);
+            });
+        },
+
+        GetCreatedStrategies: () => {
             return new Promise((resolve, reject) =>
             {
-                jquery.getJSON(self.getAllUrl, resolve)
+                jquery.getJSON(self.getCreatedUrl, resolve)
                     .fail(reject);
             });
         },

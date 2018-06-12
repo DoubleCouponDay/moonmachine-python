@@ -8,6 +8,7 @@ from back.Trading.RestGateways.BubbleWrapRequester import BubbleWrapRequester
 from back.Controllers.Pages import OUTPUT
 from django.core.cache import cache
 import json
+from back.ModelsModule import strategy
 
 class ServerlessContext:
     """description of class"""
@@ -21,9 +22,9 @@ class ServerlessContext:
         self.__log.info('started the compilation procedure.')
         self.__userId = consumerInstance.scope['user'].id
         self.__currentStrategyId = cache.get(consumerInstance.scope['user'].id)
-        strategy = self.__strategyKeeper.FetchStrategy(self.__userId, self.__currentStrategyId)
+        possibleStrategy = self.__strategyKeeper.FetchStrategy(self.__userId, self.__currentStrategyId)
 
-        if strategy is None:
+        if possibleStrategy is None:
             message = "You do not own this strategy or strategy could not be found."
             self.__log.error(message)
 
@@ -32,17 +33,29 @@ class ServerlessContext:
             }))
             return
 
-        strategy.bits = compressedScript
-        strategy.save()
-        result = self.__Compile(consumerInstance)
+        possibleStrategy.bits = compressedScript
+        possibleStrategy.save()
+        result = None
 
-        if result.reason == 'Internal Server Error':
+        try:
+            result = self.__Compile(consumerInstance)
+
+        except Exception as e:            
+            possibleStrategy.delete()
+            self.__log.error(e.args[0].reason)
+
+            consumerInstance.send(text_data = json.dumps({
+                'internal error: ': str(e.args[0].reason)
+            }))
+
+        if result is not None and result.reason == 'Internal Server Error':
             self.__log.error(result.text)
 
             consumerInstance.send(text_data = json.dumps({
                 'internal error: ': result.text
             }))
             return
+            
         self.__CompileOnSuccess(consumerInstance)
         
     def __Compile(self, consumerInstance):

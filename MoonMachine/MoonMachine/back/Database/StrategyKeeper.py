@@ -37,24 +37,30 @@ class StrategyKeeper(Queryer):
 
         return None
     
-    def FetchUserStrategies(self, userId = int):
+    def GetSubscribedStrategies(self, userId = int):
         """Returns a list, not a queryset. Can return None!"""
-        self.log.info("Fetching strategies.")
-        query = strategy.objects.filter(user_id = userId).values('id', 'language', 'is_compiled', 'compilation_result') #values doesnt have filter arguments
-        self.log.info("mapping user strategies.")
+        self.log.info("Fetching user strategies.")
+        query = userstrategy.objects.filter(user_id = userId).values('id', 'strategy_id') #values doesnt have filter arguments
         queryList = list(query)
-        mappedStrats = map(self.__SelectAwayRawBits, queryList)
-        usableStrats = list(mappedStrats)
         self.log.info("returning user strategies.")
-        return usableStrats
+        return queryList
 
-    def __SelectAwayRawBits(self, currentObject = language):
-        mappedObject = dict()
-        mappedObject["compilation_result"] = currentObject["compilation_result"]
-        mappedObject["id"] = currentObject["id"]
-        mappedObject["is_compiled"] = currentObject["is_compiled"]
-        mappedObject["language"] = currentObject["language"] #gets the language name by loading two foreign keys
-        return mappedObject
+    def FetchCreatedStrategies(self, userId = int):
+        self.log.info("Fetching created strategies.")
+        query = strategy.objects.filter(user_id = userId).values('id', 'language__language', 'is_compiled', 'compilation_result') #values doesnt have filter arguments
+        self.log.info("mapping created strategies.")
+        queryList = list(query)
+        queryList = list(map(self.__MapCreatedStrategies, queryList))
+        self.log.info("returning created strategies.")
+        return queryList
+
+    def __MapCreatedStrategies(self, currentObject = strategy):
+        output = dict()
+        output['compilation_result'] = currentObject['compilation_result'] #alphabetical order
+        output['id'] = currentObject['id']        
+        output['is_compiled'] = currentObject['is_compiled']        
+        output['language'] = currentObject['language__language'] #the order of properties placed matters because im cutting corners in javascript with the spread operator!
+        return output
 
     def FetchStrategy(self, inputUserId = int, strategyId = int):
         """can return None"""

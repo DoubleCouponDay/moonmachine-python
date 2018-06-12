@@ -24,8 +24,20 @@ def __SelectLanguageStrings(currentObject = language):
 @login_required
 @requires_csrf_token
 @require_GET   
-def GetUserStrategies(request = HttpRequest):
-    strategies = StrategyKeeper().FetchUserStrategies(request.user.id)
+def GetSubscribedStrategies(request = HttpRequest):
+    strategies = StrategyKeeper().GetSubscribedStrategies(request.user.id)
+
+    if strategies is None:
+        return JsonResponse ({OUTPUT : []}, DjangoJSONEncoder, True) 
+
+    else:
+        return JsonResponse ({OUTPUT : strategies }, DjangoJSONEncoder, True) 
+
+@login_required
+@requires_csrf_token
+@require_GET   
+def GetCreatedStrategies(request = HttpRequest):
+    strategies = StrategyKeeper().FetchCreatedStrategies(request.user.id)
 
     if strategies is None:
         return JsonResponse ({OUTPUT : []}, DjangoJSONEncoder, True) 

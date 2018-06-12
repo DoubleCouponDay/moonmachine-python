@@ -159,7 +159,7 @@ function PortfolioBinder()
 
     function GetCurrentStrategies() {
         return new Promise((resolve, reject) => {
-            portfolioApiInstance.GetMyStrategies()
+            portfolioApiInstance.GetCreatedStrategies()
                 .then(resolve);
         });
     }
