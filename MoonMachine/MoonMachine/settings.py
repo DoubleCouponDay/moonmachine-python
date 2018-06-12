@@ -50,9 +50,9 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    "django.contrib.sessions.middleware.SessionMiddleware", #required for authentication. place before authenticationmiddleware
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -174,7 +174,7 @@ ASGI_APPLICATION = "routing.application"
 
 DATABASES = HiddenSettings().GetDatabaseConfig()
 
-SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
+# fixed bug where django sessions couldnt reset due to sessions middleware
 
 CACHES = {
     'default': {

@@ -35,4 +35,4 @@ execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "collectstatic",
 # file. This includes Django's development server, if the WSGI_APPLICATION
 # setting points here.
 
-application = Cling(get_wsgi_application())
+application = Cling(get_wsgi_application()) #cling adds static urls
