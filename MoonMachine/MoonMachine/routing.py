@@ -1,7 +1,7 @@
 from channels.routing import ProtocolTypeRouter, URLRouter
 from channels.auth import AuthMiddlewareStack
 from channels.security.websocket import AllowedHostsOriginValidator
-from Back.Controllers.Consumers.CompilationConsumer import CompilationConsumer
+from back.Controllers.Consumers.CompilationConsumer import CompilationConsumer
 from urls import CONTAINS_ADMIN, PORTFOLIO, REGEX_EXACT_CAP
 from django.conf.urls import url
 

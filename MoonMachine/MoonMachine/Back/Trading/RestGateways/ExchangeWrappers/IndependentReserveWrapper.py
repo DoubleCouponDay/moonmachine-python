@@ -1,12 +1,12 @@
-from Back.Trading.RestGateways.ExchangeWrappers.IExchangeWrapper import IExchangeWrapper
-from Back.ModelsModule import LabeledBar, Transaction, Order, LabeledBarSeries
+from back.Trading.RestGateways.ExchangeWrappers.IExchangeWrapper import IExchangeWrapper
+from back.ModelsModule import LabeledBar, transaction, Order, LabeledBarSeries
 from ccxt.independentreserve import independentreserve
 from overrides import overrides
 import json
 from datetime import datetime
 from logging import getLogger, Logger
 from decimal import Decimal
-from Back.SelectionOptions.MarketAction import MarketAction
+from back.SelectionOptions.MarketAction import MarketAction
 from functools import reduce
 
 class IndependentReserveWrapper(IExchangeWrapper):
@@ -133,7 +133,7 @@ class IndependentReserveWrapper(IExchangeWrapper):
                 return combinedData
 
     @overrides
-    def CancelOrder(self, order = Order, userId = int, previousTransaction = Transaction):
+    def CancelOrder(self, order = Order, userId = int, previousTransaction = transaction):
         """Can return None!"""
         cancelsResponse = self._BubbleWrapRequest(self.__base.cancel_order, order.GetCloudOrderId())
         sleep(self.ExchangesRateLimit())
@@ -163,7 +163,7 @@ class IndependentReserveWrapper(IExchangeWrapper):
                 pageIndex += 1
 
             elif len(combinedData) > 0:
-                transactionInitializer = Transaction()
+                transactionInitializer = transaction()
                 transactionInitializer.Fill(inputUserId=userId,
                                             inputCloudId=order.GetCloudOrderId(),
                                             inputManagersPairSmbolStr=order.GetManagersPair(),
@@ -209,7 +209,7 @@ class IndependentReserveWrapper(IExchangeWrapper):
                      jsonObject['CreatedTimestampUtc'])
 
     @overrides
-    def _ReduceToTransaction(self, wipTransaction = Transaction, jsonOrder = dict):
+    def _ReduceToTransaction(self, wipTransaction = transaction, jsonOrder = dict):
         """requires all values common between jsonOrders to be prefilled."""
         currentReceivedAmount = None
         currentGivenAmount = None

@@ -13,9 +13,9 @@ admin.autodiscover()
 from settings import STATIC_URL
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
-from Back.Controllers.Pages import AuthorizedControls, Index, Portfolio
-from Back.Controllers.AuthorizedControls import AuthenticateWithFile, GetBotsStatus, ToggleOperations, IsAuthenticated
-from Back.Controllers.Portfolio import GetUserStrategies, GetSupportedLanguages, GetValidationRules, CreateStrategy, PutStrategy
+from back.Controllers.Pages import AuthorizedControls, Index, Portfolio
+from back.Controllers.AuthorizedControls import AuthenticateWithFile, GetBotsStatus, ToggleOperations, IsAuthenticated
+from back.Controllers.Portfolio import GetUserStrategies, GetSupportedLanguages, GetValidationRules, CreateStrategy, PutStrategy
 
 AUTHORIZED_CONTROLS = 'authorizedcontrols/'
 PORTFOLIO = 'portfolio/'

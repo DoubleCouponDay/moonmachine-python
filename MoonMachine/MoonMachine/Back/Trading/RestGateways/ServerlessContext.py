@@ -1,11 +1,11 @@
 from logging import getLogger
 from overrides import overrides
 from django.http.request import HttpRequest
-from Back.Database.StrategyKeeper import StrategyKeeper
+from back.Database.StrategyKeeper import StrategyKeeper
 from HiddenSettings import HiddenSettings
 import requests
-from Back.Trading.RestGateways.BubbleWrapRequester import BubbleWrapRequester
-from Back.Controllers.Pages import OUTPUT
+from back.Trading.RestGateways.BubbleWrapRequester import BubbleWrapRequester
+from back.Controllers.Pages import OUTPUT
 from django.core.cache import cache
 import json
 
@@ -28,7 +28,7 @@ class ServerlessContext:
             self.__log.error(message)
 
             consumerInstance.send(text_data = json.dumps({
-                'output': message
+                'user error: ': message
             }))
             return
 
@@ -40,7 +40,7 @@ class ServerlessContext:
             self.__log.error(result.text)
 
             consumerInstance.send(text_data = json.dumps({
-                'output': result.text
+                'internal error: ': result.text
             }))
             return
         self.__CompileOnSuccess(consumerInstance)
@@ -60,9 +60,6 @@ class ServerlessContext:
         return requests.get(settings.GetFunctionHook() + "compile?userid=" + str(self.__userId) + "&strategyid=" + str(self.__currentStrategyId), headers = inputHeaders)
 
     def __CompileOnSuccess(self, consumerInstance):
-        strategy = self.__strategyKeeper.FetchStrategy(self.__userId, self.__currentStrategyId)
         self.__log.info("compilation request succeeded. returning verdict.")
-        consumerInstance.send(text_data = json.dumps({
-            'output': strategy.compilation_result
-        }))
+        consumerInstance.send(text_data = json.dumps({}))
         return

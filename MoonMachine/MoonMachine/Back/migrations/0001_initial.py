@@ -38,7 +38,7 @@ class Migration(migrations.Migration):
                 ('compilation_result', models.CharField(max_length=1000)),
                 ('name', models.CharField(max_length=40)),
                 ('description', models.CharField(max_length=300)),
-                ('language', models.ForeignKey(db_column='language_id', db_index=False, on_delete=django.db.models.deletion.CASCADE, to='Back.Language')),
+                ('language', models.ForeignKey(db_column='language_id', db_index=False, on_delete=django.db.models.deletion.CASCADE, to='back.Language')),
                 ('user', models.ForeignKey(db_column='user_id', db_index=False, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
@@ -62,7 +62,7 @@ class Migration(migrations.Migration):
             name='UsersStrategy',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('strategy', models.ForeignKey(db_column='strategy_id', db_index=False, on_delete=django.db.models.deletion.CASCADE, to='Back.Strategy')),
+                ('strategy', models.ForeignKey(db_column='strategy_id', db_index=False, on_delete=django.db.models.deletion.CASCADE, to='back.Strategy')),
                 ('user', models.ForeignKey(db_column='user_id', db_index=False, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),

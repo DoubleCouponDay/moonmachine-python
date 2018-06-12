@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 import os
 import posixpath
 from HiddenSettings import HiddenSettings
-from Back.SelectionOptions.LabeledConstants import LOG_FILE
+from back.SelectionOptions.LabeledConstants import LOG_FILE
 from pathlib import Path
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -35,8 +35,8 @@ ALLOWED_HOSTS = ['localhost', 'moonmachine.biz', '*']
 
 INSTALLED_APPS = [
     'channels', # some niche cases need this to be defined first for some reason...
-    'Front',
-    'Back',
+    'front',
+    'back',
     # Add your apps here to enable them
     'django.contrib.admin',
     'django.contrib.auth',
@@ -69,7 +69,7 @@ STATIC_URL = '/static/' #url for the static content must have a forward slash ap
 STATIC_ROOT = posixpath.join(posixpath.dirname(posixpath.abspath(__file__)), __static)
 
 STATICFILES_DIRS = [
-        BASE_DIR + '/Front'
+        BASE_DIR + '/front'
     ]
 
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'

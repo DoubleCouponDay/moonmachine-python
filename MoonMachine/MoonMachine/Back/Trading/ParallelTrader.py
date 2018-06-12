@@ -1,11 +1,11 @@
 from threading import Thread
 from django.http.request import HttpRequest
-from Back.Trading.MarketManager import MarketManager
-from Back.SelectionOptions.LabeledConstants import *
+from back.Trading.MarketManager import MarketManager
+from back.SelectionOptions.LabeledConstants import *
 from threading import Lock
 from logging import Logger, getLogger
 from ccxt import independentreserve
-from Back.Trading.RestGateways.ExchangeWrappers.IndependentReserveWrapper import IndependentReserveWrapper
+from back.Trading.RestGateways.ExchangeWrappers.IndependentReserveWrapper import IndependentReserveWrapper
 
 class ParallelTrader(object):
     IDLE_STATE = 'idle'

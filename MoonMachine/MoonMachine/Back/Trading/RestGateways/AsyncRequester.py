@@ -1,4 +1,4 @@
-from Back.Trading.RestGateways.BubbleWrapRequester import BubbleWrapRequester
+from back.Trading.RestGateways.BubbleWrapRequester import BubbleWrapRequester
 from threading import Thread
 from functools import partial, partialmethod
 from overrides import overrides

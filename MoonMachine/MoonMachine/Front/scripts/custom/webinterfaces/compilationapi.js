@@ -4,7 +4,8 @@ export default function CompilationApi(subscriberFunc)
 {
     return new Promise((resolve, reject) => {
         let self = this;
-        self.baseUrl = 'wss://' + window.location.host + window.location.pathname + "ws/compilation"
+        let scheme = window.location.protocol === 'https:' ? 'wss://' : 'ws://';
+        self.baseUrl = scheme + window.location.host + window.location.pathname + "ws/compilation"
         self.subscriberCallback = subscriberFunc;
 
         let publicStuff = {
@@ -36,9 +37,7 @@ export default function CompilationApi(subscriberFunc)
 
         catch (e) {
             window.alert(e);
+            reject(e);
         }
-        
-
-
     });
 }

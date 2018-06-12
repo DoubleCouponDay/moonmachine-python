@@ -1,13 +1,13 @@
-import fileUploader from "custom/FileTextUploader";
-import tokenSetter from "custom/RequestForgeryToken";
+import fileUploader from "scripts/custom/FileTextUploader";
+import tokenSetter from "scripts/custom/RequestForgeryToken";
 import jquery from "jquery";
-import authenticationOutcome from "custom/models/AuthenticationOutcome";
+import authenticationOutcome from "scripts/custom/models/AuthenticationOutcome";
 import ko from "knockout";
-import controlsApi from "custom/webinterfaces/authorizedcontrolsapi";
-import portfolioApi from "custom/webinterfaces/portfolioapi";
-import compilationSocket from "custom/webinterfaces/compilationapi";
-import strategyInfo from "custom/models/StrategyInfo";
-import scriptLimits from "custom/models/ScriptLimits";
+import controlsApi from "scripts/custom/webinterfaces/authorizedcontrolsapi";
+import portfolioApi from "scripts/custom/webinterfaces/portfolioapi";
+import compilationSocket from "scripts/custom/webinterfaces/compilationapi";
+import strategyInfo from "scripts/custom/models/StrategyInfo";
+import scriptLimits from "scripts/custom/models/ScriptLimits";
 
 let portfolioApiInstance = new portfolioApi();
 let binder = new PortfolioBinder();
@@ -149,7 +149,10 @@ function PortfolioBinder()
     function OnReceivedMessage(event)
     {
         ToggleLoadingSplash(false);
-        window.alert("compilation: " + event.data);
+
+        if (event.data !== "{}") {
+            window.alert(event.data);
+        }        
         GetCurrentStrategies()
             .then(ApplyCurrentStrategies);
     }

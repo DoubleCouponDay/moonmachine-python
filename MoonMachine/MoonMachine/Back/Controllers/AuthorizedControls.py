@@ -4,10 +4,10 @@ from django.core.serializers.json import DjangoJSONEncoder
 from django.http.request import HttpRequest
 from django.http import JsonResponse, HttpResponse, HttpResponseBadRequest
 import json
-from Back.Trading.ParallelTrader import ParallelTrader
+from back.Trading.ParallelTrader import ParallelTrader
 from django.contrib.auth.decorators import login_required
 from threading import Lock
-from Back.Controllers.Pages import INPUT, OUTPUT
+from back.Controllers.Pages import INPUT, OUTPUT
 
 Trader = ParallelTrader()
     

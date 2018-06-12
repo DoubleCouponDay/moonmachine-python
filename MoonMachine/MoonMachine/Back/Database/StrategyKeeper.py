@@ -1,6 +1,6 @@
-from Back.Database.Queryer import Queryer
+from back.Database.Queryer import Queryer
 from logging import getLogger
-from Back.ModelsModule import Language, Strategy, UsersStrategy
+from back.ModelsModule import language, strategy, usersstrategy
 from django.core.cache import cache
 
 class StrategyKeeper(Queryer):
@@ -12,7 +12,7 @@ class StrategyKeeper(Queryer):
         
     def ManageLanguageCache(self):
         if cache.get(StrategyKeeper.LANGUAGE_CACHE, None) is None:
-            cache.set(StrategyKeeper.LANGUAGE_CACHE, list(Language.objects.all()), 86400) #a day in seconds
+            cache.set(StrategyKeeper.LANGUAGE_CACHE, list(language.objects.all()), 86400) #a day in seconds
 
     def SubmitStrategy(self, userId, inputLanguage, strategyId = int, scriptsBytes = bytes): #fixed bug where bytes was not optional
         """returns primary key of the created strategy."""
@@ -23,14 +23,14 @@ class StrategyKeeper(Queryer):
         for language in cachedLanguages:
             if language.language == inputLanguage:
                 matchingLanguage = language
-                correctStrategy = Strategy
+                correctStrategy = strategy
 
                 if strategyId is int:
-                    correctStrategy = Strategy()
+                    correctStrategy = strategy()
                     correctStrategy.Fill(userId, matchingLanguage.id, inputBits=scriptsBytes)
 
                 else:
-                    correctStrategy = Strategy.objects.filter(user_id = userId, id = strategyId).first()            
+                    correctStrategy = strategy.objects.filter(user_id = userId, id = strategyId).first()            
                     correctStrategy.Fill(inputLanguageId = matchingLanguage.id, inputBits = scriptsBytes)
 
                 return correctStrategy.id #return the owned strategies id
@@ -40,7 +40,7 @@ class StrategyKeeper(Queryer):
     def FetchUserStrategies(self, userId = int):
         """Returns a list, not a queryset. Can return None!"""
         self.log.info("Fetching strategies.")
-        query = Strategy.objects.filter(user_id = userId).values('id', 'language', 'is_compiled', 'compilation_result') #values doesnt have filter arguments
+        query = strategy.objects.filter(user_id = userId).values('id', 'language', 'is_compiled', 'compilation_result') #values doesnt have filter arguments
         self.log.info("mapping user strategies.")
         queryList = list(query)
         mappedStrats = map(self.__SelectAwayRawBits, queryList)
@@ -48,7 +48,7 @@ class StrategyKeeper(Queryer):
         self.log.info("returning user strategies.")
         return usableStrats
 
-    def __SelectAwayRawBits(self, currentObject = Language):
+    def __SelectAwayRawBits(self, currentObject = language):
         mappedObject = dict()
         mappedObject["compilation_result"] = currentObject["compilation_result"]
         mappedObject["id"] = currentObject["id"]
@@ -59,7 +59,7 @@ class StrategyKeeper(Queryer):
     def FetchStrategy(self, inputUserId = int, strategyId = int):
         """can return None"""
         self.log.info("fetching strategy.")
-        query = Strategy.objects.filter(user_id = inputUserId, id = strategyId) #fixed bug where query was looking for matching id in the other strategies table
+        query = strategy.objects.filter(user_id = inputUserId, id = strategyId) #fixed bug where query was looking for matching id in the other strategies table
         self.log.info("returning strategy.")
 
         if query.exists():
@@ -70,7 +70,7 @@ class StrategyKeeper(Queryer):
     def FetchUserStrategy(self, inputUserId = int, inputStrategyId = int):
         """can return None"""
         self.log.info("fetching userstrategy.")
-        query = UsersStrategy.objects.filter(user_id = inputUserId, id = inputStrategyId) #fixed bug where query was looking for matching id in the other strategies table
+        query = usersstrategy.objects.filter(user_id = inputUserId, id = inputStrategyId) #fixed bug where query was looking for matching id in the other strategies table
         self.log.info("returning userstrategy.")
 
         if query.exists():
@@ -80,7 +80,7 @@ class StrategyKeeper(Queryer):
     
     def ClearCompilationResult(self, strategyId = int, userId = int):
         self.log.info("Clearing compilation result for strategy " + str(strategyId))
-        query = Strategy.objects.filter(strategyId = strategyId, user_id = userId)
+        query = strategy.objects.filter(strategyId = strategyId, user_id = userId)
         self.__TestQuery(query, self.__ClearCompilationResultOnSuccess)
 
     def __ClearCompilationResultOnSuccess(self, query):

@@ -1,5 +1,5 @@
-from Back.ModelsModule import Order, LabeledBar, LabeledBarSeries, Transaction, MarketInfo
-from Back.Database.Queryer import Queryer
+from back.ModelsModule import Order, LabeledBar, LabeledBarSeries, transaction, marketinfo
+from back.Database.Queryer import Queryer
 
 from logging import getLogger
 from decimal import Decimal
@@ -21,7 +21,7 @@ class RecordKeeper(Queryer):
 
     def GetLastTransaction(self, userId = int, managersName = str):
         """Can return None!"""
-        query = Transaction.objects.filter(user_id = userId, managers_pair_symbol = managersName) .order_by('date')
+        query = transaction.objects.filter(user_id = userId, managers_pair_symbol = managersName) .order_by('date')
         return self._TestQuery(query, self.__GetLastTransactionOnSuccess)        
 
     def __GetLastTransactionOnSuccess(self, query):
@@ -42,7 +42,7 @@ class RecordKeeper(Queryer):
     def GetMarketInfo(self, marketName = str, currentUserId = int):
         """Can return None!"""
 
-        possibleMatch = MarketInfo.objects.filter(market_pair = marketName, user_id = currentUserId)
+        possibleMatch = marketinfo.objects.filter(market_pair = marketName, user_id = currentUserId)
         return self._TestQuery(possibleMatch, self.__GetMarketInfoOnSuccess)
 
     def __GetMarketInfoOnSuccess(self, query):

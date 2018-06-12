@@ -1,10 +1,10 @@
 from abc import ABC, abstractmethod, abstractproperty
-from Back.ModelsModule import Order, Transaction
+from back.ModelsModule import Order, transaction
 from decimal import Decimal
 from functools import partial
 from time import sleep
 from logging import getLogger
-from Back.Trading.RestGateways.BubbleWrapRequester import BubbleWrapRequester
+from back.Trading.RestGateways.BubbleWrapRequester import BubbleWrapRequester
 
 class IExchangeWrapper(ABC, BubbleWrapRequester):
     """description of class"""
@@ -54,5 +54,5 @@ class IExchangeWrapper(ABC, BubbleWrapRequester):
         raise NotImplementedError()
     
     @abstractmethod
-    def _ReduceToTransaction(self, wipTransaction = Transaction, jsonObject = dict):
+    def _ReduceToTransaction(self, wipTransaction = transaction, jsonObject = dict):
         raise NotImplementedError()

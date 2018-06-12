@@ -5,7 +5,7 @@ Command-line utility for administrative tasks.
 import os
 import sys
 from settings import BASE_DIR
-from Back.SelectionOptions.LabeledConstants import LOG_FILE
+from back.SelectionOptions.LabeledConstants import LOG_FILE
 from django.core.management import execute_from_command_line
 
 try: #in case filedoes not exist
@@ -21,7 +21,7 @@ try:
     execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "check"])
     execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "makemigrations"])
     execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "migrate"])
-    execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "collectstatic", "--clear", "--no-input"])
+    execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "collectstatic", "--no-input"])
     execute_from_command_line(sys.argv)
 
 except SystemExit:

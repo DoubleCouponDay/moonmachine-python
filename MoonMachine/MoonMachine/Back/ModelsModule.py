@@ -1,11 +1,11 @@
 from django.db import models
-from Back.Database.Queryer import Queryer
+from back.Database.Queryer import Queryer
 from django.contrib.auth.models import User
 from django.conf import settings
 from django.http.request import HttpRequest
 
-from Back.SelectionOptions.ModelLimits import *
-from Back.SelectionOptions.MarketAction import MarketAction
+from back.SelectionOptions.ModelLimits import *
+from back.SelectionOptions.MarketAction import MarketAction
 
 from datetime import datetime
 from decimal import Decimal
@@ -18,7 +18,7 @@ from overrides import overrides
 
 ################################################
 ##DATABASE TABLES
-class Transaction(models.Model):
+class transaction(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE, db_column = 'user_id', db_index = False)
     cloud_transaction = models.CharField(max_length = FAIR_STRING_SIZE)
 
@@ -74,12 +74,12 @@ class Transaction(models.Model):
 
     def __CalculateCurrentExposure(self, previousExposure = Decimal):
         if possiblePrevious.marketAction == MarketAction.BUY:
-                currentExposure -= transaction.givenAmount
+                currentExposure -= previousExposure
 
         elif transaction.marketAction == MarketAction.SELL:
-            currentExposure += transaction.receivedAmount
+            currentExposure += previousExposure
 
-class MarketInfo(models.Model):
+class marketinfo(models.Model):
     market_pair = models.CharField(max_length = FAIR_STRING_SIZE)
     #current_ticker_open = models.DecimalField(max)
     #current_ticker_close = models.DecimalField(decimal_places=ETHEREUM_DECIMALS, max_digits=AVERAGE_DECIMAL_PLACES)
@@ -125,9 +125,9 @@ class MarketInfo(models.Model):
         self.save()
         log.info('filled the market info object.')
 
-class Strategy(models.Model):
+class strategy(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE, db_column = 'user_id', db_index = False)
-    language = models.ForeignKey("Language", on_delete = models.CASCADE, db_column = 'language_id', db_index = False)
+    language = models.ForeignKey("language", on_delete = models.CASCADE, db_column = 'language_id', db_index = False)
 
     bits = models.BinaryField()
     is_compiled = models.BooleanField(default = False)
@@ -183,12 +183,12 @@ class Strategy(models.Model):
         self.save()
         log.info('filled the strategy record.')
 
-class Language(models.Model):
+class language(models.Model):
     language = models.CharField(max_length = AVERAGE_DECIMAL_PLACES)
 
-class UsersStrategy(models.Model):
+class usersstrategy(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE, db_column = 'user_id', db_index = False)
-    strategy = models.ForeignKey("Strategy", on_delete = models.CASCADE, db_column = 'strategy_id', db_index = False)
+    strategy = models.ForeignKey("strategy", on_delete = models.CASCADE, db_column = 'strategy_id', db_index = False)
 
     def Fill(self, strategyId, userId): #all foreign keys are required
         self.strategy_id = strategyId

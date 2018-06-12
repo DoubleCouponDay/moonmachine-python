@@ -17,11 +17,8 @@
     "steal": "^1.11.6"
   },
   "steal": {
-    "directories": {
-      "scripts": "/static/scripts"
-    },
-    "baseURL": "/static/scripts/"
+    "baseURL": "/static/",
+    "paths": {}
   },
   "devDependencies": {}
 }
-

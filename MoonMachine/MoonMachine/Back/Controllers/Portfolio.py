@@ -4,10 +4,10 @@ from django.http import JsonResponse, HttpResponse, HttpResponseBadRequest
 from django.views.decorators.http import require_POST, require_GET, require_http_methods
 from django.views.decorators.csrf import requires_csrf_token
 from django.core.serializers.json import DjangoJSONEncoder
-from Back.Controllers.Pages import INPUT, OUTPUT
-from Back.Database.StrategyKeeper import StrategyKeeper
-from Back.ModelsModule import Language
-from Back.SelectionOptions.ScriptLimits import *
+from back.Controllers.Pages import INPUT, OUTPUT
+from back.Database.StrategyKeeper import StrategyKeeper
+from back.ModelsModule import language
+from back.SelectionOptions.ScriptLimits import *
 from django.core.cache import cache
 
 @login_required
@@ -18,7 +18,7 @@ def GetSupportedLanguages(request = HttpRequest):
     mappedLanguages = list(map(__SelectLanguageStrings, languages))
     return JsonResponse ({OUTPUT : mappedLanguages}, DjangoJSONEncoder, True) 
 
-def __SelectLanguageStrings(currentObject = Language):
+def __SelectLanguageStrings(currentObject = language):
     return currentObject.language
     
 @login_required
@@ -66,6 +66,7 @@ def PutStrategy(request = HttpRequest):
         return possibleError
     
     strategyId = request.POST.get("id")
+
     if strategyId is "0" or strategyId is "":
         return HttpResponseBadRequest("Strategy with that id could not be found.")    
 
@@ -83,5 +84,5 @@ def __BaseChecksForInserts(request):
     if cache.get(request.user.id) is not None:
         return HttpResponseBadRequest("Please wait a few seconds before trying again.")
 
-    if StrategyKeeper().IsSupportedScriptType(request.POST.get("Language")) is False:
+    if StrategyKeeper().IsSupportedScriptType(request.POST.get("language")) is False:
         return HttpResponseBadRequest("script files extension is not supported.")
