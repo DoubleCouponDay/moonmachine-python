@@ -17,7 +17,6 @@ import os
 from django.core.wsgi import get_wsgi_application
 import sys
 from django.core.management import execute_from_command_line
-from dj_static import Cling
 
 BASE_DIR = os.path.abspath(os.path.split(__file__)[0])
 sys.path.insert(0, os.path.join(BASE_DIR, 'MoonMachine'))
@@ -27,7 +26,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 
 execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "check"])
 execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "makemigrations"])
-execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "migrate"])
+execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "migrate", "--no-input"])
 execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "collectstatic", "--noinput"])
 
 
@@ -35,4 +34,4 @@ execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "collectstatic",
 # file. This includes Django's development server, if the WSGI_APPLICATION
 # setting points here.
 
-application = Cling(get_wsgi_application()) #cling adds static urls
+application = get_wsgi_application() #cling adds static urls

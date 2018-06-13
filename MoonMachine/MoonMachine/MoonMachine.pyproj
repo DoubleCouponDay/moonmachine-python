@@ -68,7 +68,7 @@
     <Compile Include="__init__.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="routing.py" />
+    <Compile Include="asgi.py" />
     <Compile Include="settings.py" />
     <Compile Include="urls.py" />
     <Compile Include="wsgi.py" />

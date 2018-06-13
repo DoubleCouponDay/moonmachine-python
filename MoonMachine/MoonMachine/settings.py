@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'whitenoise.runserver_nostatic', #blocks django.contrib.staticfiles in development
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django.contrib.redirects'
@@ -50,6 +51,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', #above all others except security
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     "django.contrib.sessions.middleware.SessionMiddleware", #required for authentication. place before authenticationmiddleware
@@ -72,7 +74,8 @@ STATICFILES_DIRS = [
         BASE_DIR + '/front'
     ]
 
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+#STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage' #testing whitenoise
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 #the django 1.3+ version of TEMPLATE_DIRS
 TEMPLATES = [ 
@@ -166,7 +169,7 @@ LOGIN_REDIRECT_URL = '/'
 CSRF_USE_SESSIONS = False #leave as false. if true, it sets the csrf token 
 
 WSGI_APPLICATION = 'wsgi.application'
-ASGI_APPLICATION = "routing.application"
+ASGI_APPLICATION = "asgi.application"
 
 
 # Database
