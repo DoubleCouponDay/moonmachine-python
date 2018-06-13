@@ -1,10 +1,3 @@
-from channels.routing import ProtocolTypeRouter, URLRouter
-from channels.auth import AuthMiddlewareStack
-from channels.security.websocket import AllowedHostsOriginValidator
-from back.Controllers.Consumers.CompilationConsumer import CompilationConsumer
-from urls import CONTAINS_ADMIN, PORTFOLIO, REGEX_EXACT_CAP
-from django.conf.urls import url
-
 import sys
 import os
 from django.core.management import execute_from_command_line
@@ -19,6 +12,13 @@ execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "check"])
 execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "makemigrations"])
 execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "migrate", "--no-input"])
 execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "collectstatic", "--noinput"])
+
+from channels.routing import ProtocolTypeRouter, URLRouter
+from channels.auth import AuthMiddlewareStack
+from channels.security.websocket import AllowedHostsOriginValidator
+from back.Controllers.Consumers.CompilationConsumer import CompilationConsumer
+from urls import CONTAINS_ADMIN, PORTFOLIO, REGEX_EXACT_CAP
+from django.conf.urls import url
 
 WEB_SOCKET = 'ws/'
 
