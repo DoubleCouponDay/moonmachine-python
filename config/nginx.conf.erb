@@ -33,6 +33,7 @@ http {
  	}
 
 	server {
+		listen <%= ENV["PORT"] %> ssl;
 		listen '/tmp/nginx.socket';
 		server_name _;
 		keepalive_timeout 5;
