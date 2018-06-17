@@ -10,6 +10,8 @@ from back.ModelsModule import language
 from back.SelectionOptions.ScriptLimits import *
 from django.core.cache import cache
 
+UPLOAD_TIMER = "uploadtimer"
+
 @login_required
 @requires_csrf_token
 @require_GET    
@@ -54,8 +56,9 @@ def GetValidationRules(request = HttpRequest):
 @login_required
 @requires_csrf_token
 @require_POST
-def CreateStrategy(request = HttpRequest):
+def CreateStrategy(request = HttpRequest):    
     possibleError = __BaseChecksForInserts(request)
+    cache.set(UPLOAD_TIMER, 0, 5)
 
     if possibleError is not None:
         return possibleError
@@ -71,8 +74,9 @@ def CreateStrategy(request = HttpRequest):
 @login_required
 @requires_csrf_token
 @require_POST
-def PutStrategy(request = HttpRequest):
+def PutStrategy(request = HttpRequest):    
     possibleError = __BaseChecksForInserts(request)
+    cache.set(UPLOAD_TIMER, 0, 5)
 
     if possibleError is not None:
         return possibleError
@@ -93,7 +97,7 @@ def PutStrategy(request = HttpRequest):
     return HttpResponse()
 
 def __BaseChecksForInserts(request):
-    if cache.get(request.user.id) is not None:
+    if cache.get(UPLOAD_TIMER) is not None:
         return HttpResponseBadRequest("Please wait a few seconds before trying again.")
 
     if StrategyKeeper().IsSupportedScriptType(request.POST.get("language")) is False:

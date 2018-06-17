@@ -41,7 +41,6 @@ class ServerlessContext:
             result = self.__Compile(consumerInstance)
 
         except Exception as e:            
-            possibleStrategy.delete()
             self.__log.error(e.args[0].reason)
 
             consumerInstance.send(text_data = json.dumps({

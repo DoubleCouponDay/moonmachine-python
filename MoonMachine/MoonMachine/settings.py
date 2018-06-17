@@ -182,6 +182,6 @@ DATABASES = HiddenSettings().GetDatabaseConfig()
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        'TIMEOUT': '5'
+        'TIMEOUT': '30'
     }
 }

@@ -12,5 +12,6 @@ if ($promotionverdict -eq 'y')
 
 else
 {
+    heroku ps:scale web=0 --app moonmachine-staging
     Exit-PSHostProcess
 }

@@ -93,9 +93,6 @@ class ParallelTrader(object):
                     for market in self.__markets:
                         market.Work()
 
-                for market in self.__markets:
-                    market.Dispose()
-
                 self.ToggleSwitchesState = ParallelTrader.IDLE_STATE
 
 
