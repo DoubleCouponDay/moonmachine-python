@@ -55,7 +55,7 @@ class ServerlessContext:
                 'internal error: ': result.text
             }))
             return
-            
+        self.__log.info("compilation request succeeded: response = " + str(result))
         self.__CompileOnSuccess(consumerInstance)
         
     def __Compile(self, consumerInstance):
@@ -72,7 +72,6 @@ class ServerlessContext:
         
         return requests.get(settings.GetFunctionHook() + "compile?userid=" + str(self.__userId) + "&strategyid=" + str(self.__currentStrategyId), headers = inputHeaders)
 
-    def __CompileOnSuccess(self, consumerInstance):
-        self.__log.info("compilation request succeeded. returning verdict.")
+    def __CompileOnSuccess(self, consumerInstance):        
         consumerInstance.send(text_data = json.dumps({}))
         return
