@@ -19,7 +19,7 @@ import jscookie from "scripts/node_modules/js-cookie/src/js.cookie";
             beforeSend: function (xhr, settings) {
                 if (CsrfSafeMethod(settings.type) === false &&
                     this.crossDomain === false) {
-                    xhr.setRequestHeader('X-CSRFToken', csrfToken); //fixed bug where string was not in the right forma
+                    xhr.setRequestHeader('X-CSRFToken', csrfToken); //fixed bug where string was not in the right format
                 }
             }
         }

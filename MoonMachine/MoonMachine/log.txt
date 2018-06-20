@@ -1,2 +1,1 @@
-1529042167.770630; WARNING; Not Found: /favicon.ico
-1529062241.165592; WARNING; Not Found: /favicon.ico
+1529452796.574773; WARNING; Not Found: /favicon.ico
