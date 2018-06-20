@@ -22,6 +22,9 @@ try:
     execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "makemigrations"])
     execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "migrate", "--no-input"])
     execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "collectstatic", "--no-input"])
+    
+    os.system(os.path.join(BASE_DIR, "devbuild.ps1"))
+
     execute_from_command_line(sys.argv)
 
 except SystemExit:
