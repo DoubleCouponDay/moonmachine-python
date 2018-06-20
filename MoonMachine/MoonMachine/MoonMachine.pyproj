@@ -148,7 +148,6 @@
     <Content Include="front\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="front\scripts\custom\binders\authorizedcontrolsbinder.js" />
     <Content Include="front\scripts\custom\binders\portfoliobinder.js" />
-    <Content Include="front\scripts\custom\binders\mainbinder.js" />
     <Content Include="front\scripts\custom\FileTextUploader.js" />
     <Content Include="front\scripts\custom\models\AuthenticationOutcome.js" />
     <Content Include="front\scripts\custom\models\ScriptLimits.js" />

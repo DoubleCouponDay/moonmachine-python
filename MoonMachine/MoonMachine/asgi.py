@@ -8,8 +8,10 @@ sys.path.insert(0, BASE_DIR) #fixed bug where wsgi boot didnt have path configur
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 
+execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "check"])
 execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "makemigrations"])
 execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "migrate", "--no-input"])
+execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "collectstatic", "--noinput"])
 
 from channels.routing import ProtocolTypeRouter, URLRouter
 from channels.auth import AuthMiddlewareStack

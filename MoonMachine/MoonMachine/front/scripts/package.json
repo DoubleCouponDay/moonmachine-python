@@ -18,14 +18,7 @@
   },
   "steal": {
     "baseURL": "/static/",
-    "paths": {},
-	"bundle": [
-		"scripts/custom/binders/mainbinder"
-		"scripts/custom/binders/portfoliobinder",
-		"scripts/custom/binders/authorizedcontrolsbinder" 
-	] //bundles is completely different to bundle
-	"loadBundles": false,
-	main: "scripts/custom/binders/mainbinder"
+    "paths": {}
   },
   "devDependencies": {}
 }
