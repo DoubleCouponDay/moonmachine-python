@@ -17,14 +17,14 @@ class HiddenSettings(object):
 
     def GetFunctionHook(self):
         if self.currentHost != HiddenSettings.MY_HOSTNAME:
-            return FUNCTION_HOOK
+            return HiddenSettings.FUNCTION_HOOK
 
         else:
             return "http://localhost:7071/api/"
 
     def GetFunctionHostKey(self):
         if self.currentHost != HiddenSettings.MY_HOSTNAME:
-            return FUNCTION_HOST_KEY
+            return HiddenSettings.FUNCTION_HOST_KEY
 
         else:
             return ""
