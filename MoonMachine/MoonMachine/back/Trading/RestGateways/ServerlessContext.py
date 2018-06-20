@@ -41,10 +41,10 @@ class ServerlessContext:
             result = self.__Compile(consumerInstance)
 
         except Exception as e:            
-            self.__log.error(e.args[0].reason)
+            self.__log.error(e)
 
             consumerInstance.send(text_data = json.dumps({
-                'internal error: ': str(e.args[0].reason)
+                'internal error: ': str(e)
             }))
 
         if result is not None and result.reason == 'Internal Server Error':
