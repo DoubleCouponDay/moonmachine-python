@@ -1,0 +1,20 @@
+{
+  "name": "herokuproprietary",
+  "version": "1.0.0",
+  "description": "",
+  "main": "_references.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://moonmachineltd@bitbucket.org/moonmachineltd/herokuproprietary.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/moonmachineltd/herokuproprietary#readme",
+  "dependencies": {
+    "grunt": "^1.0.3",
+    "grunt-steal": "^1.0.0"
+  }
+}
