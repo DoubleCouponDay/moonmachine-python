@@ -46,6 +46,7 @@ class ServerlessContext:
             consumerInstance.send(text_data = json.dumps({
                 'internal error: ': str(e)
             }))
+            return
 
         if result is not None and result.reason == 'Internal Server Error':
             self.__log.error(result.text)

@@ -6,7 +6,7 @@ MoonMachine/MoonMachine/static/**
 MoonMachine/.vs/
 MoonMachine/MoonMachine/log.txt
 **/__pycache__/
-MoonMachine/MoonMachine/__pycache__/
+MoonMachine/MoonMachine/__pycache__
 
 
 
