@@ -2,7 +2,7 @@
   "name": "scripts",
   "version": "1.0.0",
   "description": "",
-  "main": "_references.js",
+  "main": "./_references.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,14 +18,8 @@
   },
   "steal": {
     "baseURL": "/static/",
-    "paths": {},
-	"bundle": [
-		"scripts/custom/binders/mainbinder"
-		"scripts/custom/binders/portfoliobinder",
-		"scripts/custom/binders/authorizedcontrolsbinder" 
-	] //bundles is completely different to bundle
-	"loadBundles": false,
-	main: "scripts/custom/binders/mainbinder"
+    "paths": {}
+
   },
   "devDependencies": {}
 }

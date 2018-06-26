@@ -1,5 +1,5 @@
 import jquery from "jquery";
-import jscookie from "scripts/node_modules/js-cookie/src/js.cookie";
+import jscookie from "../scripts/node_modules/js-cookie/src/js.cookie";
 
 (function Init() {
     let csrfToken = jscookie.get('csrftoken');

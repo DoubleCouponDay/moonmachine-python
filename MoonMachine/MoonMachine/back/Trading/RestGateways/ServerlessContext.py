@@ -12,8 +12,7 @@ from back.ModelsModule import strategy
 
 class ServerlessContext:
     """description of class"""
-    def __init__(self):
-        super().__init__()
+    def __init__(self):        
         self.__log = getLogger(str(self.__class__))
         self.__strategyKeeper = StrategyKeeper()
         self.__log.info('created serverless context.')
@@ -40,6 +39,7 @@ class ServerlessContext:
         try:
             result = self.__Compile(consumerInstance)
 
+        # 403 happens here? Or where?
         except Exception as e:            
             self.__log.error(e)
 
@@ -55,7 +55,8 @@ class ServerlessContext:
                 'internal error: ': result.text
             }))
             return
-        self.__log.info("compilation request succeeded: response = " + str(result))
+
+        self.__log.info("compilation request succeeded: response = " + str(result.text))
         self.__CompileOnSuccess(consumerInstance)
         
     def __Compile(self, consumerInstance):

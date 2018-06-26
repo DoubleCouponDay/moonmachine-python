@@ -5,12 +5,11 @@
         <meta charset="utf-8">
         <meta name="viewport" minimum-scale="1" content="width=device-width, initial-scale=1">
         <title>Portfolio</title>
-        {% load static %}
-        <link rel="stylesheet" id="gwd-text-style" href="{% static 'content/portfolio.css' %}" />
+        <link rel="shortcut icon" href="#" title="no favicon" />
+        <link rel="stylesheet" id="gwd-text-style" href="../content/portfolio.css" />
     </head>
 
     <body class="htmlNoPages">
-        {% load static %}
         <div class="gwd-div-agjg">
             <div class="gwd-div-1y9u gwd-div-1who">
                 <input class="gwd-input-1gco" type="file" data-bind="attr: {id: FileBoxId}">
@@ -37,11 +36,9 @@
         </div>
 
         <div class="loading-splash not-loading" data-bind="attr: {id: LoadingSplashId}">
-            <img src="{% static 'content/dooting.gif' %}" class="gwd-img-efml">
+            <img src="../content/dooting.gif" class="gwd-img-efml">
         </div>
     </body>
 </html>
 
-{%load static %}
-<script src="{% static 'scripts/dist/steal.production.js' %}"
-        main="custom/binders/portfoliobinder"></script>
+<script src="../scripts/custom/binders/portfoliobinder.js"></script>

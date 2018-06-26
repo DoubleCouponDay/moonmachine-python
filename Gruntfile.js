@@ -9,7 +9,7 @@ module.exports = function(grunt) //using the nodejs module format
 			  options: {
 				steal: {
 				  config: __dirname + "/MoonMachine/MoonMachine/static/scripts/package.json!npm",
-				  main: __dirname + "/MoonMachine/MoonMachine/static/scripts/custom/binders/mainbinder"
+				  main: "scripts/custom/binders/mainbinder"
 				},
 				buildOptions: {
 				  minify: true,

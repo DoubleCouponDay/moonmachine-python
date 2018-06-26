@@ -5,10 +5,10 @@ from overrides import overrides
 
 class AsyncRequester(Thread, BubbleWrapRequester):
     """run Request() instead of start()"""
-    def __init__(self):
-        self.__log = getLogger(str(self.__class__))
+    def __init__(self):        
         Thread.__init__(self)
         BubbleWrapRequester.__init__(self)
+        self.__log = getLogger(str(self.__class__))
         self.__requestInvoked = False
         self.__log.info('initialized.')
 

@@ -4,8 +4,9 @@
 <head>
     <title>moon machine - authorized controls</title>
     <meta charset="utf-8" />
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'content/authorizedcontrols.css' %}" />
+    <meta name="viewport" minimum-scale="1" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="#" title="no favicon" />
+    <link rel="stylesheet" href="../content/authorizedcontrols.css" />
 </head>
 <body>    
     <div width="auto"
@@ -48,7 +49,4 @@
 </body>
 </html>
 
-{%load static %}
-<script src="{% static 'scripts/dist/steal.production.js' %}"
-        data-load-bundles
-        main="custom/binders/authorizedcontrolsbinder"></script>
+<script src="../scripts/custom/binders/authorizedcontrolsbinder.js"></script>

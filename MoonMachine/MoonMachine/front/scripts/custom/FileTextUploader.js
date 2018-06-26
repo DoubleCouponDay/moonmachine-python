@@ -1,4 +1,4 @@
-import pako from "scripts/node_modules/pako/index";
+import pako from "../scripts/node_modules/pako/index";
 import jquery from "jquery";
 
 export default function FileTextUploader(fileboxNameId)

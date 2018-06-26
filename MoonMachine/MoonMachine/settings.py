@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'channels', # some niche cases need this to be defined first for some reason...
     'front',
     'back',
-    # Add your apps here to enable them
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -46,7 +45,8 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic', #blocks django.contrib.staticfiles in development
     'django.contrib.staticfiles',
     'django.contrib.sites',
-    'django.contrib.redirects'
+    'django.contrib.redirects',
+    'django_extensions'
 ]
 
 MIDDLEWARE = [
@@ -74,8 +74,7 @@ STATICFILES_DIRS = [
         BASE_DIR + '/front'
     ]
 
-#STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage' #testing whitenoise
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 #the django 1.3+ version of TEMPLATE_DIRS
 TEMPLATES = [ 
