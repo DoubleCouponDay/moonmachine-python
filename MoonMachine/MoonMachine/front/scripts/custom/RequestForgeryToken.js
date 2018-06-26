@@ -1,7 +1,10 @@
-import jquery from "jquery";
-import jscookie from "../scripts/node_modules/js-cookie/src/js.cookie";
+let jquery = require("jquery");
+let ko = require("knockout");
+import * as jscookie from "../node_modules/js-cookie/src/js.cookie.js";
 
-(function Init() {
+Init();
+
+export default function Init() {
     let csrfToken = jscookie.get('csrftoken');
 
     if (csrfToken === "") {
@@ -24,4 +27,4 @@ import jscookie from "../scripts/node_modules/js-cookie/src/js.cookie";
             }
         }
         );
-})();
+};

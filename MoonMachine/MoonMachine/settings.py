@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django.contrib.redirects',
-    'django_extensions'
+    'django_extensions',
+    'pipeline'
 ]
 
 MIDDLEWARE = [
@@ -74,7 +75,14 @@ STATICFILES_DIRS = [
         BASE_DIR + '/front'
     ]
 
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+#currently assigned to django-pipeline
+STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
+
+STATICFILES_FINDERS = ( 
+    'django.contrib.staticfiles.finders.FileSystemFinder', 
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'pipeline.finders.PipelineFinder'
+) 
 
 #the django 1.3+ version of TEMPLATE_DIRS
 TEMPLATES = [ 
@@ -159,10 +167,6 @@ LOGGING = {
     }
 }
 
-STATICFILES_FINDERS = ( 
-    'django.contrib.staticfiles.finders.FileSystemFinder', 
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder') 
-
 LOGIN_URL = '/'
 LOGIN_REDIRECT_URL = '/'
 CSRF_USE_SESSIONS = False #leave as false. if true, it sets the csrf token 
@@ -183,4 +187,24 @@ CACHES = {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
         'TIMEOUT': '30'
     }
+}
+
+#browserify setup
+PIPELINE = {
+    'PIPELINE_ENABLED': True,
+    'COMPILERS': (
+        'pipeline_browserify.compiler.BrowserifyCompiler', 
+    ),
+    # ...
+    'javascript': {
+        'browserify': {
+            'source_filenames' : (
+                'templates/index.html',
+            ),
+            'output_filename': 'templates/index.html',
+        },
+    },
+    'JS_COMPRESSOR': 'pipeline.compressors.uglifyjs.UglifyJSCompressor',
+    "UGLIFYJS_BINARY": '/usr/bin/env uglifyjs',
+    "UGLIFYJS_ARGUMENTS": ""
 }

@@ -1,4 +1,5 @@
-import jquery from "jquery";
+let jquery = require("jquery");
+let ko = require("knockout");
 
 export default function CompilationApi(subscriberFunc)
 {

@@ -1,5 +1,6 @@
-import pako from "../scripts/node_modules/pako/index";
-import jquery from "jquery";
+let jquery = require("jquery");
+let ko = require("knockout");
+import * as pako from "../node_modules/pako/index.js";
 
 export default function FileTextUploader(fileboxNameId)
 {

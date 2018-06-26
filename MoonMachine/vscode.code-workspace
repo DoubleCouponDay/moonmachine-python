@@ -5,6 +5,20 @@
 		}
 	],
 	"settings": {
-		"python.pythonPath": "C:\\Users\\sjsui\\.virtualenvs\\MoonMachine-oZ6UWPMB\\Scripts\\python.exe"
+		"python.pythonPath": "C:\\Users\\sjsui\\.virtualenvs\\MoonMachine-oZ6UWPMB\\Scripts\\python.exe",
+		"editor.wordWrap": "on",
+
+		"search.exclude": {
+			"static": true
+		},
+		
+		"files.exclude": {
+			"**/.git": true,
+			"**/.svn": true,
+			"**/.hg": true,
+			"**/CVS": true,
+			"**/.DS_Store": true,
+			"./static": true
+		}
 	}
 }

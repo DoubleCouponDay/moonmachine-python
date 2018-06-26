@@ -5,8 +5,9 @@
         <meta charset="utf-8">
         <meta name="viewport" minimum-scale="1" content="width=device-width, initial-scale=1">
         <title>Portfolio</title>
-        <link rel="shortcut icon" href="#" title="no favicon" />
-        <link rel="stylesheet" id="gwd-text-style" href="../content/portfolio.css" />
+        {% load static %}
+        <link rel="shortcut icon" href="#" title="no favicon" />        
+        <link rel="stylesheet" id="gwd-text-style" href="{% static 'content/portfolio.css' %}" />
     </head>
 
     <body class="htmlNoPages">
@@ -36,9 +37,10 @@
         </div>
 
         <div class="loading-splash not-loading" data-bind="attr: {id: LoadingSplashId}">
-            <img src="../content/dooting.gif" class="gwd-img-efml">
+            {% load static %}
+            <img src="{% static 'content/dooting.gif' %}" class="gwd-img-efml">
         </div>
     </body>
 </html>
-
-<script src="../scripts/custom/binders/portfoliobinder.js"></script>
+{% load static %}
+<script type="module" src="{% static 'scripts/custom/binders/portfoliobinder.js' %}"></script>

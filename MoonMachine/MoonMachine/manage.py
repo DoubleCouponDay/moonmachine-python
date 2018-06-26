@@ -6,11 +6,11 @@ import os
 import sys
 from back.SelectionOptions.LabeledConstants import LOG_FILE
 from django.core.management import execute_from_command_line
-from settings import BASE_DIR, DEBUG
+from settings import BASE_DIR, DEBUG, PIPELINE
 from threading import Thread
-from back.parcelbundler import parcelbundler
+from browserifybundler import browserifybundler
 
-try: #in case filedoes not exist
+try: #clear the log
     with open(BASE_DIR + LOG_FILE, mode = 'w') as clearedLog:
         pass
 except Exception:
@@ -24,11 +24,10 @@ try:
     execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "makemigrations"])
     execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "migrate", "--no-input"])
     execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "collectstatic", "--no-input"])
-    
-    if DEBUG: #bundle the assets in a development environment
-        bundler = parcelbundler(os.path.join(BASE_DIR, "./static/templates/index.html"))
-        bundler.start()
 
+    if DEBUG:
+        PIPELINE['BROWSERIFY_ARGS'] = ['-d']
+        
     execute_from_command_line(sys.argv)
 
 except SystemExit as exception:

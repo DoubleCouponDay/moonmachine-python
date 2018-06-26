@@ -8,6 +8,8 @@ MoonMachine/MoonMachine/log.txt
 **/__pycache__/
 MoonMachine/MoonMachine/__pycache__/
 node_modules/
+MoonMachine/MoonMachine/node_modules/**
+**/node_modules
 
 
 

@@ -5,8 +5,9 @@
     <title>moon machine - authorized controls</title>
     <meta charset="utf-8" />
     <meta name="viewport" minimum-scale="1" content="width=device-width, initial-scale=1">
+    {% load static %}
     <link rel="shortcut icon" href="#" title="no favicon" />
-    <link rel="stylesheet" href="../content/authorizedcontrols.css" />
+    <link rel="stylesheet" href="{% static 'content/authorizedcontrols.css" />
 </head>
 <body>    
     <div width="auto"
@@ -48,5 +49,5 @@
     </table>
 </body>
 </html>
-
-<script src="../scripts/custom/binders/authorizedcontrolsbinder.js"></script>
+{% load static %}
+<script type="module" src="{% static 'scripts/custom/binders/authorizedcontrolsbinder.js' %}"></script>
