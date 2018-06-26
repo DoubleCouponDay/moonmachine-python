@@ -1,9 +1,0 @@
-nginx config
-
-heroku procfile
-
-heroku python buildpack runtime config
-
-python pip requirements.txt
-
-git repository config
