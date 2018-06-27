@@ -8,7 +8,7 @@ from back.SelectionOptions.LabeledConstants import LOG_FILE
 from django.core.management import execute_from_command_line
 from settings import BASE_DIR, DEBUG
 from threading import Thread
-from gruntwebjob import gruntwebjob
+from javascriptjobs import javascriptjobs
 
 try: #clear the log
     with open(BASE_DIR + LOG_FILE, mode = 'w') as clearedLog:
@@ -25,7 +25,7 @@ try:
     execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "migrate", "--no-input"])
     execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "collectstatic", "--no-input"])
 
-    gruntwebjob()
+    javascriptjobs(DEBUG, "static/templates/index.html")
 
     execute_from_command_line(sys.argv)
 

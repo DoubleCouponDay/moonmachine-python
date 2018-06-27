@@ -1,16 +1,17 @@
-MoonMachine/env/
-MoonMachine/env3.6.5/
-MoonMachine/.mypy_cache/
-MoonMachine/static/**
-!MoonMachine/static/placeholder
-MoonMachine/.vs/
-MoonMachine/log.txt
+app/env/
+app/env3.6.5/
+app/.mypy_cache/
+app/static/**
+!app/static/placeholder
+app/.vs/
+app/log.txt
 **/__pycache__/
-MoonMachine/__pycache__/
+app/__pycache__/
 node_modules/
-MoonMachine/node_modules/**
+app/node_modules/**
 **/node_modules
-
+app/.cache/
+.mypy_cache/
 
 
 

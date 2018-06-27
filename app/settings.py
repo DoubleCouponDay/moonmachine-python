@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.redirects',
     'django_extensions',
-    'pipeline'
 ]
 
 MIDDLEWARE = [
@@ -75,13 +74,12 @@ STATICFILES_DIRS = [
         BASE_DIR + '/front'
     ]
 
-#currently assigned to django-pipeline
-STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
+
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 STATICFILES_FINDERS = ( 
     'django.contrib.staticfiles.finders.FileSystemFinder', 
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'pipeline.finders.PipelineFinder'
 ) 
 
 #the django 1.3+ version of TEMPLATE_DIRS
