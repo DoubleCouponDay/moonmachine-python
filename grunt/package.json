@@ -2,7 +2,7 @@
   "name": "herokuproprietary",
   "version": "1.0.0",
   "description": "",
-  "main": "_references.js",
+  "main": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -14,15 +14,21 @@
   "license": "ISC",
   "homepage": "https://bitbucket.org/moonmachineltd/herokuproprietary#readme",
   "dependencies": {
+    "async": "^2.6.1",
     "babel-core": "^6.26.3",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "grunt": "^1.0.3",
     "grunt-babel": "^7.0.0",
-    "load-grunt-tasks": "^4.0.0"
+    "grunt-browserify": "^5.3.0",
+    "load-grunt-tasks": "^4.0.0",
+    "parcel": "^1.9.3",
+    "path": "^0.12.7"
   },
   "babel": {
     "plugins": [
-      "transform-es2015-modules-commonjs"
+      "transform-es2015-modules-commonjs",
+      "transform-object-rest-spread"
     ]
   }
 }

@@ -2,6 +2,9 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"path": "C:\\Users\\sjsui\\Desktop\\git_workshop\\MoonMachineProprietary\\herokuproprietary\\grunt"
 		}
 	],
 	"settings": {
@@ -9,7 +12,7 @@
 		"editor.wordWrap": "on",
 
 		"search.exclude": {
-			"static": true
+			"./app/static": true
 		},
 		
 		"files.exclude": {
@@ -18,7 +21,8 @@
 			"**/.hg": true,
 			"**/CVS": true,
 			"**/.DS_Store": true,
-			"./static": true
+			"./app/static/**": true,
+			"./app/front/scripts/node_modules/**": true
 		}
 	}
 }

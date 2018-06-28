@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'whitenoise.runserver_nostatic', #blocks django.contrib.staticfiles in development
+    # 'whitenoise.runserver_nostatic', #blocks django.contrib.staticfiles in development
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django.contrib.redirects',
@@ -51,7 +51,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware', #above all others except security
+    # 'whitenoise.middleware.WhiteNoiseMiddleware', #above all others except security
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     "django.contrib.sessions.middleware.SessionMiddleware", #required for authentication. place before authenticationmiddleware

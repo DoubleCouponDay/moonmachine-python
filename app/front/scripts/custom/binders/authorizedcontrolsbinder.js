@@ -1,9 +1,8 @@
-let jquery = require("jquery");
-let ko = require("knockout");
+import * as ko from "../../node_modules/knockout/build/output/knockout-latest.js";
 import fileUploader from "../FileTextUploader.js";
 import "../RequestForgeryToken.js";
 import authenticationOutcome from "../models/AuthenticationOutcome.js";
-import controlsApi from "../webinterfaces/authorizedcontrolsapi.js"; //fixed bug where steal js overrode the default module path
+import controlsApi from "../webinterfaces/authorizedcontrolsapi.js";
 
 ko.applyBindings(new AuthorizedControlsBinder());
 
