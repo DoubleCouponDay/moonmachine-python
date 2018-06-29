@@ -1,6 +1,7 @@
 import sys
 import os
 from django.core.management import execute_from_command_line
+from javascriptjob import javascriptjob
 
 BASE_DIR = os.path.abspath(os.path.split(__file__)[0])
 sys.path.insert(0, os.path.join(BASE_DIR, 'MoonMachine'))
@@ -8,8 +9,12 @@ sys.path.insert(0, BASE_DIR) #fixed bug where wsgi boot didnt have path configur
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 
-execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "makemigrations"]) #removed collectstatic because it was being called twice
+execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "check"])
+execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "makemigrations"])
 execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "migrate", "--no-input"])
+
+javascriptjob() #this must happen before collectstatic!
+execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "collectstatic", "--no-input", "--clear"])
 
 from channels.routing import ProtocolTypeRouter, URLRouter
 from channels.auth import AuthMiddlewareStack
