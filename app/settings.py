@@ -16,6 +16,8 @@ from HiddenSettings import HiddenSettings
 from back.SelectionOptions.LabeledConstants import LOG_FILE
 from pathlib import Path
 
+SITE_ID = "1"
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -67,11 +69,12 @@ ROOT_URLCONF = 'urls'
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 __static = 'static'
+__front = "front"
 STATIC_URL = '/static/' #url for the static content must have a forward slash appended and prepended!
 STATIC_ROOT = posixpath.join(posixpath.dirname(posixpath.abspath(__file__)), __static)
 
 STATICFILES_DIRS = [
-        BASE_DIR + '/front'
+        os.path.join(BASE_DIR, "static_pipeline")
     ]
 
 
@@ -87,7 +90,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [            
-            os.path.join(BASE_DIR, __static, 'templates')
+            os.path.join(BASE_DIR, __front, 'templates')
         ],
         'APP_DIRS': True,
         'OPTIONS': {
