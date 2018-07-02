@@ -1,18 +1,26 @@
 app/env/
 app/env3.6.5/
 app/.mypy_cache/
-app/static/**
-!app/static/placeholder
 app/.vs/
 app/log.txt
 **/__pycache__/
-app/__pycache__/
-node_modules/
-app/node_modules/**
-**/node_modules
 app/.cache/
 .mypy_cache/
-app/static_pipeline/
-!app/static_pipeline/placeholder
+app/__pycache__/
+
+node_modules/
+
+app/static_pipeline/content
+app/static_pipeline/scripts
+app/static_pipeline/fonts
+!app/static/placeholder
+app/static/admin
+app/static/channels
+app/static/content
+app/static/django_extensions
+app/static/fonts
+app/static/scripts
+
+
 
 
