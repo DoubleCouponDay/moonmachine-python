@@ -11,7 +11,6 @@ app/__pycache__/
 app/static_pipeline/content
 app/static_pipeline/scripts
 app/static_pipeline/fonts
-!app/static/placeholder
 app/static/admin
 app/static/channels
 app/static/content

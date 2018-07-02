@@ -8,8 +8,12 @@ python pip requirements.txt
 
 git repository config
 
-grunt deployment tasks
-
 grunt webrole tasks
 
 vsc configuration files
+
+entire grunt installation files
+	I couldnt get heroku nodejs buildpack to download correctly. all files are stored in the repository.
+	
+startup file tmp/app-initialized/requiredfile.txt for nginx buildpack.
+
