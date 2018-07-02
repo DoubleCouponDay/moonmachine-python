@@ -13,6 +13,5 @@ app/node_modules/**
 app/.cache/
 .mypy_cache/
 app/static_pipeline/
-node_modules/
 
 
