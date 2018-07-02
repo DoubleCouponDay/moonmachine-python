@@ -13,6 +13,9 @@
   "author": "",
   "license": "ISC",
   "homepage": "https://bitbucket.org/moonmachineltd/herokuproprietary#readme",
+  "engines": {
+    "node": "4.1.1"
+  },
   "dependencies": {
     "async": "^2.6.1",
     "babel-core": "^6.26.3",
@@ -20,9 +23,9 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "grunt": "^1.0.3",
     "grunt-babel": "^7.0.0",
-    "grunt-browserify": "^5.3.0",
+    "grunt-cli": "^1.2.0",
     "load-grunt-tasks": "^4.0.0",
-    "parcel": "^1.9.3",
+    "parcel": "^1.9.4",
     "path": "^0.12.7"
   },
   "babel": {

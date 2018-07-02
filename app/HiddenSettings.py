@@ -3,14 +3,14 @@ import socket
 import dj_database_url
 
 class HiddenSettings(object):
-    SECRET_KEY = 'f6881dd6-1e71-44e1-8059-f15ae29323e4'
+    SECRET_KEY = 'ba044add-de9b-418f-9a71-5d40ff151124'
 
     MY_HOSTNAME = 'DESKTOP-E62C0JN'
 
-    FUNCTION_HOOK = 'https://mm-strategy-tasks-us.azurewebsites.net/api/'
-    FUNCTION_HOST_KEY = 'xmB7WPOVXN0SESGUif6ypwI7NZZ00cazW8YKn/IIH9iJtnffvUFTGg=='
+    FUNCTION_HOOK = 'https://mm-strategy0tasks.azurewebsites.net/api/'
+    FUNCTION_HOST_KEY = 'V9h0ZG/T6PFo/EP5Jx59i83m8LCjKdd5K6fAKqIjET/d9bHa3i9xYA=='
 
-    POSTGRES_STRING = "postgres://kbueeqgsewyeqc:5974125120e3965a7e2b98ee19478523dbf1edcd951a3c2c796f20b4e6780c23@ec2-54-83-59-120.compute-1.amazonaws.com:5432/dcbt0gn4or00nq"
+    POSTGRES_STRING = "postgres://qjsdqutoeltlwg:7e17d9ca493e3080ada1391fc06b700f5ee38a41ae8e39e27f4dd66d07846583@ec2-54-83-59-120.compute-1.amazonaws.com:5432/dcbt0gn4or00nq"
 
     def __init__(self):
         self.currentHost = socket.gethostname()

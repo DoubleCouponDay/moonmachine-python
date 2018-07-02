@@ -4,9 +4,8 @@ let path = require("path");
 let filesystem = require("fs");
 
 //pipeline
-const INPUTFOLDERREL = "../app/front/";
-const OUTPUTFOLDERREL = "../app/static_pipeline/";
-const INPUTFOLDERABS =  path.join(__dirname, INPUTFOLDERREL);
+const INPUTFOLDERREL = "./app/front/";
+const OUTPUTFOLDERREL = "./app/static_pipeline/";
 const OUTPUTFOLDERABS = path.join(__dirname, OUTPUTFOLDERREL);
 const OUTPUTJAVASCRIPTFOLDER = OUTPUTFOLDERABS + "scripts/";
 
