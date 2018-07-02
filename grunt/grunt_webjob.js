@@ -180,8 +180,19 @@ function buildbundles(debugmodebool, finishedtask)
 		cache: false,
 		logLevel: 3,
 		minify: debugmodebool === false,
-		sourceMaps: debugmodebool //todo: set to debugmodebool once issues sorted
+		sourceMaps: debugmodebool,
+		watch: false
 	};
+
+	let possibleherokuport = process.env.PORT;
+	let hmrportkey = "hmrPort";
+
+	if (possibleherokuport != null)
+	{
+		console.log("heroku port found. setting parcel port to " + possibleherokuport);
+		parceloptions[hmrportkey] = possibleherokuport;
+	}
+
 	let files = filesystem.readdirSync(INPUTBUNDLEFOLDER);
 	let outfilekey = "outFile";
 	console.log("found " + files.length + " entrypoints to bundle.");
