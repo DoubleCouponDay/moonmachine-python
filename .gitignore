@@ -1,5 +1,5 @@
-app/env/
 app/env3.6.5/
+app/env/
 app/.mypy_cache/
 app/.vs/
 app/log.txt
@@ -7,8 +7,6 @@ app/log.txt
 app/.cache/
 .mypy_cache/
 app/__pycache__/
-
-node_modules/
 
 app/static_pipeline/content
 app/static_pipeline/scripts
@@ -20,7 +18,3 @@ app/static/content
 app/static/django_extensions
 app/static/fonts
 app/static/scripts
-
-
-
-
