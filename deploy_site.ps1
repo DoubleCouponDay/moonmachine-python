@@ -1,22 +1,21 @@
-﻿python ./MoonMachine/MoonMachine/manage.py check
+﻿python ./app/manage.py check
 Pause
-grunt --verbose
+grunt production --gruntfile ./grunt_webjob.js --verbose
 Pause
 heroku login
 heroku ps:scale web=1 --app moonmachine-staging
 git push moonmachine-staging master
 $promotionverdict = Read-Host -Prompt 'promote to production? [y/n]'
+heroku ps:scale web=0 --app moonmachine-staging
 
 if ($promotionverdict -eq 'y')
 {    
-    heroku pipelines:promote --app moonmachine-staging --to moonmachine
-    heroku ps:scale web=0 --app moonmachine-staging
+    heroku pipelines:promote --app moonmachine-staging --to moonmachine    
     Read-Host -Prompt 'script completed'
     
 }
 
 else
 {
-    heroku ps:scale web=0 --app moonmachine-staging
     Exit-PSHostProcess
 }

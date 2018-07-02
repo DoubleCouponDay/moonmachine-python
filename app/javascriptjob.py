@@ -8,9 +8,9 @@ def javascriptjob():
 
     if DEBUG:         
         
-        os.system("grunt development" + " --gruntfile ../grunt_webjob.js --verbose")
+        os.system("grunt development" + " --gruntfile ./grunt_webjob.js --verbose")
 
     else:
-        os.system("grunt production" + " --gruntfile ../grunt_webjob.js --verbose")
+        os.system("grunt production" + " --gruntfile ./grunt_webjob.js --verbose")
 
     os.chdir("./app")
