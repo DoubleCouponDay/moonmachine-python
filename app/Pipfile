@@ -51,7 +51,6 @@ idna_ssl = "==1.0.1"
 Twisted = "==17.9.0"
 "pywin32" = "*"
 django-extensions = "*"
-django-pipeline-browserify = "*"
 whitenoise = "*"
 
 [dev-packages]
