@@ -8,7 +8,7 @@ class HiddenSettings(object):
     MY_HOSTNAME = 'DESKTOP-E62C0JN'
 
     FUNCTION_HOOK = 'https://mm-strategy0tasks.azurewebsites.net/api/'
-    FUNCTION_HOST_KEY = 'V9h0ZG/T6PFo/EP5Jx59i83m8LCjKdd5K6fAKqIjET/d9bHa3i9xYA=='
+    FUNCTION_HOST_KEY = 'nJLJYZrF1foWJS1/v8jxYy5Rk1mv5MT5yTrbLNZJVNdffNt8Jglwsg=='
 
     POSTGRES_STRING = "postgres://qjsdqutoeltlwg:7e17d9ca493e3080ada1391fc06b700f5ee38a41ae8e39e27f4dd66d07846583@ec2-54-83-59-120.compute-1.amazonaws.com:5432/dcbt0gn4or00nq"
 
@@ -16,18 +16,20 @@ class HiddenSettings(object):
         self.currentHost = socket.gethostname()
 
     def GetFunctionHook(self):
-        if self.currentHost != HiddenSettings.MY_HOSTNAME:
-            return HiddenSettings.FUNCTION_HOOK
+        # if self.currentHost != HiddenSettings.MY_HOSTNAME:
+        #     return HiddenSettings.FUNCTION_HOOK
 
-        else:
-            return "http://localhost:7071/api/"
+        # else:
+        #     return "http://localhost:7071/api/"
+        return HiddenSettings.FUNCTION_HOOK
 
     def GetFunctionHostKey(self):
-        if self.currentHost != HiddenSettings.MY_HOSTNAME:
-            return HiddenSettings.FUNCTION_HOST_KEY
+        # if self.currentHost != HiddenSettings.MY_HOSTNAME:
+        #     return HiddenSettings.FUNCTION_HOST_KEY
 
-        else:
-            return ""
+        # else:
+        #     return ""
+        return HiddenSettings.FUNCTION_HOST_KEY
 
     def GetDebugFlag(self):
         try:

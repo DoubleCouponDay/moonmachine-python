@@ -48,11 +48,13 @@ class ServerlessContext:
             }))
             return
 
-        if result is not None and result.reason == 'Internal Server Error':
-            self.__log.error(result.text)
+        if result is not None and result.status_code != '200':
+            message = result.reason if result.text is "" else result.text 
+
+            self.__log.error(message)
 
             consumerInstance.send(text_data = json.dumps({
-                'internal error: ': result.text
+                'internal error: ': message
             }))
             return
 
