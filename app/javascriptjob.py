@@ -4,7 +4,7 @@ from settings import DEBUG
 def javascriptjob():
     """using grunt because there will be multiple bundles in the future and separate node_modules files.
     """
-    os.chdir("../node_modules/.bin")
+    os.chdir(os.path.abspath("../node_modules/.bin"))
 
     if DEBUG:         
         
@@ -13,4 +13,4 @@ def javascriptjob():
     else:
         os.system("grunt production" + " --gruntfile ../../grunt_webjob.js --verbose")
 
-    os.chdir("../../app")
+    os.chdir(os.path.abspath("../../app"))
