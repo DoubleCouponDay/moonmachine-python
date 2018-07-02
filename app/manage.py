@@ -8,7 +8,6 @@ from back.SelectionOptions.LabeledConstants import LOG_FILE
 from django.core.management import execute_from_command_line
 from settings import BASE_DIR, DEBUG
 from threading import Thread
-from javascriptjob import javascriptjob
 
 def init():
     try: #clear the log

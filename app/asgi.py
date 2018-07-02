@@ -1,7 +1,6 @@
 import sys
 import os
 from django.core.management import execute_from_command_line
-from javascriptjob import javascriptjob
 
 BASE_DIR = os.path.abspath(os.path.split(__file__)[0])
 sys.path.insert(0, os.path.join(BASE_DIR, 'MoonMachine'))
@@ -13,6 +12,7 @@ execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "check"])
 execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "makemigrations"])
 execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "migrate", "--no-input"])
 
+from javascriptjob import javascriptjob #this needs to be after the settings module.
 javascriptjob() #this must happen before collectstatic!
 execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "collectstatic", "--no-input"])
 

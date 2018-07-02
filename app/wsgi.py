@@ -17,7 +17,6 @@ import os
 from django.core.wsgi import get_wsgi_application
 import sys
 from django.core.management import execute_from_command_line
-from javascriptjob import javascriptjob
 
 BASE_DIR = os.path.abspath(os.path.split(__file__)[0])
 sys.path.insert(0, os.path.join(BASE_DIR, 'MoonMachine'))
