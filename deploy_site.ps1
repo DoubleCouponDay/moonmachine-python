@@ -1,8 +1,4 @@
-﻿python ./app/manage.py check
-Pause
-grunt production --gruntfile ./grunt_webjob.js --verbose
-Pause
-heroku login
+﻿heroku login
 heroku ps:scale web=1 --app moonmachine-staging
 git push moonmachine-staging master
 $promotionverdict = Read-Host -Prompt 'promote to production? [y/n]'

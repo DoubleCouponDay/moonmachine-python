@@ -14,7 +14,7 @@
   "license": "ISC",
   "homepage": "https://bitbucket.org/moonmachineltd/herokuproprietary#readme",
   "engines": {
-    "node": "4.1.1"
+    "node": "10.2.0"
   },
   "dependencies": {
     "async": "^2.6.1",
