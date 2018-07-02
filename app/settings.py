@@ -81,8 +81,7 @@ STATICFILES_DIRS = [
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 STATICFILES_FINDERS = ( 
-    'django.contrib.staticfiles.finders.FileSystemFinder', 
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'django.contrib.staticfiles.finders.FileSystemFinder',
 ) 
 
 #the django 1.3+ version of TEMPLATE_DIRS
