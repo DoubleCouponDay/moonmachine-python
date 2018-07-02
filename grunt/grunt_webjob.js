@@ -2,14 +2,17 @@ let parcel = require("parcel");
 let async = require("async");
 let path = require("path");
 let filesystem = require("fs");
-let copydir = require("copy-dir");
 
-const inputfolderrel = "../app/front/";
-const inputfolderabs =  path.join(__dirname, inputfolderrel);
-const outputfolderrel = "../app/static_pipeline/";
-const outputfolderabs = path.join(__dirname, outputfolderrel);
-const outputjavascriptfolder = outputfolderabs + "scripts/";
-const tobundlefolder = outputjavascriptfolder + "custom/binders";
+//pipeline
+const INPUTFOLDERREL = "../app/front/";
+const OUTPUTFOLDERREL = "../app/static_pipeline/";
+const INPUTFOLDERABS =  path.join(__dirname, INPUTFOLDERREL);
+const OUTPUTFOLDERABS = path.join(__dirname, OUTPUTFOLDERREL);
+const OUTPUTJAVASCRIPTFOLDER = OUTPUTFOLDERABS + "scripts/";
+
+//parcel
+const BINDERSFOLDEREL = "custom/binders";
+const INPUTBUNDLEFOLDER = OUTPUTJAVASCRIPTFOLDER + BINDERSFOLDEREL;
 
 const jsextension = ".js";
 
@@ -57,9 +60,9 @@ function SetPaths(configobject)
 {
 	let alljsfiles = { //dynamic file mappings
 		expand: true,
-		cwd: outputjavascriptfolder,
+		cwd: OUTPUTJAVASCRIPTFOLDER,
 		src: ["**/*.js"],
-		dest: outputjavascriptfolder	
+		dest: OUTPUTJAVASCRIPTFOLDER	
 	};
 	configobject.babel.production.files = [alljsfiles];
 	return configobject;
@@ -67,16 +70,15 @@ function SetPaths(configobject)
 
 function pipelinetask()
 {
-
+	deleteoldpipeline();
+	collectfronttopipeline();
 }
 
 function parceltask(debugmodebool) 
 {	
-	let done = this.async(); //grunt specific command for making an asynchronous task.		
-	deleteoldpipeline();
-	collectfronttopipeline();
-	// renamebundlestomin();
-	// buildbundles(done);
+	let done = this.async(); //grunt specific command for making an asynchronous task.	
+	renamebundlestomin();	
+	buildbundles(debugmodebool, done);
 }
 
 function deleteoldpipeline()
@@ -84,7 +86,7 @@ function deleteoldpipeline()
 	console.log("___________________________________")
 	console.log("beginning " + deleteoldpipeline.name);
 
-	foldertraverser(outputfolderrel, function (currentdirectory, currentfile)
+	foldertraverser(OUTPUTFOLDERREL, function onfile (currentdirectory, currentfile)
 	{
 		let itemsfullpath = path.join(__dirname, currentdirectory, currentfile);
 		filesystem.unlinkSync(itemsfullpath);
@@ -98,10 +100,10 @@ function collectfronttopipeline()
 	console.log("___________________________________")
 	console.log("beginning " + collectfronttopipeline.name);
 
-	foldertraverser(inputfolderrel, function onfile (currentdirectory, currentfile, addeddirectories) 
+	foldertraverser(INPUTFOLDERREL, function onfile (currentdirectory, currentfile, addeddirectories) 
 	{
 		let itemsfullpath = path.join(__dirname, currentdirectory, currentfile);	
-		let itemsoutputpath = path.join(outputfolderabs, addeddirectories, currentfile);
+		let itemsoutputpath = path.join(OUTPUTFOLDERABS, addeddirectories, currentfile);
 		console.log("current path: " + itemsfullpath);
 		console.log("destination path: " + itemsoutputpath);			
 		console.log("copying...");
@@ -109,10 +111,7 @@ function collectfronttopipeline()
 	},
 	function ondirectory(currentdirectory, currentfile, addeddirectories)
 	{
-		let itemsoutputdir = path.join(outputfolderabs, addeddirectories, currentfile);	
-console.log("outputfolderabs: " + outputfolderabs);
-console.log("addeddirectories: " + addeddirectories);
-console.log("currentfile: " + currentfile);
+		let itemsoutputdir = path.join(OUTPUTFOLDERABS, addeddirectories, currentfile);	
 		
 		if (filesystem.existsSync(itemsoutputdir) === false)
 		{
@@ -124,7 +123,7 @@ console.log("currentfile: " + currentfile);
 
 //callbacks are given currentdirectory, currentfilename, addeddirectories.
 //currentdirectory must be relative to the location of this grunt file.
-//onnewdirectory is optional.
+//onnewdirectory can be null.
 function foldertraverser(relativedirectory, onfile, onnewdirectory)
 {
 	const standardpreprend = "/";
@@ -132,8 +131,6 @@ function foldertraverser(relativedirectory, onfile, onnewdirectory)
 	const isnotgiven = () => arguments[addedindex] !== undefined && typeof (arguments[addedindex]) === "string";
 	let addeddirectoriesstr = isnotgiven() ? arguments[addedindex] : ""; //access an overload argument. hopefully not given by the invoker.
 	console.log("NEW TRAVERSAL");
-console.log("addeddirectoriesstr: " + addeddirectoriesstr);
-console.log("relativedirectory: " + relativedirectory);
 	let files = filesystem.readdirSync(relativedirectory);
 
 	for (let i = 0; i < files.length; i++)
@@ -156,70 +153,66 @@ console.log("relativedirectory: " + relativedirectory);
 				onnewdirectory(relativedirectory, files[i], addeddirectoriesstr);
 			}			
 			let nextlayeradditions = addeddirectoriesstr + standardpreprend + files[i]; //take a copy since this addition is only relevant to the next layer.			
-			foldertraverser(itemsrelativepath, onfile, nextlayeradditions);
+			foldertraverser(itemsrelativepath, onfile, onnewdirectory, nextlayeradditions);
 		}
 	}
 }
 
-// function renamebundlestomin()
-// {
-// 	console.log("renaming bundle inputs so that source maps may work.");
-// 	let files = filesystem.readdirSync(tobundlefolder);
+function renamebundlestomin()
+{
+	console.log("renaming bundle inputs so that source maps may work.");
+	let files = filesystem.readdirSync(INPUTBUNDLEFOLDER);
 
-// 	for (let i = 0; i < files.length; i++)
-// 	{
-// 		console.log("renaming " + files[i]);
-// 		let filenamecomponents = files[i].split(".");
-// 		let newpath = directory + "/" + filenamecomponents[0] + ".build" + jsextension;
-// 		let oldpath = path.join(directory, files[i]);
+	for (let i = 0; i < files.length; i++)
+	{
+		console.log("renaming " + files[i]);
+		let filenamecomponents = files[i].split(".");
+		let newpath = INPUTBUNDLEFOLDER + "/" + filenamecomponents[0] + ".build" + jsextension;
+		let oldpath = path.join(INPUTBUNDLEFOLDER, files[i]);
+		filesystem.renameSync(oldpath, newpath);
+	}
+}
 
-// 		console.log("renameoldpath: " + oldpath);
-// 		console.log("renamenewpath: " + newpath);
-// 		filesystem.renameSync(oldpath, newpath);
-// 	}
-// }
+function buildbundles(debugmodebool, finishedtask)
+{	
+	let parceloptions = {
+		outDir: INPUTBUNDLEFOLDER,
+		cache: false,
+		logLevel: 3,
+		minify: debugmodebool === false,
+		sourceMaps: debugmodebool //todo: set to debugmodebool once issues sorted
+	};
+	let files = filesystem.readdirSync(INPUTBUNDLEFOLDER);
+	let outfilekey = "outFile";
+	console.log("found " + files.length + " entrypoints to bundle.");
 
-// // function buildbundles(directory, finishedtask)
-// // {	
-// // 	let parceloptions = {
-// // 		outDir: directory,
-// // 		cache: false,
-// // 		logLevel: 3,
-// // 		minify: debugmodebool === false,
-// // 		sourceMaps: false //todo: set to debugmodebool once issues sorted
-// // 	};
-// // 	let files = filesystem.readdirSync(directory);
-// // 	let outfilekey = "outFile";
-// // 	console.log("found " + files.length + " entrypoints to bundle.");
-
-// // 	async.eachSeries(files, (file, continueloop) => {
-// // 		console.log("processing " + file + " into a bundle.");
-// // 		let buildfilecomponents = file.split(".");		
-// // 		parceloptions[outfilekey] = buildfilecomponents[0] + jsextension;
-// // 		let absolutelocation = path.join(directory, file);
-// // 		let bundler = new parcel(absolutelocation, parceloptions);
-// // 		let newpath = path.join(directory, parceloptions[outfilekey]);
+	async.eachSeries(files, (file, continueloop) => {
+		console.log("processing " + file + " into a bundle.");
+		let buildfilecomponents = file.split(".");		
+		parceloptions[outfilekey] = buildfilecomponents[0] + jsextension;
+		let absolutelocation = path.join(INPUTBUNDLEFOLDER, file);
+		let bundler = new parcel(absolutelocation, parceloptions);
+		let newpath = path.join(INPUTBUNDLEFOLDER, parceloptions[outfilekey]);
 		
-// // 		bundler.bundle()
-// // 		.then(function (passpromise, reject) {					
-// // 			console.log("waiting for bundle to exist...");
+		bundler.bundle()
+		.then(() => {					
+			console.log("waiting for bundle to exist...");
 
-// // 			let fileexists = false;
+			let fileexists = false;
 
-// // 			while(fileexists == false)
-// // 			{
-// // 				fileexists = filesystem.existsSync(newpath);
+			while(fileexists == false)
+			{
+				fileexists = filesystem.existsSync(newpath);
 
-// // 				if (fileexists)
-// // 				{
-// // 					console.log("bundle exists.");
-// // 					continueloop();
-// // 				}
-// // 			}
-// // 		});
-// // 	},
-// // 	function onfinished(){
-// // 		finishedtask();
-// // 	});			
-// // }
-
+				if (fileexists)
+				{
+					console.log("bundle exists.");
+					continueloop();
+				}
+			}
+		});
+	},
+	function onfinished(){
+		finishedtask();
+	});			
+}

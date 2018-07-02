@@ -14,7 +14,7 @@ execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "makemigrations"
 execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "migrate", "--no-input"])
 
 javascriptjob() #this must happen before collectstatic!
-# execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "collectstatic", "--no-input"])
+execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "collectstatic", "--no-input"])
 
 from channels.routing import ProtocolTypeRouter, URLRouter
 from channels.auth import AuthMiddlewareStack
