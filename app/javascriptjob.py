@@ -13,7 +13,7 @@ def javascriptjob():
         os.chdir(os.path.abspath("../../app"))  
 
     else:
-        gruntpath = os.path.abspath("../node_modules/.bin")
+        gruntpath = os.path.abspath("./node_modules/.bin")
         logger.info("attempting gruntpath: " + gruntpath)
         os.chdir(gruntpath)
         os.system("grunt production" + " --gruntfile ../../grunt_webjob.js --verbose")
