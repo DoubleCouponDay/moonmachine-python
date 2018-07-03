@@ -2,6 +2,12 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"path": "C:\\Users\\sjsui\\Desktop\\git_workshop\\MoonMachineProprietary\\herokuproprietary\\cypress"
+		},
+		{
+			"path": "C:\\Users\\sjsui\\Desktop\\git_workshop\\MoonMachineProprietary\\herokuproprietary\\grunt"
 		}
 	],
 	"settings": {
