@@ -174,11 +174,13 @@ function renamebundlestomin()
 
 function buildbundles(debugmodebool, finishedtask)
 {	
+	let shouldminify = debugmodebool ? false : true;
+
 	let parceloptions = {
 		outDir: INPUTBUNDLEFOLDER,
 		cache: false,
 		logLevel: 3,
-		minify: debugmodebool === false,
+		minify: shouldminify,
 		sourceMaps: debugmodebool,
 		watch: false
 	};

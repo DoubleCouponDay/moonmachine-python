@@ -66,11 +66,13 @@ class StrategyKeeper(Queryer):
         """can return None"""
         self.log.info("fetching strategy.")
         query = strategy.objects.filter(user_id = inputUserId, id = strategyId) #fixed bug where query was looking for matching id in the other strategies table
-        self.log.info("returning strategy.")
+        
 
         if query.exists():
+            self.log.info("returning strategy.")
             return query.first()
         
+        self.log.info("returning none.")
         return None
 
     def FetchUserStrategy(self, inputUserId = int, inputStrategyId = int):
@@ -87,7 +89,7 @@ class StrategyKeeper(Queryer):
     def ClearCompilationResult(self, strategyId = int, userId = int):
         self.log.info("Clearing compilation result for strategy " + str(strategyId))
         query = strategy.objects.filter(strategyId = strategyId, user_id = userId)
-        self.__TestQuery(query, self.__ClearCompilationResultOnSuccess)
+        self._TestQuery(query, self.__ClearCompilationResultOnSuccess)
 
     def __ClearCompilationResultOnSuccess(self, query):
         query.compilation_result = ''

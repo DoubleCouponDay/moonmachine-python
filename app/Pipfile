@@ -52,6 +52,7 @@ Twisted = "==17.9.0"
 "pywin32" = "*"
 django-extensions = "*"
 whitenoise = "*"
+prospector = "*"
 
 [dev-packages]
 rope = "*"

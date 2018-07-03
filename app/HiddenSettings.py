@@ -16,18 +16,20 @@ class HiddenSettings(object):
         self.currentHost = socket.gethostname()
 
     def GetFunctionHook(self):
-        if self.currentHost != HiddenSettings.MY_HOSTNAME:
-            return HiddenSettings.FUNCTION_HOOK
+        # if self.currentHost != HiddenSettings.MY_HOSTNAME:
+        #     return HiddenSettings.FUNCTION_HOOK
 
-        else:
-            return "http://localhost:7071/api/"
+        # else:
+        #     return "http://localhost:7071/api/"
+        return HiddenSettings.FUNCTION_HOOK
 
     def GetFunctionHostKey(self):
-        if self.currentHost != HiddenSettings.MY_HOSTNAME:
-            return HiddenSettings.FUNCTION_HOST_KEY
+        # if self.currentHost != HiddenSettings.MY_HOSTNAME:
+        #     return HiddenSettings.FUNCTION_HOST_KEY
 
-        else:
-            return ""
+        # else:
+        #     return ""
+        return HiddenSettings.FUNCTION_HOST_KEY
 
     def GetDebugFlag(self):
         try:

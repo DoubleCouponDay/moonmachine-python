@@ -45,12 +45,12 @@ class ServerlessContext:
             consumerInstance.send(text_data = json.dumps({
                 'internal error: ': str(e)
             }))
-            return
+            raise
 
         if result is not None and result.status_code != '200':
             message = result.reason if result.text is "" else result.text 
 
-            self.__log.error(message)
+            self.__log.exception(message)
 
             consumerInstance.send(text_data = json.dumps({
                 'internal error: ': message
