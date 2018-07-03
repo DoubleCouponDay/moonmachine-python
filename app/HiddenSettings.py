@@ -1,6 +1,7 @@
 import os
 import socket
 import dj_database_url
+from logging import getLogger
 
 class HiddenSettings(object):
     SECRET_KEY = 'ba044add-de9b-418f-9a71-5d40ff151124'
@@ -14,22 +15,30 @@ class HiddenSettings(object):
 
     def __init__(self):
         self.currentHost = socket.gethostname()
+        self.__log = getLogger(str(self.__class__))
+        self.__messagetemplate1 = "returning the"
 
-    def GetFunctionHook(self):
-        # if self.currentHost != HiddenSettings.MY_HOSTNAME:
-        #     return HiddenSettings.FUNCTION_HOOK
+    def GetFunctionHook(self):        
+        messagetemplate2 = "microservice hook."
 
-        # else:
-        #     return "http://localhost:7071/api/"
-        return HiddenSettings.FUNCTION_HOOK
+        if self.currentHost != HiddenSettings.MY_HOSTNAME:
+            self.__log.info(f"{self.__messagetemplate1} production level {messagetemplate2}")
+            return HiddenSettings.FUNCTION_HOOK
+
+        else:
+            self.__log.info(f"{self.__messagetemplate1} development level {messagetemplate2}")
+            return "http://localhost:7071/api/"
 
     def GetFunctionHostKey(self):
-        # if self.currentHost != HiddenSettings.MY_HOSTNAME:
-        #     return HiddenSettings.FUNCTION_HOST_KEY
+        messagetemplate2 = "hostkey"
 
-        # else:
-        #     return ""
-        return HiddenSettings.FUNCTION_HOST_KEY
+        if self.currentHost != HiddenSettings.MY_HOSTNAME:
+            self.__log.info(f"{self.__messagetemplate1} production level {messagetemplate2}")
+            return HiddenSettings.FUNCTION_HOST_KEY
+
+        else:
+            self.__log.info(f"{self.__messagetemplate1} development level {messagetemplate2}")
+            return ""
 
     def GetDebugFlag(self):
         try:
