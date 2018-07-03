@@ -182,6 +182,8 @@ function buildbundles(debugmodebool, finishedtask)
 		sourceMaps: debugmodebool,
 		watch: false
 	};
+	console.log("parcel minify: " + parceloptions["minify"]);
+	console.log("parcel sourcemaps: " + parceloptions["sourceMaps"]);
 
 	let possibleherokuport = process.env.PORT;
 	let hmrportkey = "hmrPort";

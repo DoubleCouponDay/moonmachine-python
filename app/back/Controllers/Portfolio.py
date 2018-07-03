@@ -66,7 +66,7 @@ def CreateStrategy(request = HttpRequest):
     strategyId = StrategyKeeper().SubmitStrategy(request.user.id, request.POST.get("language"))
 
     if strategyId is None:
-        return HttpResponseBadRequest("strategy language '" + str(inputLanguage) + "' is not supported.")
+        return HttpResponseBadRequest("strategy language '" + str(request.POST.get("language")) + "' is not supported.")
 
     cache.set(request.user.id, strategyId)   #saved for a few seconds. refer to settings.CACHES for the default timeout
     return HttpResponse()
@@ -92,7 +92,11 @@ def PutStrategy(request = HttpRequest):
     if usersStrategy is None:
         return HttpResponseBadRequest("You do not own this strategy or strategy could not be found.")
 
-    strategyKeeper.SubmitStrategy(request.user.id, request.POST.get("language"), strategyId)
+    strategyId = strategyKeeper.SubmitStrategy(request.user.id, request.POST.get("language"), strategyId)
+
+    if strategyId is None:
+        return HttpResponseBadRequest("strategy language '" + str(request.POST.get("language")) + "' is not supported.")
+
     cache.set(request.user.id, usersStrategy.id)
     return HttpResponse()
 

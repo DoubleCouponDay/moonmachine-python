@@ -1,3 +1,5 @@
 {
-    "python.pythonPath": "C:\\Users\\sjsui\\.virtualenvs\\app-eIhujZ1R\\Scripts\\python.exe"
+    "python.pythonPath": "C:\\Users\\sjsui\\.virtualenvs\\app-eIhujZ1R\\Scripts\\python.exe",
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true
 }

@@ -39,9 +39,8 @@ class ServerlessContext:
         try:
             result = self.__Compile(consumerInstance)
 
-        # 403 happens here? Or where?
         except Exception as e:            
-            self.__log.error(e)
+            self.__log.exception(e)
 
             consumerInstance.send(text_data = json.dumps({
                 'internal error: ': str(e)
