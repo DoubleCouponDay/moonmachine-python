@@ -19,7 +19,7 @@ class CompilationConsumer(WebsocketConsumer):
         
         except Exception as e:
             self.send(text_data = json.dumps({ 
-                "error: ": str(e)
+                "unknown error: ": str(e)
             }))
 
             
