@@ -39,13 +39,14 @@ class ServerlessContext:
         try:
             result = self.__Compile(consumerInstance)
 
-        except Exception as e:            
-            self.__log.exception(e)
+        except Exception as e:     
+            message = "compilation request crashed."
+            self.__log.exception(message)
 
             consumerInstance.send(text_data = json.dumps({
-                'internal error: ': str(e)
+                'internal error: ': str(message)
             }))
-            raise
+            return
 
         if result is not None and result.status_code != '200':
             message = result.reason if result.text is "" else result.text 
