@@ -7,7 +7,6 @@ app/log.txt
 app/.cache/
 .mypy_cache/
 app/__pycache__/
-**/.vscode/
 
 app/static_pipeline/content
 app/static_pipeline/scripts
