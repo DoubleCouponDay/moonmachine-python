@@ -176,6 +176,8 @@ function renamebundlestomin()
 
 function buildbundles(debugmodebool, finishedtask)
 {	
+	console.log("debugmode: " + debugmodebool);
+	
 	let parceloptions = {
 		outDir: INPUTBUNDLEFOLDER,
 		cache: false,

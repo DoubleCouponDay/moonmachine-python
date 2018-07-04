@@ -4,7 +4,7 @@
   "description": "",
   "main": "",
 	"scripts": {
-	  
+		"heroku-prebuild": "cd ./app/front/scripts && npm install && cd ../../../" 
 	},
   "repository": {
     "type": "git",
