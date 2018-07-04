@@ -1,4 +1,4 @@
-nginx reverse proxy start
+nginx reverse proxy startup file
 
 nginx reverse proxy config
 
@@ -12,12 +12,9 @@ python pip requirements.txt
 
 git repository config
 
-grunt webrole tasks
+javascript build packages
 
-vsc configuration files
+grunt tasks folder
 
-entire grunt installation files
-	I couldnt get heroku nodejs buildpack to download correctly. all files are stored in the repository.
-	
-startup file tmp/app-initialized/requiredfile.txt for nginx buildpack.
+cypress tasks folder
 

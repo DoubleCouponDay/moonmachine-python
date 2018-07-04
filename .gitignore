@@ -17,3 +17,5 @@ app/static/content
 app/static/django_extensions
 app/static/fonts
 app/static/scripts
+
+**/node_modules/
