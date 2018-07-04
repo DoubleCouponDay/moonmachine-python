@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "",
-	"scripts": {
-		"heroku-prebuild": "cd ./app/front/scripts && npm install && cd ../../../" 
-	},
+  "scripts": {
+    "heroku-prebuild": "cd ./app/front/scripts && npm install && cd ../../../",
+	"heroku-postbuild": "npm audit fix"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://moonmachineltd@bitbucket.org/moonmachineltd/herokuproprietary.git"
@@ -15,7 +16,7 @@
   "homepage": "https://bitbucket.org/moonmachineltd/herokuproprietary#readme",
   "engines": {
     "node": "10.2.0",
-	"npm": "6.1.0"
+    "npm": "6.1.0"
   },
   "dependencies": {
     "async": "^2.6.1",
@@ -31,7 +32,7 @@
     "path": "^0.12.7"
   },
   "devDependencies": {
-	"cypress": "^3.0.2"
+    "cypress": "^3.0.2"
   },
   "babel": {
     "plugins": [

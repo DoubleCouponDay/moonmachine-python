@@ -21,6 +21,7 @@ def init():
         if __name__ == "__main__":
             os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 
+        os.system("touch ./tmp/app-initialized/requiredfile.txt")
         execute_from_command_line(sys.argv)
 
     except SystemExit:

@@ -15,9 +15,5 @@
     "knockout": "^3.4.2",
     "pako": "^1.0.6"
   },
-  "steal": {
-    "baseURL": "/static/",
-    "paths": {}
-  },
   "devDependencies": {}
 }

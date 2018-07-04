@@ -1,7 +1,7 @@
-let parcel = require("parcel");
-let async = require("async");
-let path = require("path");
-let filesystem = require("fs");
+const parcel = require("parcel");
+const async = require("async");
+const path = require("Path");
+const filesystem = require("fs");
 
 //pipeline
 const INPUTFOLDERREL = "../app/front/";
@@ -177,7 +177,7 @@ function renamebundlestomin()
 function buildbundles(debugmodebool, finishedtask)
 {	
 	console.log("debugmode: " + debugmodebool);
-	
+
 	let parceloptions = {
 		outDir: INPUTBUNDLEFOLDER,
 		cache: false,
