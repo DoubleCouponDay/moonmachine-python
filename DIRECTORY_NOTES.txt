@@ -1,4 +1,8 @@
-nginx config
+nginx reverse proxy start
+
+nginx reverse proxy config
+
+daphne web server start
 
 heroku procfile
 
