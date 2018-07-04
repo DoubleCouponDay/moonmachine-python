@@ -46,7 +46,9 @@ module.exports = function(grunt) //using the nodejs module format
 	configobject = SetPaths(configobject);
 	grunt.initConfig(configobject);		
 	
-	require('load-grunt-tasks')(grunt);
+	require('load-grunt-tasks')(grunt, {
+		requireResolution: true //helps to find the node_modules folder in a different dir.
+	});
 	
 	grunt.registerTask("pipeline", "description", pipelinetask);
 	grunt.registerTask("parcel", "description", parceltask);
