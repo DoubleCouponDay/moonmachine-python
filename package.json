@@ -5,7 +5,7 @@
   "main": "",
   "scripts": {
     "heroku-prebuild": "cd ./app/front/scripts && npm install && cd ../../../",
-	"heroku-postbuild": "npm audit fix"
+    "heroku-postbuild": "npm audit fix"
   },
   "repository": {
     "type": "git",
@@ -28,8 +28,7 @@
     "grunt-babel": "^7.0.0",
     "grunt-cli": "^1.2.0",
     "load-grunt-tasks": "^4.0.0",
-    "parcel": "^1.9.4",
-    "path": "^0.12.7"
+    "parcel": "^1.9.4"
   },
   "devDependencies": {
     "cypress": "^3.0.2"

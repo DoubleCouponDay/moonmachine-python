@@ -19,3 +19,6 @@ app/static/fonts
 app/static/scripts
 
 **/node_modules/
+
+/cypress/videos/
+/cypress/screenshots/
