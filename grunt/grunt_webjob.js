@@ -1,6 +1,6 @@
 const parcel = require("parcel");
 const async = require("async");
-const path = require("Path");
+const path = require("path");
 const filesystem = require("fs");
 
 //pipeline
