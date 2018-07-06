@@ -176,14 +176,16 @@ function renamebundlestomin()
 
 function buildbundles(debugmodebool, finishedtask)
 {	
-	console.log("debugmode: " + debugmodebool);
+	console.log("debugmodebool type: " + typeof(debugmodebool))
+	let shouldminify = debugmodebool === "false" ? true : false; //if in debug mode, dont minify
+	let shouldgensourcemaps = shouldminify === false; //if in debug mode, generate source maps
 
 	let parceloptions = {
 		outDir: INPUTBUNDLEFOLDER,
 		cache: false,
 		logLevel: 3,
-		minify: debugmodebool === false,
-		sourceMaps: debugmodebool,
+		minify: shouldminify,
+		sourceMaps: shouldgensourcemaps,
 		watch: false
 	};
 	console.log("parcel minify: " + parceloptions["minify"]);

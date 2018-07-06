@@ -6,19 +6,12 @@ import controlsApi from "../webinterfaces/authorizedcontrolsapi.js";
 import portfolioApi from "../webinterfaces/portfolioapi.js";
 import compilationSocket from "../webinterfaces/compilationapi.js";
 import strategyInfo from "../models/StrategyInfo.js";
-import scriptLimits from "../models/ScriptLimits.js";
 
 let portfolioApiInstance = new portfolioApi();
 let binder = new PortfolioBinder();
 ko.applyBindings(new PortfolioBinder());
 
 let fileBox = document.getElementById(binder.FileBoxId());
-
-//script limits
-let validationRules;
-
-portfolioApiInstance.GetScriptLimits()
-    .then((data) => { validationRules = new scriptLimits(...Object.values(data)); });
 
 function PortfolioBinder()
 {
@@ -37,7 +30,7 @@ function PortfolioBinder()
         {
             if (publicStuff.BotsStatus() !== 'idle')
             {
-                answer = window.confirm('Are you sure you want to authenticate the bot while running?');
+                let answer = window.confirm('Are you sure you want to authenticate the bot while running?');
 
                 if (answer === false)
                 {
@@ -77,7 +70,7 @@ function PortfolioBinder()
                         return portfolioApiInstance.UpdateStrategy(publicStuff.Strategy());
                     }
                 })
-                .then((strategyId) => {
+                .then(() => {
                     self.fileCompressor.UploadFilesText(self.compilationSocket.Send, true, true);
                 })
                 .catch((error) => {
@@ -114,7 +107,7 @@ function PortfolioBinder()
 
     function ReinstanceCompilationSocket()
     {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             if (self.compilationSocket !== undefined) {
                 self.compilationSocket.Dispose();
             }
@@ -157,7 +150,7 @@ function PortfolioBinder()
     }
 
     function GetCurrentStrategies() {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             portfolioApiInstance.GetCreatedStrategies()
                 .then(resolve);
         });
@@ -168,7 +161,6 @@ function PortfolioBinder()
         let unpacked = currentStrategies["output"];
 
         if (unpacked.length > 0) {
-            let datasKeys = Object.keys(unpacked);
             let currentValues = Object.values(unpacked[0]);
             publicStuff.Strategy(new strategyInfo(...currentValues));
         }

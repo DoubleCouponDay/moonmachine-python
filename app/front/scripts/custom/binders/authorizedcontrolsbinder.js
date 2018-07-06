@@ -26,7 +26,7 @@ function AuthorizedControlsBinder()
                 {
                     if (data['output'] !== 'idle')
                     {
-                        answer = window.confirm('Are you sure you want to authenticate the bot while running?');
+                        let answer = window.confirm('Are you sure you want to authenticate the bot while running?');
 
                         if (answer === false)
                         {
@@ -59,10 +59,10 @@ function AuthorizedControlsBinder()
 
         for (let i = 0; i < returnedKeys.length; i++)
         {
-	        let formattedOutcome = (returnedData[returnedKeys[i]] === "") ? true : false;
-	        frontEndFormatOutcomes.push(new authenticationOutcome(returnedKeys[i], formattedOutcome));
+            let formattedOutcome = (returnedData[returnedKeys[i]] === "") ? true : false;
+            frontEndFormatOutcomes.push(new authenticationOutcome(returnedKeys[i], formattedOutcome));
         }
         publicStuff.AuthenticationOutcomes(frontEndFormatOutcomes);
     }
     return publicStuff;
-};
+}

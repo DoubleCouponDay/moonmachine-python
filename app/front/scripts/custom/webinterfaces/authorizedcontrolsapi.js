@@ -1,5 +1,4 @@
 let jquery = require("jquery");
-let ko = require("knockout");
 
 export default function AuthorizedControlsApi()
 {
@@ -12,7 +11,7 @@ export default function AuthorizedControlsApi()
 
     return {
         ToggleOperations: () => {
-            return new Promise(function (resolve, reject) {
+            return new Promise(function (resolve) {
                 jquery.post(self.toggleUrl, {}, resolve)
                     .fail(() => {
                         window.alert("failed to toggle the strategy.");
@@ -21,7 +20,7 @@ export default function AuthorizedControlsApi()
         },
 
         GetBotsStatus: () => {
-            return new Promise(function (resolve, reject) {
+            return new Promise(function (resolve) {
                 jquery.getJSON(self.statusUrl, null, resolve)
                     .fail(() => {
                         window.alert("failed to GetBotsStatus.");
@@ -38,7 +37,7 @@ export default function AuthorizedControlsApi()
         },
 
         IsAuthenticated: () => {
-            return new Promise((resolve, reject) => {
+            return new Promise((resolve) => {
                 jquery.getJSON(self.isAuthedUrl, resolve)
                     .fail(() => {
                         window.alert("failed to Get IsAuthenticated.");

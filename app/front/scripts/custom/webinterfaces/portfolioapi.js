@@ -1,5 +1,4 @@
 let jquery = require("jquery");
-let ko = require("knockout");
 
 export default function PortfolioApi()
 {
@@ -22,7 +21,7 @@ export default function PortfolioApi()
             });
         },
 
-        GetSubScribedStrategies: () => {
+        GetSubscribedStrategies: () => {
             return new Promise((resolve, reject) => {
                 jquery.getJSON(self.getSubscribedUrl, resolve)
                     .fail(reject);

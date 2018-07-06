@@ -13,6 +13,7 @@ class StrategyKeeper(Queryer):
     def ManageLanguageCache(self):
         if cache.get(StrategyKeeper.LANGUAGE_CACHE, None) is None:
             cache.set(StrategyKeeper.LANGUAGE_CACHE, list(language.objects.all()), 86400) #a day in seconds
+            
 
     def SubmitStrategy(self, userId, inputLanguage, strategyId = int, scriptsBytes = bytes): #fixed bug where bytes was not optional
         """returns primary key of the created strategy."""
@@ -66,6 +67,7 @@ class StrategyKeeper(Queryer):
         """can return None"""
         self.log.info("fetching strategy.")
         query = strategy.objects.filter(user_id = inputUserId, id = strategyId) #fixed bug where query was looking for matching id in the other strategies table
+         #it does have objects
         
 
         if query.exists():
@@ -79,6 +81,7 @@ class StrategyKeeper(Queryer):
         """can return None"""
         self.log.info("fetching userstrategy.")
         query = usersstrategy.objects.filter(user_id = inputUserId, id = inputStrategyId) #fixed bug where query was looking for matching id in the other strategies table
+         #it does have objects
         self.log.info("returning userstrategy.")
 
         if query.exists():

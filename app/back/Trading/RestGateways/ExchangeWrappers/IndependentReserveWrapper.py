@@ -1,5 +1,5 @@
 from back.Trading.RestGateways.ExchangeWrappers.IExchangeWrapper import IExchangeWrapper
-from back.ModelsModule import LabeledBar, transaction, Order, LabeledBarSeries
+from back.ModelsModule import transaction, Order
 from ccxt.independentreserve import independentreserve
 from overrides import overrides
 import json
@@ -8,6 +8,7 @@ from logging import getLogger, Logger
 from decimal import Decimal
 from back.SelectionOptions.MarketAction import MarketAction
 from functools import reduce
+from time import sleep
 
 class IndependentReserveWrapper(IExchangeWrapper):
     """description of class"""
@@ -97,7 +98,7 @@ class IndependentReserveWrapper(IExchangeWrapper):
             IndependentReserveWrapper.SPECULATED_SECURITY  : secondarySecurity,
             IndependentReserveWrapper.HOARDED_SECURITY : primarySecurity,
             IndependentReserveWrapper.ORDER_TYPE : 'LimitOffer',
-            IndependentReserveWraper.PRICE : receiveAmount,
+            IndependentReserveWrapper.PRICE : receiveAmount,
             'volume': giveAmount,
         })
         sleep(self.ExchangesRateLimit())
@@ -145,8 +146,8 @@ class IndependentReserveWrapper(IExchangeWrapper):
         while True:
             self._log.info('Fetching another page of partially filled transactions...')
             filledOrdersResponse = self._BubbleWrapRequest(self.__base.privatePostGetClosedFilledOrders, {
-                IndependentReserveWrapper.SPECULATED_SECURITY  : secondarySecurity,
-                IndependentReserveWrapper.HOARDED_SECURITY : primarySecurity,
+                IndependentReserveWrapper.SPECULATED_SECURITY  : order.GetSecondarySecurity(),
+                IndependentReserveWrapper.HOARDED_SECURITY : order.GetPrimarySecurity(),
                 IndependentReserveWrapper.PAGE_INDEX : str(pageIndex),
                 IndependentReserveWrapper.PAGE_SIZE : str(pageSize)   
             })
@@ -163,16 +164,16 @@ class IndependentReserveWrapper(IExchangeWrapper):
                 pageIndex += 1
 
             elif len(combinedData) > 0:
-                transactionInitializer = transaction()
-                transactionInitializer.Fill(inputUserId=userId,
+                transactioninitializer = transaction()
+                transactioninitializer.Fill(inputUserId=userId,
                                             inputCloudId=order.GetCloudOrderId(),
-                                            inputManagersPairSmbolStr=order.GetManagersPair(),
+                                            inputManagersPairSymbolStr=order.GetManagersPair(),
                                             stateMarketAction=order.GetOrderState(),
                                             inputPrimarySecurityStr=order.GetPrimarySecurity(),
                                             inputSecondarySecurityStr=order.GetSecondarySecurity(),
                                             inputTransactionTime=order.GetTimeOf(),
-                                            inputlastTransaction=previousTransaction)
-                finishedTransaction = reduce(self._ReduceToTransaction, combinedData, transactionInitializer)
+                                            inputLastTransaction=previousTransaction)
+                finishedTransaction = reduce(self._ReduceToTransaction, combinedData, transactioninitializer)
                 finishedTransaction.save()
                 return finishedTransaction
 

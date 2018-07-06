@@ -14,10 +14,7 @@ def AuthorizedControls(request = HttpRequest):
     if request.user.is_authenticated:
         return render(request, "authorizedcontrols.html")
 
-    else:
-        return redirect('/admin')
-
-    return response
+    return redirect('/admin')
 
 @gzip_page
 def Index(request = HttpRequest):
@@ -28,5 +25,4 @@ def Portfolio(request = HttpRequest):
     if request.user.is_authenticated:
         return render(request, "portfolio.html")
 
-    else:
-        return redirect('/admin')
+    return redirect('/admin')

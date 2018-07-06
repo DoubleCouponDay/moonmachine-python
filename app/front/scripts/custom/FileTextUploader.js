@@ -1,5 +1,3 @@
-let jquery = require("jquery");
-let ko = require("knockout");
 import * as pako from "../node_modules/pako/index.js";
 
 export default function FileTextUploader(fileboxNameId)
@@ -13,7 +11,7 @@ export default function FileTextUploader(fileboxNameId)
             let argumentsAsArray = Array.from(arguments);//fixed bug where arguments was not fully copied. it changes between callbacks!
             argumentsAsArray.splice(0, 3); //only add the extra unknown parameters
 
-            return new Promise((resolve, reject) => {
+            return new Promise((resolve) => {
                 let fileBox = document.getElementById(self.fileBoxesId);
                 let file = fileBox.files[0];
                 let reader = new FileReader();
@@ -45,7 +43,7 @@ export default function FileTextUploader(fileboxNameId)
                         else {
                             requestEngine(correctString, ...argumentsAsArray);
                         }
-                    };
+                    }
                 };
 
                 if (file !== null)
@@ -63,7 +61,7 @@ export default function FileTextUploader(fileboxNameId)
 
     function CompressText(inputString)
     {
-        return new Promise((resolve, reject) =>
+        return new Promise((resolve) =>
         {
             resolve(pako.deflate(inputString));
         })

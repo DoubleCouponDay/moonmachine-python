@@ -1,6 +1,7 @@
 ﻿heroku login
-grunt --gruntfile ./grunt/grunt_deploy.js --verbose
+Write-Host 'starting the staging site.'
 heroku ps:scale web=1 --app moonmachine-staging
+Write-Host 'deploying to staging site.'
 git push moonmachine-staging master
 $promotionverdict = Read-Host -Prompt 'promote to production? [y/n]'
 

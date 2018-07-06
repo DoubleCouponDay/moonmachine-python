@@ -1,7 +1,8 @@
 from back.Database.RecordKeeper import RecordKeeper
 from back.Trading.RestGateways.ExchangeWrappers.IExchangeWrapper import IExchangeWrapper
-from back.ModelsModule import LabeledBarSeries, DatedLabel, Order
+from back.ModelsModule import Order
 from back.Trading.ExecutiveAnalyzer import ExecutiveAnalyzer
+from back.SelectionOptions.MarketAction import MarketAction
 
 import logging
 from decimal import Decimal
@@ -60,7 +61,7 @@ class MarketManager(object):
 
                 #close open orders
                 for order in cloudOpenOrders:                
-                    if order.GetOrderState() == Order.BUY:
+                    if order.GetOrderState() == MarketAction.BUY:
                         self.__log.info("Cancelling open buy order.")
                         lastTransaction = RecordKeeper().GetLastTransaction(self.__multiThreadedRequest.user, self.GetManagerName())
                         possibleCompletion = self.__exchange.CancelOrder(order, self.__multiThreadedRequest.user.id, lastTransaction)                         
@@ -68,7 +69,7 @@ class MarketManager(object):
             else:
                 errorMessage = 'volatile multithreaded request object was not injected before dispose was called.'
                 self.__log.error(errorMessage)
-                raise Error(errorMessage)
+                raise Exception(errorMessage)
 
         else:
             self.__log.info("Market manager was not authenticated. Did not dispose.")
