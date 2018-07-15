@@ -5,7 +5,8 @@ from back.SelectionOptions.LabeledConstants import *
 from threading import Lock
 from logging import Logger, getLogger
 from ccxt import independentreserve
-from back.Trading.RestGateways.ExchangeWrappers.IndependentReserveWrapper import IndependentReserveWrapper
+from librariers.exchangecontracts.independentreserve import independentreserve
+from libraries.exchangewrapper import exchangewrapper
 
 class ParallelTrader(object):
     IDLE_STATE = 'idle'
@@ -13,7 +14,7 @@ class ParallelTrader(object):
 
     def __init__(self):             
         self.__portfolio = [
-            MarketManager(XBT_STRING, AUD_STRING, IndependentReserveWrapper()),
+            MarketManager(XBT_STRING, AUD_STRING, exchangewrapper()),
         ]
         self.__operation = ParallelTrader._Operation(self.__portfolio)
         self.__log = Logger(str(self.__class__))

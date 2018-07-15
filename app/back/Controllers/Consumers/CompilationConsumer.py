@@ -1,6 +1,6 @@
 from channels.generic.websocket import WebsocketConsumer
 import json
-from back.Trading.RestGateways.ServerlessContext import ServerlessContext
+from back.RestGateways.ServerlessContext import ServerlessContext
 from back.Controllers.Pages import OUTPUT
 
 serverlessContext = ServerlessContext()
