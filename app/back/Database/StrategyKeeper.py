@@ -1,6 +1,6 @@
 from back.Database.Queryer import Queryer
 from logging import getLogger
-from back.ModelsModule import language, strategy, usersstrategy
+from back.models import language, strategy, usersstrategy
 from django.core.cache import cache
 
 class StrategyKeeper(Queryer):

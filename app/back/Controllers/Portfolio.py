@@ -6,7 +6,7 @@ from django.views.decorators.csrf import requires_csrf_token
 from django.core.serializers.json import DjangoJSONEncoder
 from back.Controllers.Pages import INPUT, OUTPUT
 from back.Database.StrategyKeeper import StrategyKeeper
-from back.ModelsModule import language
+from back.models import language
 from back.SelectionOptions.ScriptLimits import *
 from django.core.cache import cache
 

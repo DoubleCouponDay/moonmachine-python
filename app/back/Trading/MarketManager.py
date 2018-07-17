@@ -1,8 +1,8 @@
 from back.Database.RecordKeeper import RecordKeeper
-from libraries.iexchangewrapper import iexchangewrapper
-from back.ModelsModule import Order
+from back.RestGateways.iexchangewrapper import IExchangeWrapper
+from back.models import Order
 from back.Trading.ExecutiveAnalyzer import ExecutiveAnalyzer
-from back.SelectionOptions.MarketAction import MarketAction
+from back.SelectionOptions.marketaction import marketaction
 
 import logging
 from decimal import Decimal
@@ -61,7 +61,7 @@ class MarketManager(object):
 
                 #close open orders
                 for order in cloudOpenOrders:                
-                    if order.GetOrderState() == MarketAction.BUY:
+                    if order.GetOrderState() == marketaction.BUY:
                         self.__log.info("Cancelling open buy order.")
                         lastTransaction = RecordKeeper().GetLastTransaction(self.__multiThreadedRequest.user, self.GetManagerName())
                         possibleCompletion = self.__exchange.CancelOrder(order, self.__multiThreadedRequest.user.id, lastTransaction)                         

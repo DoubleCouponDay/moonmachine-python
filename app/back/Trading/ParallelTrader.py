@@ -4,9 +4,7 @@ from back.Trading.MarketManager import MarketManager
 from back.SelectionOptions.LabeledConstants import *
 from threading import Lock
 from logging import Logger, getLogger
-from ccxt import independentreserve
-from librariers.exchangecontracts.independentreserve import independentreserve
-from libraries.exchangewrapper import exchangewrapper
+from back.RestGateways.exchangewrapper import exchangewrapper
 
 class ParallelTrader(object):
     IDLE_STATE = 'idle'

@@ -4,13 +4,12 @@ from django.http.request import HttpRequest
 from back.Database.StrategyKeeper import StrategyKeeper
 from HiddenSettings import HiddenSettings
 import requests
-from back.Trading.RestGateways.BubbleWrapRequester import BubbleWrapRequester
 from back.Controllers.Pages import OUTPUT
 from django.core.cache import cache
 import json
-from back.ModelsModule import strategy
+from back.models import strategy
 
-class ServerlessContext:
+class compilationcontext:
     """description of class"""
     def __init__(self):        
         self.__log = getLogger(str(self.__class__))

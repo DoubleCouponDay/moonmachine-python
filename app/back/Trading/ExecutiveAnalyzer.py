@@ -1,4 +1,4 @@
-from back.ModelsModule import Order
+from back.models import Order
 import logging
 from decimal import Decimal
 

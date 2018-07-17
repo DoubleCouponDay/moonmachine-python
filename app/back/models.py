@@ -5,7 +5,7 @@ from django.conf import settings
 from django.http.request import HttpRequest
 
 from back.SelectionOptions.ModelLimits import *
-from back.SelectionOptions.MarketAction import MarketAction
+from back.SelectionOptions.marketaction import marketaction
 
 from datetime import datetime
 from decimal import Decimal
@@ -27,8 +27,8 @@ class transaction(models.Model):
 
     primary_security = models.CharField(max_length=MARKET_ACTION_ENUM_LENGTH)
     secondary_security = models.CharField(max_length=MARKET_ACTION_ENUM_LENGTH)
-    received_amount = models.DecimalField(decimal_places=ETHEREUM_DECIMALS, max_digits=SUPER_MAX_DIGITS)
-    given_amount = models.DecimalField(decimal_places=ETHEREUM_DECIMALS, max_digits=SUPER_MAX_DIGITS)
+    received_amount = models.DecimalField(decimal_places=ETHEREUM_DECIMALS, max_digits=SUPER_MAX_DIGITS, default=Decimal())
+    given_amount = models.DecimalField(decimal_places=ETHEREUM_DECIMALS, max_digits=SUPER_MAX_DIGITS, default=Decimal())
     date = models.DateField()    
 
     current_exposure = models.DecimalField(decimal_places=ETHEREUM_DECIMALS, max_digits=SUPER_MAX_DIGITS)
@@ -51,8 +51,8 @@ class transaction(models.Model):
         if inputManagersPairSymbolStr is not type:
             self.managers_pair_symbol = inputManagersPairSymbolStr
 
-        if stateMarketAction == MarketAction.HOLD:
-            log.error("A transaction cannot have the state: " + MarketAction.HOLD)
+        if stateMarketAction == marketaction.HOLD:
+            log.error("A transaction cannot have the state: " + marketaction.HOLD)
             raise Exception()
 
         self.market_action = stateMarketAction
@@ -74,19 +74,19 @@ class transaction(models.Model):
 
     def __CalculateCurrentExposure(self, previoustransaction): #cant reference an input class
         if previoustransaction is not None:
-            if previoustransaction.market_action == MarketAction.BUY:
+            if previoustransaction.market_action == marketaction.BUY:
                     self.current_exposure -= previoustransaction.current_exposure
 
-            elif previoustransaction.market_action == MarketAction.SELL:
+            elif previoustransaction.market_action == marketaction.SELL:
                 self.current_exposure += previoustransaction.current_exposure
 
 class marketinfo(models.Model):
     market_pair = models.CharField(max_length = FAIR_STRING_SIZE)
-    open = models.DecimalField(decimal_places=ETHEREUM_DECIMALS, max_digits=AVERAGE_DECIMAL_PLACES)
-    close = models.DecimalField(decimal_places=ETHEREUM_DECIMALS, max_digits=AVERAGE_DECIMAL_PLACES)
-    high = models.DecimalField(decimal_places=ETHEREUM_DECIMALS, max_digits=AVERAGE_DECIMAL_PLACES)
-    close = models.DecimalField(decimal_places=ETHEREUM_DECIMALS, max_digits=AVERAGE_DECIMAL_PLACES)
-    volume = models.DecimalField(decimal_places=ETHEREUM_DECIMALS, max_digits=AVERAGE_DECIMAL_PLACES)
+    open = models.DecimalField(decimal_places=ETHEREUM_DECIMALS, max_digits=SUPER_MAX_DIGITS, default=Decimal())
+    close = models.DecimalField(decimal_places=ETHEREUM_DECIMALS, max_digits=SUPER_MAX_DIGITS, default=Decimal())
+    high = models.DecimalField(decimal_places=ETHEREUM_DECIMALS, max_digits=SUPER_MAX_DIGITS, default=Decimal())
+    close = models.DecimalField(decimal_places=ETHEREUM_DECIMALS, max_digits=SUPER_MAX_DIGITS, default=Decimal())
+    volume = models.DecimalField(decimal_places=ETHEREUM_DECIMALS, max_digits=SUPER_MAX_DIGITS, default=Decimal())
     miscellaneous = models.CharField(max_length = SERIALIZED_DATA_LIMIT)
 
     def Fill(self, inputMarketPair = str, **kwargs):
@@ -197,6 +197,24 @@ class usersstrategy(models.Model):
 
         self.save()
 
+###############################################
+#miscellaneous tables
+class availablemarkets(models.Model):
+    exchangename = models.CharField(max_length = FAIR_STRING_SIZE)
+    marketcode = models.CharField(max_length = FAIR_STRING_SIZE)
+    hoursavailable = models.BooleanField(default = False)
+    daysavailable = models.BooleanField(default = False)
+    monthsavailable = models.BooleanField(default = False)
+
+class servicelogs(models.Model):
+    logsdatetime = models.DateTimeField()
+    logslevel = models.CharField(max_length = FAIR_STRING_SIZE)
+    message = models.CharField(max_length = FAIR_STRING_SIZE)
+
+class regionalfarmers(models.Model):
+    hook = models.CharField(max_length = SERIALIZED_DATA_LIMIT)
+    key = models.CharField(max_length = SERIALIZED_DATA_LIMIT)
+
 ################################################
 #unique exchange tables
 class independent_reserve_marketinfo(marketinfo):
@@ -205,12 +223,12 @@ class independent_reserve_marketinfo(marketinfo):
 
 
 ##################################################
-##SERVER MODELS
+##SERVER ONLY MODELS
 class Order(object):    
     """orders must have enough information to convert to a transaction."""
-    def __init__(self, cloudOrderIdInt = int, managersPairSymbolStr = str, primarySecurityStr = str, secondarySecurityStr = str, stateMarketAction = MarketAction, inputReceivedAmount = Decimal, inputGivenAmountDec = Decimal, inputOrderTimeDatetime = datetime, **kwargs):
-        if stateMarketAction == MarketAction.HOLD:
-            getLogger().error("An order cannot have the state: " + str(MarketAction.HOLD))
+    def __init__(self, cloudOrderIdInt = int, managersPairSymbolStr = str, primarySecurityStr = str, secondarySecurityStr = str, stateMarketAction = marketaction, inputReceivedAmount = Decimal, inputGivenAmountDec = Decimal, inputOrderTimeDatetime = datetime, **kwargs):
+        if stateMarketAction == marketaction.HOLD:
+            getLogger().error("An order cannot have the state: " + str(marketaction.HOLD))
             raise Exception()
 
         self.__cloudOrderId = cloudOrderIdInt

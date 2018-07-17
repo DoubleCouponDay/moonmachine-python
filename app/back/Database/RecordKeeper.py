@@ -1,4 +1,4 @@
-from back.ModelsModule import Order, transaction, marketinfo
+from back.models import Order, transaction, marketinfo
 from back.Database.Queryer import Queryer
 
 from logging import getLogger

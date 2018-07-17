@@ -1,7 +1,7 @@
 from django.http.request import HttpRequest
 from django.shortcuts import render, redirect, render_to_response
 from django.contrib.auth.checks import check_user_model
-from back.SelectionOptions.MarketAction import MarketAction
+from back.SelectionOptions.marketaction import marketaction
 from datetime import *
 from decimal import Decimal
 from django.views.decorators.gzip import gzip_page

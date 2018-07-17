@@ -1,9 +1,9 @@
 from channels.generic.websocket import WebsocketConsumer
 import json
-from back.RestGateways.ServerlessContext import ServerlessContext
+from back.RestGateways.compilationcontext import compilationcontext
 from back.Controllers.Pages import OUTPUT
 
-serverlessContext = ServerlessContext()
+serverlessContext = compilationcontext()
 
 class CompilationConsumer(WebsocketConsumer):
     """description of class"""
