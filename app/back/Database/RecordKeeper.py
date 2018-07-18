@@ -1,4 +1,4 @@
-from back.models import Order, transaction, marketinfo
+from back.models import Order, transaction
 from back.Database.Queryer import Queryer
 
 from logging import getLogger
@@ -33,11 +33,11 @@ class RecordKeeper(Queryer):
     def GetOneMarketSummary(self):
         raise NotImplementedError()
 
-    def GetMarketInfo(self, marketName = str, currentUserId = int):
-        """Can return None!"""
+    # def GetMarketInfo(self, marketName = str, currentUserId = int):
+    #     """Can return None!"""
 
-        possibleMatch = marketinfo.objects.filter(market_pair = marketName, user_id = currentUserId)  #it does have objects
-        return self._TestQuery(possibleMatch, self.__GetMarketInfoOnSuccess)
+    #     possibleMatch = marketinfo.objects.filter(market_pair = marketName, user_id = currentUserId)  #it does have objects
+    #     return self._TestQuery(possibleMatch, self.__GetMarketInfoOnSuccess)
 
-    def __GetMarketInfoOnSuccess(self, query):
-        return query.first()
+    # def __GetMarketInfoOnSuccess(self, query):
+    #     return query.first()

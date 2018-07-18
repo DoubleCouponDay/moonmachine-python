@@ -189,3 +189,7 @@ CACHES = {
         'TIMEOUT': '30'
     }
 }
+
+MIGRATION_MODULES = {
+    "back": "back.migrations"
+}

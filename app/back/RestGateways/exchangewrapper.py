@@ -29,23 +29,25 @@ class exchangewrapper(IExchangeWrapper):
 
         self.__apiKey = str()
         self.__apiSecret = str()
-        self.__base = independentreserve()
-        self.__base.load_markets()
-        deets = self.__base.describe()
-        self.__name = deets['name'].lower()
-        self.__rateLimit = deets['rateLimit'] / 1000
+        # self.__base = independentreserve()
+        # self.__base.load_markets()
+        # deets = self.__base.describe()
+        # self.__name = deets['name'].lower()
+        # self.__rateLimit = deets['rateLimit'] / 1000
         self.__profitPercentage = Decimal('0.02')
 
 
     @overrides
     def Name(self):
-        return self.__name
+        # return self.__name
+        return ""
 
     @overrides
     def AttemptAuthentication (self, authDetails = dict):
         try:            
-            self.__base.apiKey = authDetails[self.Name()]['apiKey']
-            self.__base.secret = authDetails[self.Name()]['secret']
+            # self.__base.apiKey = authDetails[self.Name()]['apiKey']
+            # self.__base.secret = authDetails[self.Name()]['secret']
+            pass
 
         except Exception as e:
             error = 'wrong format in auth file for exchange: ' + self.Name() + ". " + str(e)
@@ -53,7 +55,8 @@ class exchangewrapper(IExchangeWrapper):
             return error
 
         try:
-            self.__base.fetch_balance()
+            # self.__base.fetch_balance()
+            pass
             return ''
 
         except Exception as e:

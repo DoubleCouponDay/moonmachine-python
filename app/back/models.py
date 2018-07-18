@@ -34,7 +34,7 @@ class transaction(models.Model):
     current_exposure = models.DecimalField(decimal_places=ETHEREUM_DECIMALS, max_digits=SUPER_MAX_DIGITS)
 
     def Fill(self, inputUserId, inputCloudId, inputManagersPairSymbolStr, stateMarketAction, inputPrimarySecurityStr, inputSecondarySecurityStr, inputTransactionTime, inputLastTransaction, inputReceivedAmount = Decimal, inputGivenAmount = Decimal,  **kwargs): #fixed bug where could not import transaction. just leave it blank ffs
-        """all arguments are optional. will save the object"""
+        """inputreceivedamount and inputgivenamount are optional. will save the object"""
         log = getLogger(str(self.__class__)) # temporary variable since I have no idea what will happen if you store a property on a database record
         log.info('filling transaction object...')
 
@@ -85,17 +85,32 @@ class marketinfo(models.Model):
     open = models.DecimalField(decimal_places=ETHEREUM_DECIMALS, max_digits=SUPER_MAX_DIGITS, default=Decimal())
     close = models.DecimalField(decimal_places=ETHEREUM_DECIMALS, max_digits=SUPER_MAX_DIGITS, default=Decimal())
     high = models.DecimalField(decimal_places=ETHEREUM_DECIMALS, max_digits=SUPER_MAX_DIGITS, default=Decimal())
-    close = models.DecimalField(decimal_places=ETHEREUM_DECIMALS, max_digits=SUPER_MAX_DIGITS, default=Decimal())
+    low = models.DecimalField(decimal_places=ETHEREUM_DECIMALS, max_digits=SUPER_MAX_DIGITS, default=Decimal())
     volume = models.DecimalField(decimal_places=ETHEREUM_DECIMALS, max_digits=SUPER_MAX_DIGITS, default=Decimal())
     miscellaneous = models.CharField(max_length = SERIALIZED_DATA_LIMIT)
 
-    def Fill(self, inputMarketPair = str, **kwargs):
+    def Fill(self, inputMarketPair = str, inputopen = Decimal, inputclose = Decimal, inputhigh = Decimal, inputlow = Decimal, inputvolume = Decimal, **kwargs):
         """will save the object"""
         log = getLogger(str(self.__class__))
         log.info('filling market info object...')
 
-        if inputMarketPair is not str:
+        if inputMarketPair is not type:
             self.market_pair = inputMarketPair
+
+        if open is not type:
+            self.open = inputopen
+
+        if inputclose is not type:
+            self.close = inputclose
+
+        if inputhigh is not type:
+            self.high = inputhigh
+
+        if inputlow is not type:
+            self.low = inputlow
+
+        if inputvolume is not type:
+            self.volume = inputvolume
 
         if kwargs is not None: #kwargs default state
             with StringIO() as fileLikeObj:
@@ -125,6 +140,10 @@ class marketinfo(models.Model):
                 
         self.save()
         log.info('filled the market info object.')
+
+    class Meta:
+        abstract = True
+
 
 class strategy(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE, db_column = 'user_id', db_index = False)
@@ -167,8 +186,6 @@ class strategy(models.Model):
         else:
             self.is_compiled = False
         
-
-
         if inputName is not str:
             self.name = inputName
 
@@ -197,6 +214,11 @@ class usersstrategy(models.Model):
 
         self.save()
 
+################################################
+#unique exchange tables
+class independent_reserve_marketinfo(marketinfo):
+    pass        
+
 ###############################################
 #miscellaneous tables
 class availablemarkets(models.Model):
@@ -215,10 +237,7 @@ class regionalfarmers(models.Model):
     hook = models.CharField(max_length = SERIALIZED_DATA_LIMIT)
     key = models.CharField(max_length = SERIALIZED_DATA_LIMIT)
 
-################################################
-#unique exchange tables
-class independent_reserve_marketinfo(marketinfo):
-    pass
+
 
 
 

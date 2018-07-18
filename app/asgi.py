@@ -15,11 +15,11 @@ sys.path.insert(0, BASE_DIR) #fixed bug where wsgi boot didnt have path configur
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
 execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "check"])
 
-from javascriptjob import javascriptjob #this needs to be after the settings module.
-javascriptjob() #this must happen before collectstatic!
-
 execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "makemigrations"])
 execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "migrate", "--no-input"])
+
+from javascriptjob import javascriptjob #this needs to be after the settings module.
+javascriptjob() #this must happen before collectstatic!
 
 execute_from_command_line([os.path.join(BASE_DIR, "manage.py"), "collectstatic", "--no-input"])
 
