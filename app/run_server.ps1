@@ -1,3 +1,2 @@
-﻿(Get-Item -Path ".\").FullName
-pipenv run python manage.py runserver
+﻿pipenv run python manage.py runserver
 Pause

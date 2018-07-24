@@ -5,7 +5,7 @@
   "main": "",
   "scripts": {
     "heroku-prebuild": "cd ./app/front/scripts && npm install && cd ../../../",
-    "heroku-postbuild": "npm audit fix"
+    "heroku-postbuild": "npm install -g grunt-cli && npm audit fix"
   },
   "repository": {
     "type": "git",

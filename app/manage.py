@@ -16,10 +16,8 @@ try: #clear the log
 except Exception:
     pass
 
-try:
-    if __name__ == "__main__":
-        os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
-
+try:    
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
     execute_from_command_line(sys.argv)
 
 except SystemExit:

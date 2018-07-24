@@ -1,6 +1,4 @@
-﻿Write-Host 'running tests before deployment.'
-./test_requires_serverlessfunctions.ps1
-Write-Host 'starting the staging site.'
+﻿Write-Host 'starting the staging site.'
 heroku ps:scale web=1 --app moonmachine-staging
 Write-Host 'deploying to staging site.'
 git push moonmachine-staging master

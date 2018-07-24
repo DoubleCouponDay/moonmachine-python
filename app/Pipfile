@@ -52,6 +52,8 @@ Twisted = "==17.9.0"
 django-extensions = "*"
 whitenoise = "*"
 prospector = "*"
+django-phonenumber-field = "*"
+astroid = "*"
 
 [dev-packages]
 rope = "*"

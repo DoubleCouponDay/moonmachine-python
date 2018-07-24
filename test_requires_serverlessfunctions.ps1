@@ -6,7 +6,7 @@ $waittime = 40
 Start-Sleep -Seconds $waittime
 Write-Host 'waited' $waittime 'seconds for test server to start.'
 Write-Host 'running tests'
-./node_modules/.bin/cypress run --browser chrome
+./node_modules/.bin/cypress run --browser electron
 Write-Host 'stopping dev server: (doesnt work)' $devserverproc
 Stop-Process -InputObject $devserverproc
 Pause

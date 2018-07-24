@@ -3,24 +3,23 @@ from back.Database.Queryer import Queryer
 from django.contrib.auth.models import User
 from django.conf import settings
 from django.http.request import HttpRequest
-
 from back.SelectionOptions.ModelLimits import *
 from back.SelectionOptions.marketaction import marketaction
-
 from datetime import datetime
 from decimal import Decimal
 import csv
 from io import StringIO
 from logging import Logger, getLogger
-
 from collections.abc import MutableSequence
 from overrides import overrides
+from phonenumber_field.modelfields import PhoneNumberField
+
 
 ################################################
 ##DATABASE TABLES
 class transaction(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE, db_column = 'user_id', db_index = False)
-    cloud_transaction = models.CharField(max_length = FAIR_STRING_SIZE)
+    cloud_transaction_id = models.CharField(max_length = FAIR_STRING_SIZE)
 
     managers_pair_symbol = models.CharField(max_length = FAIR_STRING_SIZE)
     market_action = models.CharField(max_length=MARKET_ACTION_ENUM_LENGTH)
@@ -40,7 +39,7 @@ class transaction(models.Model):
 
         self.user_id = inputUserId
         
-        self.cloud_transaction = inputCloudId
+        self.cloud_transaction_id = inputCloudId
 
         if inputLastTransaction is not type:
             self.current_exposure = self.__CalculateCurrentExposure(inputLastTransaction)
@@ -212,33 +211,31 @@ class usersstrategy(models.Model):
         self.strategy_id = strategyId
         self.user_id = userId
 
-        self.save()
-
-################################################
-#unique exchange tables
-class independent_reserve_marketinfo(marketinfo):
-    pass        
+        self.save()  
 
 ###############################################
 #miscellaneous tables
-class availablemarkets(models.Model):
+class availablemarket(models.Model):
     exchangename = models.CharField(max_length = FAIR_STRING_SIZE)
     marketcode = models.CharField(max_length = FAIR_STRING_SIZE)
     hoursavailable = models.BooleanField(default = False)
     daysavailable = models.BooleanField(default = False)
     monthsavailable = models.BooleanField(default = False)
+    minimumprice = models.DecimalField(decimal_places=ETHEREUM_DECIMALS, max_digits=SUPER_MAX_DIGITS, default=Decimal())
+    minimumvolume = models.DecimalField(decimal_places=ETHEREUM_DECIMALS, max_digits=SUPER_MAX_DIGITS, default=Decimal())
 
-class servicelogs(models.Model):
+class servicelog(models.Model):
     logsdatetime = models.DateTimeField()
     logslevel = models.CharField(max_length = FAIR_STRING_SIZE)
     message = models.CharField(max_length = FAIR_STRING_SIZE)
 
-class regionalfarmers(models.Model):
+class regionalfarmer(models.Model):
     hook = models.CharField(max_length = SERIALIZED_DATA_LIMIT)
     key = models.CharField(max_length = SERIALIZED_DATA_LIMIT)
 
-
-
+class extendeduser(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    phonenumber = PhoneNumberField()
 
 
 ##################################################
@@ -289,3 +286,10 @@ class Order(object):
 
     def GetMiscellaneousProperties(self):
         return self.__miscellaneous
+
+
+#################################################
+#EXCHANGE SPECIFIC TABLES
+
+class independent_reserve_marketinfo(marketinfo):
+    pass      

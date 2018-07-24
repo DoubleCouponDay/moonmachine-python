@@ -8,8 +8,7 @@ from logging import getLogger
 logger = getLogger("asgi")
 logger.info("using asgi")
 
-BASE_DIR = os.path.abspath(os.path.split(__file__)[0])
-sys.path.insert(0, os.path.join(BASE_DIR, 'MoonMachine'))
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, BASE_DIR) #fixed bug where wsgi boot didnt have path configured correctly
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")

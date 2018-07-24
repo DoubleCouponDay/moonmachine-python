@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.redirects',
     'django_extensions',
+    'phonenumber_field'
 ]
 
 MIDDLEWARE = [
@@ -191,5 +192,7 @@ CACHES = {
 }
 
 MIGRATION_MODULES = {
-    "back": "back.migrations"
+    "back": "back.migrations",
 }
+
+PHONENUMBER_DB_FORMAT = 'E164'
