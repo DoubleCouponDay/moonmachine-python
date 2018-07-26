@@ -64,7 +64,7 @@ class MarketManager(object):
                     if order.GetOrderState() == marketaction.BUY:
                         self.__log.info("Cancelling open buy order.")
                         lastTransaction = RecordKeeper().GetLastTransaction(self.__multiThreadedRequest.user, self.GetManagerName())
-                        possibleCompletion = self.__exchange.CancelOrder(order, self.__multiThreadedRequest.user.id, lastTransaction)                         
+                        self.__exchange.CancelOrder(order, self.__multiThreadedRequest.user.id, lastTransaction)                         
 
             else:
                 errorMessage = 'volatile multithreaded request object was not injected before dispose was called.'

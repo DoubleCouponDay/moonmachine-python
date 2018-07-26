@@ -16,9 +16,9 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 
 ################################################
-##DATABASE TABLES
+##SERVICE RELATED TABLES
 class transaction(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE, db_column = 'user_id', db_index = False)
+    user = models.ForeignKey(User, on_delete = models.CASCADE, db_column = 'user_id', db_index = False)
     cloud_transaction_id = models.CharField(max_length = FAIR_STRING_SIZE)
 
     managers_pair_symbol = models.CharField(max_length = FAIR_STRING_SIZE)
@@ -79,8 +79,9 @@ class transaction(models.Model):
             elif previoustransaction.market_action == marketaction.SELL:
                 self.current_exposure += previoustransaction.current_exposure
 
-class marketinfo(models.Model):
-    market_pair = models.CharField(max_length = FAIR_STRING_SIZE)
+class markethistory(models.Model):
+    hoardedcurrency = models.CharField(max_length = FAIR_STRING_SIZE)
+    pricecurrency = models.CharField(max_length = FAIR_STRING_SIZE)
     open = models.DecimalField(decimal_places=ETHEREUM_DECIMALS, max_digits=SUPER_MAX_DIGITS, default=Decimal())
     close = models.DecimalField(decimal_places=ETHEREUM_DECIMALS, max_digits=SUPER_MAX_DIGITS, default=Decimal())
     high = models.DecimalField(decimal_places=ETHEREUM_DECIMALS, max_digits=SUPER_MAX_DIGITS, default=Decimal())
@@ -145,7 +146,7 @@ class marketinfo(models.Model):
 
 
 class strategy(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE, db_column = 'user_id', db_index = False)
+    user = models.ForeignKey(User, on_delete = models.CASCADE, db_column = 'user_id', db_index = False)
     language = models.ForeignKey("language", on_delete = models.CASCADE, db_column = 'language_id', db_index = False)
 
     bits = models.BinaryField()
@@ -204,7 +205,7 @@ class language(models.Model):
     language = models.CharField(max_length = AVERAGE_DECIMAL_PLACES)
 
 class usersstrategy(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE, db_column = 'user_id', db_index = False)
+    user = models.ForeignKey(User, on_delete = models.CASCADE, db_column = 'user_id', db_index = False)
     strategy = models.ForeignKey("strategy", on_delete = models.CASCADE, db_column = 'strategy_id', db_index = False)
 
     def Fill(self, strategyId, userId): #all foreign keys are required
@@ -213,14 +214,27 @@ class usersstrategy(models.Model):
 
         self.save()  
 
+class marketticker(markethistory):
+    timestamp = models.DateTimeField()
+    currenthighestbid = models.DecimalField(decimal_places=ETHEREUM_DECIMALS, max_digits=SUPER_MAX_DIGITS, default=Decimal())
+    currentlowestprice = models.DecimalField(decimal_places=ETHEREUM_DECIMALS, max_digits=SUPER_MAX_DIGITS, default=Decimal())
+    daysaverageprice = models.DecimalField(decimal_places=ETHEREUM_DECIMALS, max_digits=SUPER_MAX_DIGITS, default=Decimal())
+
 ###############################################
-#miscellaneous tables
-class availablemarket(models.Model):
+#FARMING RELATED TABLES
+class availableexchange(models.Model):
     exchangename = models.CharField(max_length = FAIR_STRING_SIZE)
-    marketcode = models.CharField(max_length = FAIR_STRING_SIZE)
     hoursavailable = models.BooleanField(default = False)
     daysavailable = models.BooleanField(default = False)
+    weeksavailable = models.BooleanField(default = False)
     monthsavailable = models.BooleanField(default = False)
+
+class availablemarket(models.Model):
+    currentticker = models.OneToOneField(to="marketticker", on_delete=models.CASCADE)
+    exchange = models.ForeignKey(to="availableexchange", on_delete = models.CASCADE, db_column = 'exchange_id', db_index = False)
+    
+    hoardedcurrency = models.CharField(max_length = FAIR_STRING_SIZE)
+    pricecurrency = models.CharField(max_length = FAIR_STRING_SIZE)
     minimumprice = models.DecimalField(decimal_places=ETHEREUM_DECIMALS, max_digits=SUPER_MAX_DIGITS, default=Decimal())
     minimumvolume = models.DecimalField(decimal_places=ETHEREUM_DECIMALS, max_digits=SUPER_MAX_DIGITS, default=Decimal())
 
@@ -236,6 +250,7 @@ class regionalfarmer(models.Model):
 class extendeduser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     phonenumber = PhoneNumberField()
+
 
 
 ##################################################
@@ -291,5 +306,5 @@ class Order(object):
 #################################################
 #EXCHANGE SPECIFIC TABLES
 
-class independent_reserve_marketinfo(marketinfo):
+class independent_reserve_markethistory(markethistory):
     pass      
