@@ -241,7 +241,8 @@ class availablemarket(models.Model):
 class servicelog(models.Model):
     logsdatetime = models.DateTimeField()
     logslevel = models.CharField(max_length = FAIR_STRING_SIZE)
-    message = models.CharField(max_length = FAIR_STRING_SIZE)
+    message = models.CharField(max_length = DESCRIPTION)
+    stacktrace = models.CharField(max_length = SERIALIZED_DATA_LIMIT)
 
 class regionalfarmer(models.Model):
     hook = models.CharField(max_length = SERIALIZED_DATA_LIMIT)
