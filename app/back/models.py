@@ -309,3 +309,6 @@ class Order(object):
 
 class independent_reserve_markethistory(markethistory):
     pass      
+
+class vaultoro_markethistory(markethistory):
+    pass
