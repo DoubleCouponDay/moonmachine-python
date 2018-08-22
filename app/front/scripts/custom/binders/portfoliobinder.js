@@ -7,16 +7,16 @@ import portfolioApi from "../webinterfaces/portfolioapi.js";
 import compilationSocket from "../webinterfaces/compilationapi.js";
 import strategyInfo from "../models/StrategyInfo.js";
 
-let portfolioApiInstance = new portfolioApi();
-let binder = new PortfolioBinder();
-ko.applyBindings(new PortfolioBinder());
+let portfolioApiInstance = portfolioApi();
+let binder = PortfolioBinder();
+ko.applyBindings(PortfolioBinder());
 
 let fileBox = document.getElementById(binder.FileBoxId());
 
 function PortfolioBinder()
 {
     let self = this;
-    self.controlsApi = new controlsApi();
+    self.controlsApi = controlsApi();
     self.compilationSocket = undefined;
 
     let publicStuff = {
@@ -89,9 +89,9 @@ function PortfolioBinder()
                     }
                 });
         },
-        Strategy: ko.observable(new strategyInfo()),
+        Strategy: ko.observable(strategyInfo()),
     };
-    self.fileCompressor = new fileUploader(publicStuff.FileBoxId());
+    self.fileCompressor = fileUploader(publicStuff.FileBoxId());
 
     function ToggleLoadingSplash(shouldDisplayBool) {
         switch (shouldDisplayBool) {
@@ -111,7 +111,7 @@ function PortfolioBinder()
             if (self.compilationSocket !== undefined) {
                 self.compilationSocket.Dispose();
             }
-            new compilationSocket(OnReceivedMessage)
+            compilationSocket(OnReceivedMessage)
                 .then((instancedWebSocket) => {
                     self.compilationSocket = instancedWebSocket;
                     resolve();
@@ -162,7 +162,7 @@ function PortfolioBinder()
 
         if (unpacked.length > 0) {
             let currentValues = Object.values(unpacked[0]);
-            publicStuff.Strategy(new strategyInfo(...currentValues));
+            publicStuff.Strategy(strategyInfo(...currentValues));
         }
     }
     ApplyCurrentStatus();
