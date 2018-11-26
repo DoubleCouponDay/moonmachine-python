@@ -1,0 +1,114 @@
+Copyright License Agreement
+
+
+
+This Copyright License Agreement (this "Agreement") is made effective as of November 22, 2018 between samuel peter jenks, of 2 alice burn drive, luggate, New Zealand 9383 and ivan guzman, of José Miguel Carrera 1170, Región del Libertador Gral. Bernardo O’Higgins, Rancagua, Chile 2820000.
+
+
+In the Agreement, the party who is granting the right to use the licensed property will be referred to as "sam", and the party who is receiving the right to use the licensed property will be referred to as "ivan".
+
+
+The parties agree as follows:
+
+
+GRANT OF LICENSE. sam owns moon machine software ("software"). In accordance with this Agreement, sam grants ivan an exclusive license to use the software. sam retains title and ownership of the software. ivan will not own any materials, products or other works (the Work) created by ivan in connection with this license. This grant of license only applies to the following described geographical areas: the nation of Chile, the nation of Australia, the nation of New Zealand.
+
+
+RIGHTS AND OBLIGATIONS. ivan and sam will be responsible for providing technical expertise and knowledge work for the development of the Work in which the licensed property is used. sam will be the sole owner of the Work and all proprietary rights in and to the Work; except, any other rights to the software not specifically granted in this Agreement.
+
+ivan and sam will both keep the licensed property privately stored so that the licensed property cannot be accessed by any third party.
+
+the Licensee shall not use Licensed property for any purpose that is unlawful or prohibited by these Terms of the Agreement.
+
+
+PAYMENT OF ROYALTY. ivan will NOT pay royalties in connection with this Agreement.
+
+
+MODIFICATIONS. ivan AND sam have the right to modify the software. however, ivan must receive written or verbal consent from sam to make modifications to moon machine software. 
+
+
+DEFAULTS. If ivan fails to abide by the obligations of this Agreement, sam shall have the option to cancel this Agreement by providing 14 days days written notice to ivan.
+
+
+ARBITRATION. All disputes under this Agreement that cannot be resolved by the parties shall be submitted to arbitration under the rules and regulations of the Agreement on Trade-Related Aspects of Intellectual Property Rights (TRIPS). Either party may invoke this paragraph after providing 30 days written notice to the other party. All costs of arbitration shall be divided equally between the parties. Any award rendered by the arbitrator shall be final and binding on the parties and may be enforced by a court of law.
+
+
+TRANSFER OF RIGHTS. This Agreement shall be binding on any successors of the parties. Neither party shall have the right to assign its interests in this Agreement to any other party, unless the prior written consent of the other party is obtained.
+
+TERMINATION. This Agreement will NOT terminate automatically at any date.
+
+
+Upon termination or expiration of this Agreement, Licensee shall cease reproducing, advertising, marketing and distributing the Work. Notwithstanding the foregoing. Copyright Owner shall have the right to verify the existence and validity of the existing orders and existing copies of the Work then in stock upon reasonable notice to Licensee.
+
+
+Termination or expiration of this Agreement shall not extinguish any of Licensee's or Copyright Owner's obligations under this Agreement including, but not limited to, the obligation to pay royalties which by their terms continue after the date of termination or expiration.
+
+
+PARTIAL AGREEMENT. This Agreement only partially describes the entire agreement between the parties. previous agreements include the freelancing contract made on the upwork.com platform, that both parties signed. This Agreement supersedes any prior written or oral agreements between the parties.
+
+
+AMENDMENT. This Agreement may be modified or amended, if the amendment is made in writing and is signed by both parties.
+
+
+SEVERABILITY. If any provision of this Agreement shall be held to be invalid or unenforceable for any reason, the remaining provisions shall continue to be valid and enforceable. If a court finds that any provision of this Agreement is invalid or unenforceable, but that by limiting such provision it would become valid or enforceable, then such provision shall be deemed to be written, construed, and enforced as so limited.
+
+
+NOTICE. The address of each party hereto as set forth in the beginning of this Agreement shall be the appropriate address for the mailing of notices, checks and statements, if any. All notices shall be sent certified or registered mail and shall not be deemed received or effective unless and until actually received. Either party may change their mailing address by written notice to the other.
+
+
+WAIVER OF CONTRACTUAL RIGHT. The failure of either party to enforce any provision of this Agreement shall not be construed as a waiver or limitation of that party's right to subsequently enforce and compel strict compliance with every provision of this Agreement.
+
+
+APPLICABLE LAW. This Agreement shall be governed by the laws of the nation of Chile, the nation of Australia, the nation of New Zealand.
+
+
+Copyright Owner:
+
+samuel peter jenks
+
+
+
+
+
+By:	____________________________________________________
+
+
+
+
+
+	samuel peter jenks
+
+
+
+
+
+	business owner
+
+
+
+
+
+
+
+
+Licensee:
+
+ivan guzman
+
+
+
+
+
+By:	____________________________________________________
+
+
+
+
+
+	ivan guzman
+
+
+
+
+
+	Freelancer
