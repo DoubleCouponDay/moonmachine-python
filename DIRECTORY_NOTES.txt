@@ -1,0 +1,20 @@
+nginx reverse proxy startup file
+
+nginx reverse proxy config
+
+daphne web server start
+
+heroku procfile
+
+heroku python buildpack runtime config
+
+python pip requirements.txt
+
+git repository config
+
+javascript build packages
+
+grunt tasks folder
+
+cypress tasks folder
+

@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>    
+    <head>
+        <title>moon machine - portfolio</title>
+        <meta charset="utf-8">
+        <meta name="viewport" minimum-scale="1" content="width=device-width, initial-scale=1">
+        <title>Portfolio</title>
+        {% load static %}
+        <link rel="shortcut icon" href="#" title="no favicon" />        
+        <link rel="stylesheet" id="gwd-text-style" href="{% static 'content/portfolio.css' %}" />
+    </head>
+
+    <body class="htmlNoPages">
+        <div class="gwd-div-agjg">
+            <div class="gwd-div-1y9u gwd-div-1who">
+                <input class="gwd-input-1gco" type="file" data-bind="attr: {id: FileBoxId}">
+                <p class="gwd-p-f2ew">Script file:</p>
+                <span class="gwd-span-11t1 gwd-span-4rp4">Is compiled:</span>                
+                <span id="is-compiled" class="gwd-span-11t1 gwd-span-nkca" data-bind="text: Strategy().iscompiled"></span>
+                <span class="gwd-span-11t1 gwd-span-riag">Language:</span>
+                <span class="gwd-span-11t1 gwd-span-nf03" data-bind="text: Strategy().language"></span>
+                <p class="gwd-p-1flm">Upload Strategy</p>
+                <button class="gwd-button-1xr9" id="upload-button" data-bind="click: OnSubmit">
+                Upload
+                </button>
+            </div>
+            <p class="gwd-p-9807" data-bind="text: Strategy().compilationresult">
+      
+            </p>
+        </div>
+
+        <div class="gwd-div-1y9u gwd-div-10ze">
+            <span class="gwd-span-1x46">Toggle Operation</span>
+            <span class="gwd-span-1ild">Status:</span>
+            <span class="gwd-span-1w1b" data-bind="text: BotsStatus"></span>
+            <button class="gwd-button-cqyb" data-bind="visible: ShouldDisplayControl, click: OnToggle">Toggle</button>
+        </div>
+
+        <div class="loading-splash not-loading" data-bind="attr: {id: LoadingSplashId}">
+            {% load static %}
+            <img id="dooting" src="{% static 'content/dooting.gif' %}" class="gwd-img-efml">
+        </div>
+    </body>
+</html>
+{% load static %}
+<script src="{% static 'scripts/custom/binders/portfoliobinder.js' %}"></script>

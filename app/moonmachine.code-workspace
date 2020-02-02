@@ -1,0 +1,31 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "C:\\Users\\sjsui\\Desktop\\git_workshop\\MoonMachineProprietary\\mm-python\\cypress"
+		},
+		{
+			"path": "C:\\Users\\sjsui\\Desktop\\git_workshop\\MoonMachineProprietary\\mm-python\\grunt"
+		}
+	],
+	"settings": {
+		"python.pythonPath": "C:\\Users\\sjsui\\.virtualenvs\\MoonMachine-oZ6UWPMB\\Scripts\\python.exe",
+		"editor.wordWrap": "on",
+
+		"search.exclude": {
+			"./app/static": true
+		},
+		
+		"files.exclude": {
+			"**/.git": true,
+			"**/.svn": true,
+			"**/.hg": true,
+			"**/CVS": true,
+			"**/.DS_Store": true,
+			"./app/static/**": true,
+			"./app/front/scripts/node_modules/**": true
+		}
+	}
+}

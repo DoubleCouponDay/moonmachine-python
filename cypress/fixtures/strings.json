@@ -1,0 +1,6 @@
+{
+  "username": "admin",
+  "password": "qazwsxedc",
+  "goodpath": "../fixtures/strategy.cs",
+  "badpath": "../fixtures/dummydocument.txt"
+}
