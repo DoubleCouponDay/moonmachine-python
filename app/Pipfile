@@ -59,4 +59,4 @@ astroid = "*"
 rope = "*"
 
 [requires]
-python_version = "3.6.10"
+python_version = "3.6.5"
