@@ -22,3 +22,5 @@ app/static/scripts
 
 /cypress/videos/
 /cypress/screenshots/
+
+**/HiddenSettings.py
