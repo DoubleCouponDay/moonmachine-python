@@ -20,7 +20,7 @@ from back.Controllers.Portfolio import GetSubscribedStrategies, GetSupportedLang
 AUTHORIZED_CONTROLS = 'authorizedcontrols/'
 PORTFOLIO = 'portfolio/'
 CONTAINS_ADMIN = 'admin/'
-REGEX_EXACT_START = r'^(?i)'
+REGEX_EXACT_START = r'^'
 REGEX_EXACT_CAP = '$'
 
 urlpatterns = [
