@@ -1,5 +1,5 @@
 from django.http.request import HttpRequest
-from django.shortcuts import render, redirect, render_to_response
+from django.shortcuts import render, redirect
 from django.contrib.auth.checks import check_user_model
 from back.SelectionOptions.marketaction import marketaction
 from datetime import *
